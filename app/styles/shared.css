@@ -1,0 +1,35 @@
+:root {
+  --site-bg-clr: #0d0f16;
+  --site-font-clr: #e7e7ff;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--site-bg-clr);
+  color: var(--site-font-clr);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a,
+a:active,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
