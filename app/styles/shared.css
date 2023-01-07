@@ -1,6 +1,8 @@
 :root {
   --site-bg-clr: #0d0f16;
   --site-font-clr: #e7e7ff;
+  --cta-btn-bg-clr: #d9ff00;
+  --cta-btn-font-clr: #252835;
 }
 
 *,
