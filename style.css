@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply w-full max-w-screen-2xl mx-auto p-6
+  }
+  .header {
+    @apply bg-slate-100 border-b border-slate-200
+    dark:bg-black dark:border-neutral-800
+  }
+  .main {
+    @apply w-full overflow-x-hidden py-12
+  }
+  .footer {
+    @apply bg-slate-100 border-t border-slate-200
+    dark:bg-black dark:border-neutral-800 dark:text-slate-500
+  }
+  .step-btn {
+    @apply bg-slate-300 border border-slate-400 px-4 py-1
+  }
+  .form-container {
+    @apply bg-white p-6 rounded-sm border border-slate-200
+    dark:bg-neutral-900 dark:border-neutral-800
+  }
+  .form-btn {
+    @apply bg-emerald-400 px-4 py-1 rounded-sm
+    dark:bg-indigo-500
+  }
+  .form-input {
+    @apply bg-slate-100 border border-slate-300 dark:bg-neutral-800 text-inherit py-1 px-2 rounded-sm
+  }
+  .form-row {
+    @apply flex flex-col gap-y-1
+  }
+  .form-list-item {
+    @apply flex justify-between items-center bg-slate-100 rounded-sm p-2 border border-slate-300
+    dark:bg-neutral-800 dark:border-neutral-600
+  }
+}
