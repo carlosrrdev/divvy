@@ -19,6 +19,7 @@
   }
   .step-btn {
     @apply bg-slate-300 border border-slate-400 px-4 py-1
+    dark:bg-neutral-800
   }
   .form-container {
     @apply bg-white p-6 rounded-sm border border-slate-200
@@ -30,6 +31,7 @@
   }
   .form-input {
     @apply bg-slate-100 border border-slate-300 dark:bg-neutral-800 text-inherit py-1 px-2 rounded-sm
+    dark:border-neutral-700
   }
   .form-row {
     @apply flex flex-col gap-y-1
@@ -38,4 +40,15 @@
     @apply flex justify-between items-center bg-slate-100 rounded-sm p-2 border border-slate-300
     dark:bg-neutral-800 dark:border-neutral-600
   }
+  .dialog {
+    @apply w-full border
+    dark:border-neutral-800 dark:bg-neutral-900 dark:text-white p-2 rounded-sm
+  }
+  .dialog-container {
+    @apply flex flex-col gap-y-4 p-6
+  }
+}
+
+dialog::backdrop {
+  background-color: rgba(0,0,0,0.7);
 }

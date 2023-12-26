@@ -21,8 +21,8 @@
     <div class="container">
       <!--      TODO decide how layout will look on larger screen -->
       <div>
-        <div class="flex justify-between items-center mb-2">
-          <h2 id="next_step_text">Step 1. Add participants</h2>
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-bold" id="next_step_text">Step 1. Add participants</h2>
           <div class="flex items-center gap-x-2">
             <button class="step-btn" data-action="prev" style="display: none" id="prev_step_btn" type="button">Prev
             </button>
@@ -30,7 +30,7 @@
             </button>
           </div>
         </div>
-        <section>
+        <section id="step_one">
           <div class="form-container flex flex-col gap-y-10">
             <form id="add_part">
               <fieldset class="form-row">
@@ -46,6 +46,40 @@
                 <p class="text-center opacity-50">No participants. Try adding one.</p>
               </li>
             </ul>
+          </div>
+        </section>
+        <section id="step_two" style="display: none">
+          <div class="form-container flex flex-col gap-y-10">
+            <form id="add_exp" class="flex flex-col gap-y-2">
+              <div class="flex items-center gap-x-4">
+                <fieldset class="form-row flex-1">
+                  <label class="text-sm" for="exp_input">Expense name</label>
+                  <input class="form-input" type="text" id="exp_input" required>
+                </fieldset>
+                <fieldset class="form-row w-full">
+                  <label class="text-sm" for="exp_num">Amount</label>
+                  <div class="flex items-center gap-x-1">
+                    <span>&dollar;</span>
+                    <input class="form-input w-full" type="number" id="exp_num" required>
+                  </div>
+                </fieldset>
+              </div>
+              <button id="exp_btn" class="form-btn mt-2" type="submit">Add</button>
+            </form>
+            <ul id="expenses_container" class="flex flex-col gap-y-2">
+              <li id="no_exp">
+                <p class="text-center opacity-50">No expenses. Try adding one.</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="step_three" style="display: none">
+          <div class="form-container flex flex-col gap-y-10">
+            <form id="add_delegations" class="flex flex-col gap-y-2">
+              <ul id="delegations_container" class="flex flex-col gap-y-2">
+              </ul>
+              <button id="del_btn" style="display: none" class="form-btn" type="submit">Divvy up!</button>
+            </form>
           </div>
         </section>
       </div>
