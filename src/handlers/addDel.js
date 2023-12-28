@@ -1,14 +1,21 @@
 import {getArr} from "../data.js";
+import {showResults} from "./results.js";
 
 const container = document.getElementById("delegations_container");
 const delBtn = document.getElementById('del_btn')
 const noDelMessage = document.getElementById('no_del')
-const delArr = [];
+let delArr;
+
+delBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  showResults(delArr)
+})
 
 export function addDel() {
   container.innerHTML = '';
   const participants = getArr("part");
   const expenses = getArr("exp");
+  delArr = [];
 
   participants.forEach((p) => {
     const partLi = document.createElement("li");
@@ -30,6 +37,7 @@ export function addDel() {
     container.appendChild(partLi);
     delArr.push({id: p.id, name: p.name, expenses:[]});
   })
+  verifyStatus()
 }
 
 function createDialogWithCheckboxes(data, userId, userName) {

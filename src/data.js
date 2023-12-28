@@ -1,6 +1,5 @@
 let participantArr = [];
 let expensesArr = []
-let delegateArr = []
 
 export function getArr(arr) {
   if(arr === "part") {
@@ -28,4 +27,9 @@ export function updateAndDelete(arr, id) {
     expensesArr = expensesArr.filter((i) => i.id !== id);
     return expensesArr;
   }
+}
+
+export function clearArrays() {
+  participantArr = [];
+  expensesArr = [];
 }

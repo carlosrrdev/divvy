@@ -68,3 +68,17 @@
 dialog::backdrop {
   background-color: rgba(0,0,0,0.7);
 }
+dialog {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(.19,.03,.1,1.01);
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
