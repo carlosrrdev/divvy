@@ -1,5 +1,5 @@
 import {nanoid} from "nanoid";
-import {createDeleteBtn, createNewRow} from "../utility.js";
+import {capitalizeFirstLetter, createDeleteBtn, createNewRow} from "../utility.js";
 import {addToArr} from "../data.js";
 
 const inputVal = document.getElementById("part_input");
@@ -17,13 +17,13 @@ export function addPart(e) {
   const partName = inputVal.value.trim();
   if (partName === "") return;
 
-  const newPartObj = {id: nanoid(5), name: partName}
+  const newPartObj = {id: nanoid(5), name: capitalizeFirstLetter(partName)}
   const partArr = addToArr("part", newPartObj)
   if (partArr.length > 1) {
     nextStepBtn.style.display = 'block';
   }
 
-  const partLi = createNewRow(partName)
+  const partLi = createNewRow(capitalizeFirstLetter(partName))
   const deleteBtn = createDeleteBtn("part", newPartObj.id, partLi, 2, noPartMessage)
   partLi.appendChild(deleteBtn)
 

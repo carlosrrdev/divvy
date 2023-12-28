@@ -1,7 +1,6 @@
 import {nanoid} from "nanoid";
-import {trashIcon} from "../icons.js";
 import {addToArr} from "../data.js";
-import {createDeleteBtn, createNewRow} from "../utility.js";
+import {capitalizeFirstLetter, createDeleteBtn, createNewRow} from "../utility.js";
 
 const expNameInput = document.getElementById('exp_input');
 const expNumInput = document.getElementById('exp_num');
@@ -18,14 +17,16 @@ export function addExp(e) {
   e.preventDefault()
 
   const expName = expNameInput.value.trim();
+  if (expName === "") return;
+
   const expAmount = parseFloat(expNumInput.value.trim())
-  const newExpObj = {id: nanoid(5), name: expName, amount: expAmount}
+  const newExpObj = {id: nanoid(5), name: capitalizeFirstLetter(expName), amount: expAmount}
   const expArr = addToArr("exp", newExpObj)
-  if(expArr.length >= 1 ) {
+  if (expArr.length >= 1) {
     nextStepBtn.style.display = "block"
   }
 
-  const expLi = createNewRow(expName);
+  const expLi = createNewRow(capitalizeFirstLetter(expName));
   const amountSpan = document.createElement("span");
   amountSpan.textContent = `$${expAmount}`
   const deleteBtn = createDeleteBtn("exp", newExpObj.id, expLi, 1, noExpMessage);
@@ -36,4 +37,5 @@ export function addExp(e) {
 
   expNameInput.value = '';
   expNumInput.value = '';
+  expNameInput.focus()
 }

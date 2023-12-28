@@ -58,3 +58,13 @@ function deleteAndUpdate(arr, id, parent, min, message) {
     message.style.display = "block"
   }
 }
+
+/**
+ * Capitalizes the first letter of a string.
+ *
+ * @param {string} string - The input string to capitalize the first letter of.
+ * @returns {string} - The capitalized string.
+ */
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

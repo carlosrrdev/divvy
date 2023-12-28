@@ -66,13 +66,11 @@ function prevStep() {
     stepMessage.textContent = "Step 1. Add participants";
     document.getElementById('step_one').style.display = "block";
     document.getElementById('step_two').style.display = "none";
-    console.log(getArr("part"));
   } else if (currentStep === 2) {
     stepMessage.textContent = "Step 2. Add expenses";
     nextStepBtn.style.display = "block";
     nextStepBtn.textContent = "Next";
     document.getElementById("step_two").style.display = "block";
     document.getElementById("step_three").style.display = "none";
-    console.log(getArr("part"), getArr("exp"));
   }
 }

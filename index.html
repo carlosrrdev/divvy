@@ -43,7 +43,7 @@
             </form>
             <ul id="participants_container" class="flex flex-col gap-y-2">
               <li id="no_part">
-                <p class="text-center opacity-50">No participants. Try adding one.</p>
+                <p class="text-center opacity-70">No participants. Try adding one.</p>
               </li>
             </ul>
           </div>
@@ -68,7 +68,7 @@
             </form>
             <ul id="expenses_container" class="flex flex-col gap-y-2">
               <li id="no_exp">
-                <p class="text-center opacity-50">No expenses. Try adding one.</p>
+                <p class="text-center opacity-70">No expenses. Try adding one.</p>
               </li>
             </ul>
           </div>
@@ -78,7 +78,8 @@
             <form id="add_delegations" class="flex flex-col gap-y-2">
               <ul id="delegations_container" class="flex flex-col gap-y-2">
               </ul>
-              <button id="del_btn" style="display: none" class="form-btn" type="submit">Divvy up!</button>
+              <p class="opacity-70 text-center my-5" id="no_del">All participants must have at least one expense assigned.</p>
+              <button id="del_btn" style="display: none" class="form-btn my-6" type="submit">Divvy up!</button>
             </form>
           </div>
         </section>
