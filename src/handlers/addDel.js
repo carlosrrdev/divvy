@@ -1,4 +1,4 @@
-import {getArr} from "../data.js";
+import {addPartToExpense, getArr} from "../data.js";
 import {showResults} from "./results.js";
 
 const container = document.getElementById("delegations_container");
@@ -110,6 +110,7 @@ function closeDialog(dialog, list) {
     userId = delArr.findLastIndex((u) => u.id === box.dataset.part_id)
     if(box.checked) {
       expenses.push(box.dataset.exp_id)
+      addPartToExpense(box.dataset.exp_id, box.dataset.part_id)
     }
   })
 

@@ -29,6 +29,20 @@ export function updateAndDelete(arr, id) {
   }
 }
 
+export function addPartToExpense(id, userId) {
+  const expense = expensesArr.find((i) => i.id === id);
+  if (expense) {
+    expense.participants.push(userId);
+  }
+}
+
+export function removePartFromExpense(id, userId) {
+  const expense = expensesArr.find((i) => i.id === id);
+  if (expense) {
+    expense.participants = expense.participants.filter((i) => i !== userId);
+  }
+}
+
 export function clearArrays() {
   participantArr = [];
   expensesArr = [];

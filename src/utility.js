@@ -1,5 +1,5 @@
 import {trashIcon} from "./icons.js";
-import {updateAndDelete} from "./data.js";
+import {clearArrays, updateAndDelete} from "./data.js";
 
 const nextStepBtn = document.getElementById('next_step_btn')
 
@@ -67,4 +67,21 @@ function deleteAndUpdate(arr, id, parent, min, message) {
  */
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function reset() {
+  // const step1 = document.getElementById("step_one");
+  // const step2 = document.getElementById("step_two");
+  // const step3 = document.getElementById("step_three");
+  //
+  // const partContainer = document.getElementById('participants_container')
+  //
+  // step1.style.display = "block";
+  // step2.style.display = "none";
+  // step3.style.display = "none";
+  //
+  // clearArrays()
+
+  // TODO add methods to reset all data and UI back to original state
+  window.location.reload();
 }

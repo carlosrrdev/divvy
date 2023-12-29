@@ -20,7 +20,9 @@ export function addExp(e) {
   if (expName === "") return;
 
   const expAmount = parseFloat(expNumInput.value.trim())
-  const newExpObj = {id: nanoid(5), name: capitalizeFirstLetter(expName), amount: expAmount}
+  if(!expAmount) return;
+
+  const newExpObj = {id: nanoid(5), name: capitalizeFirstLetter(expName), amount: expAmount, participants: []}
   const expArr = addToArr("exp", newExpObj)
   if (expArr.length >= 1) {
     nextStepBtn.style.display = "block"
