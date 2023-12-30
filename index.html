@@ -7,96 +7,48 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description"
         content="Divvy is an expense splitting web application that helps you quickly delegate expenses between groups of people.">
-  <link rel="shortcut icon" href="/vite.svg" type="image/x-icon">
+  <link rel="shortcut icon" href="/divvy.svg" type="image/x-icon">
   <title>Divvy | Expense splitting</title>
 </head>
-<body class="bg-slate-50 dark:bg-neutral-950 text-slate-800 dark:text-slate-300">
-<div class="min-h-screen grid grid-rows-[auto_1fr_auto]">
-  <header class="header">
-    <nav class="container">
-      <a href="/">Divvy</a>
+<body class="dark: bg-slate-950 text-indigo-200">
+<div class="divvy-grid">
+  <header class="divvy-header">
+    <nav class="divvy-container">
+      <div class="flex items-center">
+        <img class="w-8" src="/divvy.svg" alt="logo">
+        <p class="font-bold text-xl">Divvy</p>
+      </div>
     </nav>
   </header>
-  <main class="main">
-    <div class="container">
-      <!--      TODO decide how layout will look on larger screen -->
-      <div>
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-lg font-bold" id="next_step_text">Step 1. Add participants</h2>
-          <div class="flex items-center gap-x-2">
-            <button class="step-btn" data-action="prev" style="display: none" id="prev_step_btn" type="button">Prev
-            </button>
-            <button class="step-btn" data-action="next" style="display: none" id="next_step_btn" type="button">Next
-            </button>
-          </div>
+  <main class="divvy-container">
+    <div class="divvy-steps-container">
+      <div id="divvy-steps" class="flex justify-between">
+        <div class="flex flex-col">
+          <p class="text-lg font-bold" id="divvy-current-step">Step 1. Add users</p>
+          <small class="dark:text-indigo-400">Start by adding participating members</small>
         </div>
-        <section id="step_one">
-          <div class="form-container flex flex-col gap-y-10">
-            <form id="add_part">
-              <fieldset class="form-row">
-                <label class="text-sm" for="part_input">Name</label>
-                <div class="flex gap-x-2">
-                  <input class="form-input flex-1" type="text" id="part_input" required>
-                  <button id="part_btn" class="form-btn" type="submit">Add</button>
-                </div>
-              </fieldset>
-            </form>
-            <ul id="participants_container" class="flex flex-col gap-y-2">
-              <li id="no_part">
-                <p class="text-center opacity-70">No participants. Try adding one.</p>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section id="step_two" style="display: none">
-          <div class="form-container flex flex-col gap-y-10">
-            <form id="add_exp" class="flex flex-col gap-y-2">
-              <div class="flex items-center gap-x-4">
-                <fieldset class="form-row flex-1">
-                  <label class="text-sm" for="exp_input">Expense name</label>
-                  <input class="form-input" type="text" id="exp_input" required>
-                </fieldset>
-                <fieldset class="form-row w-full">
-                  <label class="text-sm" for="exp_num">Amount</label>
-                  <div class="flex items-center gap-x-1">
-                    <span>&dollar;</span>
-                    <input class="form-input w-full" type="text" id="exp_num" required>
-                  </div>
-                </fieldset>
-              </div>
-              <button id="exp_btn" class="form-btn mt-2" type="submit">Add</button>
-            </form>
-            <ul id="expenses_container" class="flex flex-col gap-y-2">
-              <li id="no_exp">
-                <p class="text-center opacity-70">No expenses. Try adding one.</p>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section id="step_three" style="display: none">
-          <div class="form-container flex flex-col gap-y-10">
-            <form id="add_delegations" class="flex flex-col gap-y-2">
-              <ul id="delegations_container" class="flex flex-col gap-y-2">
-              </ul>
-              <p class="opacity-70 text-center my-5" id="no_del">All participants must have at least one expense assigned.</p>
-              <button id="del_btn" style="display: none" class="form-btn my-6" type="submit">Divvy up!</button>
-            </form>
-          </div>
-        </section>
+        <div>
+          <button>Next step</button>
+        </div>
       </div>
-      <dialog id="results" class="dialog">
-      </dialog>
+      <section id="step_1">
+        <div class="divvy-step">
+          <!-- Step content goes here -->
+
+        </div>
+      </section>
     </div>
   </main>
-  <footer class="footer">
-    <div class="container flex flex-col items-center">
-      <small>Made with <span class="text-rose-500">&hearts;</span> by Carlos Rodriguez</small>
+  <footer class="divvy-footer">
+    <div class="divvy-container flex flex-col items-center">
+      <small>Made with <span class="text-teal-400">&hearts;</span> by Carlos Rodriguez</small>
       <small>&copy; 2023-2024. All rights reserved</small>
       <a class="text-sm underline" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">View
         source code</a>
     </div>
   </footer>
 </div>
+<noscript>This site requires Javascript to properly function. Please enable Javascript and refresh the page.</noscript>
 <script type="module" src="/app.js"></script>
 </body>
 </html>

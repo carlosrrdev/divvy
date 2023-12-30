@@ -8,7 +8,11 @@ export default {
     "./src/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "indigo-1000": "#01030A"
+      }
+    },
   },
   plugins: [
     tailwindForm()

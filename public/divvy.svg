@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="512.0px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 512 512" width="512.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient gradientTransform="matrix(1.25914 0 0 1.25914 -66.3395 -66.3395)" gradientUnits="userSpaceOnUse" id="LinearGradient" x1="164.736" x2="256" y1="335.037" y2="335.037">
+<stop offset="0" stop-color="#17407d"/>
+<stop offset="1" stop-color="#6038ff"/>
+</linearGradient>
+<linearGradient gradientTransform="matrix(1.25914 0 0 1.25914 -66.3395 -66.3395)" gradientUnits="userSpaceOnUse" id="LinearGradient_2" x1="258.383" x2="347.264" y1="254.298" y2="176.963">
+<stop offset="0" stop-color="#6e6bff"/>
+<stop offset="1" stop-color="#426dff"/>
+</linearGradient>
+<linearGradient gradientTransform="matrix(1.25914 0 0 1.25914 -66.3395 -66.3395)" gradientUnits="userSpaceOnUse" id="LinearGradient_3" x1="257.577" x2="347.264" y1="256.739" y2="335.037">
+<stop offset="0" stop-color="#17407d"/>
+<stop offset="1" stop-color="#6038ff"/>
+</linearGradient>
+<linearGradient gradientTransform="matrix(1.25914 0 0 1.25914 -66.3395 -66.3395)" gradientUnits="userSpaceOnUse" id="LinearGradient_4" x1="164.736" x2="255.593" y1="176.963" y2="256.56">
+<stop offset="0" stop-color="#17407d"/>
+<stop offset="1" stop-color="#6038ff"/>
+</linearGradient>
+</defs>
+<g id="Layer-1">
+<path d="M256 455.037L141.086 256L256 256L256 455.037Z" fill="url(#LinearGradient)" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M256 56.9634L370.914 256L256 256L256 56.9634Z" fill="url(#LinearGradient_2)" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M256 455.037L370.914 256L256 256L256 455.037Z" fill="url(#LinearGradient_3)" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M256 56.9634L141.086 256L256 256L256 56.9634Z" fill="url(#LinearGradient_4)" fill-rule="nonzero" opacity="1" stroke="none"/>
+</g>
+</svg>
