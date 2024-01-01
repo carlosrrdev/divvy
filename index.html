@@ -10,19 +10,19 @@
   <link rel="shortcut icon" href="/divvy.svg" type="image/x-icon">
   <title>Divvy | Expense splitting</title>
 </head>
-<body class="dark: bg-slate-950 text-indigo-200">
+<body class="dark:bg-slate-950 dark:text-indigo-200">
 <div class="divvy-grid">
   <header class="divvy-header">
     <nav class="divvy-container">
       <div class="flex items-center">
-        <img class="w-8" src="/divvy.svg" alt="logo">
+        <img width="32px" class="w-8" src="/divvy.svg" alt="logo">
         <p class="font-bold text-xl">Divvy</p>
       </div>
     </nav>
   </header>
   <main class="divvy-container">
     <div class="divvy-steps-container">
-      <div id="divvy-steps" class="flex justify-between">
+      <div id="divvy-steps-mobile" class="flex justify-between">
         <div class="flex flex-col">
           <p class="text-lg font-bold" id="divvy-current-step">Step 1. Add users</p>
           <small class="dark:text-indigo-400">Start by adding participating members</small>
@@ -32,9 +32,72 @@
         </div>
       </div>
       <section id="step_1">
-        <div class="divvy-step">
-          <!-- Step content goes here -->
-
+        <div class="divvy-step md:animate-enter-right">
+          <div class="hidden md:flex flex-col">
+            <p class="text-lg font-bold lg:text-2xl">Step 1. Add users</p>
+            <small class="dark:text-indigo-400 lg:text-base">Start by adding participating members</small>
+            <small class="text-indigo-700">Minimum 2 users</small>
+          </div>
+          <form id="step_1_form" class="divvy-form">
+            <fieldset class="flex flex-col gap-y-1">
+              <label class="text-sm" for="user_name_input">User name</label>
+              <div class="flex">
+                <input class="divvy-input" type="text" id="user_name_input" required>
+                <button class="divvy-form-btn" type="submit">Add</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+      <section id="step_2">
+        <div class="divvy-step md:animate-enter-right">
+          <div class="hidden md:flex flex-col">
+            <p class="text-lg font-bold lg:text-2xl">Step 2. Add expenses</p>
+            <small class="dark:text-indigo-400 lg:text-base">Expenses and their amounts</small>
+            <form id="step_2_form" class="divvy-form">
+              <div class="flex gap-x-4 lg:gap-x-8 items-end">
+                <fieldset class="flex flex-1 flex-col gap-y-1">
+                  <label class="text-sm" for="expense_name_input">Expense name</label>
+                  <input class="divvy-input" type="text" id="expense_name_input" required>
+                </fieldset>
+                <fieldset class="flex flex-col gap-y-1">
+                  <label class="text-sm" for="expense_amount-input">Amount</label>
+                  <div class="flex border items-center divvy-input">
+                    <span class="mx-1">&dollar;</span>
+                    <div class="flex">
+                      <input class="border-0 w-24" type="text" id="expense_amount-input">
+                      <button class="divvy-form-btn" type="submit">Add</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section id="step_3">
+        <div class="divvy-step md:animate-fade-in">
+          <div class="hidden md:flex flex-col">
+            <p class="text-lg font-bold lg:text-2xl">Step 3. Assign expenses</p>
+            <small class="dark:text-indigo-400 lg:text-base">Who is paying for what?</small>
+          </div>
+          <div class="hidden md:block md:mt-10 text-indigo-800/80">
+            <p>
+              Will automatically update once you add users and expenses.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="results">
+        <div class="divvy-step divvy-results md:animate-enter-left">
+          <div class="hidden md:flex flex-col">
+            <p class="text-lg font-bold lg:text-2xl">Results</p>
+          </div>
+          <div class="hidden md:block md:mt-10 text-indigo-300">
+            <p>Results will show up here after you've added users, expenses,
+              and assigned those expenses to each user.
+            </p>
+          </div>
         </div>
       </section>
     </div>

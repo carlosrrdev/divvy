@@ -7,7 +7,7 @@
     @apply min-h-screen grid grid-rows-[auto_1fr_auto]
   }
   .divvy-container {
-    @apply w-full max-w-screen-2xl mx-auto p-6
+    @apply w-full max-w-screen-2xl mx-auto p-6 md:p-8
   }
   .divvy-header {
     @apply border-b border-indigo-50
@@ -18,7 +18,39 @@
     dark:bg-indigo-1000 dark:text-slate-400 dark:border-indigo-950
   }
   .divvy-steps-container {
-    @apply py-10
+    @apply py-10 md:h-full md:grid md:grid-cols-3 md:grid-rows-2 gap-10
+  }
+  .divvy-step {
+    @apply md:h-full md:p-5 md:rounded-sm md:border md:border-indigo-100 overflow-y-auto
+  }
+  .divvy-results {
+    @apply bg-indigo-800 text-indigo-50
+  }
+  .divvy-form {
+    @apply mt-4
+  }
+  .divvy-input {
+    @apply w-full border-indigo-200 rounded-tl-sm rounded-bl-sm
+  }
+  .divvy-form-btn {
+    @apply px-4 py-2 rounded-tr-sm rounded-br-sm bg-indigo-500 text-indigo-50
+  }
+
+  #divvy-steps-mobile {
+    @apply md:hidden
+  }
+  /* row start, column star, row end, column end */
+  #step_1 {
+    @apply md:row-start-1 md:col-start-1 md:row-end-2 md:col-end-2
+  }
+  #step_2 {
+    @apply md:row-start-2 md:col-start-1 md:row-end-3 md:col-end-2
+  }
+  #step_3 {
+    @apply md:row-start-1 md:col-start-2 md:row-end-3 md:col-end-3
+  }
+  #results {
+    @apply md:row-start-1 md:col-start-3 md:row-end-3 md:col-end-4
   }
 }
 
