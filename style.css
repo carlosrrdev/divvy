@@ -22,6 +22,7 @@
   }
   .divvy-step {
     @apply md:h-full md:p-5 md:rounded-sm md:border md:border-indigo-100 overflow-y-auto
+    dark:md:border-indigo-950
   }
   .divvy-results {
     @apply bg-indigo-800 text-indigo-50
@@ -31,9 +32,17 @@
   }
   .divvy-input {
     @apply w-full border-indigo-200 rounded-tl-sm rounded-bl-sm
+    dark:border-indigo-900
+  }
+  .divvy-form-input {
+    @apply dark:bg-slate-900
   }
   .divvy-form-btn {
     @apply px-4 py-2 rounded-tr-sm rounded-br-sm bg-indigo-500 text-indigo-50
+  }
+  .divvy-step-btn {
+    @apply px-2 py-1 rounded-sm text-sm h-fit border bg-indigo-500 text-indigo-50 dark:bg-teal-600
+    dark:border-teal-300
   }
 
   #divvy-steps-mobile {

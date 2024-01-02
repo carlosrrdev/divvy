@@ -6,8 +6,6 @@
  * @property {Array.<string>} expenseIds
  */
 
-import {data} from "autoprefixer";
-
 /**
  * Defines Expense type. Each expense must contain an id, name, and members.
  * Members is an array of user id's
@@ -17,15 +15,22 @@ import {data} from "autoprefixer";
  * @property {Array.<string>} members
  */
 
+/**
+ * State store
+ * @typedef {{users: Array.<User>, expenses: Array.<Expense>, step: number}} Store
+ * @global
+ */
+
 export const store = {
   /**
    * Contains all data for users and expenses
    * @private
-   * @type {{users: Array.<User>, expenses: Array.<Expense>}}
+   * @type {Store}
    */
   _state: {
     users: [],
-    expenses: []
+    expenses: [],
+    step: 1
   },
 
   /**
@@ -86,5 +91,29 @@ export const store = {
    */
   removeUser(id) {
     this.setState({users: this.state.users.filter(user => user.id !== id)})
+  },
+
+  /**
+   * Advances the current step and returns the new step number.
+   *
+   * @returns {number} The new step number.
+   */
+  nextStep() {
+    if(this._state.step < 4) {
+      this.setState({step: this.state.step + 1});
+    }
+    return this._state.step;
+  },
+
+  /**
+   * Decrements the step value and returns the updated step value.
+   *
+   * @returns {number} - The updated step value.
+   */
+  prevStep() {
+    if(this._state.step > 1) {
+      this.setState({step: this.state.step - 1});
+    }
+    return this._state.step
   }
 }
