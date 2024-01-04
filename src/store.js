@@ -4,6 +4,7 @@
  * @property {string} id
  * @property {string} name
  * @property {Array.<string>} expenseIds
+ * @global
  */
 
 /**
@@ -12,7 +13,9 @@
  * @typedef {Object} Expense
  * @property {string} id
  * @property {string} name
+ * @property {number} amount
  * @property {Array.<string>} members
+ * @global
  */
 
 /**
@@ -75,18 +78,17 @@ export const store = {
 
   /**
    * Add a new user to the state.
-   *
    * @param {User} data - The user data to be added.
+   * @returns {User}
    */
   addUser(data) {
     this.setState({users: [...this.state.users, data]})
+    return data;
   },
 
   /**
    * Removes a user from the state based on the given id.
-   *
    * @param {string} id - The id of the user to be removed.
-   *
    * @return {void}
    */
   removeUser(id) {
@@ -94,8 +96,25 @@ export const store = {
   },
 
   /**
+   * Adds an expense to the state's `expenses` array.
+   * @param {Expense} data - The expense data to be added.
+   * @return {Expense} - The added expense data.
+   */
+  addExpense(data) {
+    this.setState({expenses: [...this.state.expenses, data]});
+    return data;
+  },
+
+  /**
+   * Removes the expense with matching id from the expenses list.
+   * @param {string} id - The expense object to be removed.
+   */
+  removeExpense(id) {
+    this.setState({expenses: this.state.expenses.filter(expense => expense.id !== id)});
+  },
+
+  /**
    * Advances the current step and returns the new step number.
-   *
    * @returns {number} The new step number.
    */
   nextStep() {
@@ -107,7 +126,6 @@ export const store = {
 
   /**
    * Decrements the step value and returns the updated step value.
-   *
    * @returns {number} - The updated step value.
    */
   prevStep() {

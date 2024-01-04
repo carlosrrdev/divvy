@@ -22,24 +22,24 @@
   </header>
   <main class="divvy-container">
     <div class="divvy-steps-container">
-      <div id="divvy-steps-mobile" class="flex justify-between mb-8">
+      <div id="divvy-steps-mobile" class="flex justify-between">
         <div class="flex flex-col">
           <p class="text-lg font-bold" id="divvy-current-step">Step 1. Add users</p>
           <small id="divvy-current-step-sub" class="dark:text-indigo-400">Start by adding participating members</small>
         </div>
         <div class="flex gap-x-2">
-          <button id="prev_step_btn" class="divvy-step-btn">Back</button>
-          <button id="next_step_btn" class="divvy-step-btn">Next</button>
+          <button id="prev_step_btn" style="display: none" class="divvy-step-btn">Back</button>
+          <button id="next_step_btn" style="display: none" class="divvy-step-btn">Next</button>
         </div>
       </div>
       <section id="step_1">
         <div class="divvy-step md:animate-enter-right">
-          <div id="step_1_container" class="hidden md:flex flex-col">
+          <div class="hidden md:flex flex-col">
             <p class="text-lg font-bold lg:text-2xl">Step 1. Add users</p>
             <small class="dark:text-indigo-400 lg:text-base">Start by adding participating members</small>
             <small class="text-indigo-700 dark:text-teal-400">Minimum 2 users</small>
           </div>
-          <form id="step_1_form" class="divvy-form">
+          <form id="step_1_form">
             <fieldset class="flex flex-col gap-y-1">
               <label class="text-sm" for="user_name_input">User name</label>
               <div class="flex">
@@ -48,35 +48,37 @@
               </div>
             </fieldset>
           </form>
+          <ul class="divvy-ul" id="step_1_list"></ul>
         </div>
       </section>
-      <section id="step_2" class="hidden">
+      <section id="step_2" class="hidden md:block">
         <div class="divvy-step md:animate-enter-right">
           <div class="hidden md:flex flex-col">
             <p class="text-lg font-bold lg:text-2xl">Step 2. Add expenses</p>
             <small class="dark:text-indigo-400 lg:text-base">Expenses and their amounts</small>
           </div>
-          <form id="step_2_form" class="divvy-form">
+          <form id="step_2_form">
             <div class="flex gap-x-4 lg:gap-x-8 items-end">
               <fieldset class="flex flex-1 flex-col gap-y-1">
                 <label class="text-sm" for="expense_name_input">Expense name</label>
                 <input class="divvy-input divvy-form-input" type="text" id="expense_name_input" required>
               </fieldset>
               <fieldset class="flex flex-col gap-y-1">
-                <label class="text-sm" for="expense_amount-input">Amount</label>
+                <label class="text-sm" for="expense_amount_input">Amount</label>
                 <div class="flex border items-center divvy-input divvy-form-input">
                   <span class="mx-1">&dollar;</span>
                   <div class="flex">
-                    <input class="border-0 w-24 divvy-form-input" type="text" id="expense_amount-input">
+                    <input class="border-0 w-24 divvy-form-input" type="text" id="expense_amount_input">
                     <button class="divvy-form-btn" type="submit">Add</button>
                   </div>
                 </div>
               </fieldset>
             </div>
           </form>
+          <ul class="divvy-ul" id="step_2_list"></ul>
         </div>
       </section>
-      <section id="step_3" class="hidden">
+      <section id="step_3" class="hidden md:block">
         <div class="divvy-step md:animate-fade-in">
           <div class="hidden md:flex flex-col">
             <p class="text-lg font-bold lg:text-2xl">Step 3. Assign expenses</p>
@@ -87,9 +89,10 @@
               Will automatically update once you add users and expenses.
             </p>
           </div>
+          <ul id="step_3_list"></ul>
         </div>
       </section>
-      <section id="results" class="hidden">
+      <section id="results" class="hidden md:block">
         <div class="divvy-step divvy-results md:animate-enter-left">
           <div class="hidden md:flex flex-col">
             <p class="text-lg font-bold lg:text-2xl">Results</p>
@@ -107,8 +110,14 @@
     <div class="divvy-container flex flex-col items-center">
       <small>Made with <span class="text-teal-400">&hearts;</span> by Carlos Rodriguez</small>
       <small>&copy; 2023-2024. All rights reserved</small>
-      <a class="text-sm underline" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">View
-        source code</a>
+      <a class="text-sm underline" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">
+        View source code
+      </a>
+      <a href='https://ko-fi.com/B0B8S3PDX' class="mt-4" target='_blank'>
+        <img width="120px" class="w-32"
+             src='https://storage.ko-fi.com/cdn/kofi1.png?v=3'
+             alt='Buy Me a Coffee at ko-fi.com'/>
+      </a>
     </div>
   </footer>
 </div>
