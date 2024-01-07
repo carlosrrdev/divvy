@@ -1,7 +1,7 @@
-import {store} from "./store.js";
-import {trashIcon} from "./icons.js"
+import {store} from "../store.js";
+import {trashIcon} from "../icons.js"
 import {nanoid} from "nanoid/non-secure";
-import {capitalizeFirstLetter} from "./util.js";
+import {capitalizeFirstLetter} from "../util.js";
 
 const step1Form = document.getElementById('step_1_form');
 const userNameInput = document.getElementById('user_name_input');

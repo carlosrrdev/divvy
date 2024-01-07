@@ -1,7 +1,7 @@
-import {store} from "./store.js";
-import {trashIcon} from "./icons.js"
+import {store} from "../store.js";
+import {trashIcon} from "../icons.js"
 import {nanoid} from "nanoid/non-secure";
-import {capitalizeFirstLetter} from "./util.js";
+import {capitalizeFirstLetter} from "../util.js";
 
 const step2Form = document.getElementById('step_2_form');
 const expNameInput = document.getElementById('expense_name_input');
@@ -29,7 +29,7 @@ step2Form.addEventListener("submit", (e) => {
 /**
  * Adds a new list item element to the step1List.
  *
- * @param {(import("./store.js").Expense)} expense - The username to be displayed in the list item.
+ * @param {(import("../store.js").Expense)} expense - The username to be displayed in the list item.
  * @return {void}
  */
 function addLiElement(expense) {

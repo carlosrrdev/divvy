@@ -113,6 +113,32 @@ export const store = {
     this.setState({expenses: this.state.expenses.filter(expense => expense.id !== id)});
   },
 
+  assignExpense(expId, userId) {
+    const users = this.state.users.map(user => {
+      if (user.id === userId) {
+        const hasExpense = user.expenseIds.includes(expId);
+        const expenseIds = hasExpense
+          ? user.expenseIds.filter(id => id !== expId)
+          : [...user.expenseIds, expId];
+        return {...user, expenseIds};
+      }
+      return user;
+    });
+
+    const expenses = this.state.expenses.map(expense => {
+      if (expense.id === expId) {
+        const hasUser = expense.members.includes(userId);
+        const members = hasUser
+          ? expense.members.filter(id => id !== userId)
+          : [...expense.members, userId];
+        return {...expense, members};
+      }
+      return expense;
+    });
+
+    this.setState({ users, expenses });
+  },
+
   /**
    * Advances the current step and returns the new step number.
    * @returns {number} The new step number.

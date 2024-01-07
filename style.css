@@ -21,7 +21,7 @@
     @apply py-5 h-full flex flex-col gap-y-10 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-10
   }
   .divvy-step {
-    @apply flex flex-col gap-y-4 md:p-5 md:rounded-sm md:border md:border-indigo-100
+    @apply flex flex-col gap-y-4 md:p-5 md:h-full md:rounded-sm md:border md:border-indigo-100
     dark:md:border-indigo-950
   }
   .divvy-results {
@@ -46,9 +46,14 @@
   }
   .divvy-li {
     @apply py-2 px-4 border h-fit border-indigo-200 rounded-sm flex justify-between items-center
+    dark:border-indigo-800
   }
   .divvy-li-grid {
     @apply py-2 px-4 h-fit border border-indigo-200 rounded-sm grid grid-cols-[1fr_auto_auto] gap-x-8
+    dark:border-indigo-800
+  }
+  .divvy-checkbox {
+    @apply bg-indigo-100 border-none focus:outline-none outline-none checked:bg-indigo-600
   }
 
   #divvy-steps-mobile {
