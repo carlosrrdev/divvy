@@ -53,7 +53,8 @@
     dark:border-indigo-800
   }
   .divvy-checkbox {
-    @apply bg-indigo-100 border-none focus:outline-none outline-none checked:bg-indigo-600
+    @apply bg-indigo-100 border-none focus:outline-none outline-none checked:bg-indigo-500
+    dark:bg-indigo-900
   }
 
   #divvy-steps-mobile {

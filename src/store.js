@@ -87,12 +87,41 @@ export const store = {
   },
 
   /**
+   * Returns a new expense with the specified user removed from the members.
+   * @param {Expense} expense
+   * @param {string} userId
+   * @returns {Expense} The updated expense.
+   */
+  removeUserFromExpense(expense, userId) {
+    const filteredMembers = expense.members.filter(memberId => memberId !== userId);
+    return {...expense, members: filteredMembers};
+  },
+
+  /**
    * Removes a user from the state based on the given id.
    * @param {string} id - The id of the user to be removed.
    * @return {void}
    */
   removeUser(id) {
-    this.setState({users: this.state.users.filter(user => user.id !== id)})
+    const updatedUsers = this.state.users.filter(user => user.id !== id);
+    const updatedExpenses = this.state.expenses.map(expense => this.removeUserFromExpense(expense, id));
+    this.setState({
+      ...this.state,
+      users: updatedUsers,
+      expenses: updatedExpenses
+    });
+
+  },
+
+  /**
+   * Retrieves a user with the specified ID.
+   *
+   * @param {string} id - The ID of the user to retrieve.
+   *
+   * @return {User} - The user object with the specified ID.
+   */
+  getUser(id) {
+    return this.state.users.find(user => user.id === id);
   },
 
   /**
@@ -113,6 +142,12 @@ export const store = {
     this.setState({expenses: this.state.expenses.filter(expense => expense.id !== id)});
   },
 
+  /**
+   * Assigns an expense to a user or removes it if already assigned.
+   * @param {string} expId - The ID of the expense to be assigned or removed.
+   * @param {string} userId - The ID of the user to whom the expense should be assigned or removed.
+   * @return {void} - No return value.
+   */
   assignExpense(expId, userId) {
     const users = this.state.users.map(user => {
       if (user.id === userId) {
@@ -136,7 +171,7 @@ export const store = {
       return expense;
     });
 
-    this.setState({ users, expenses });
+    this.setState({users, expenses});
   },
 
   /**
@@ -144,7 +179,7 @@ export const store = {
    * @returns {number} The new step number.
    */
   nextStep() {
-    if(this._state.step < 4) {
+    if (this._state.step < 4) {
       this.setState({step: this.state.step + 1});
     }
     return this._state.step;
@@ -155,7 +190,7 @@ export const store = {
    * @returns {number} - The updated step value.
    */
   prevStep() {
-    if(this._state.step > 1) {
+    if (this._state.step > 1) {
       this.setState({step: this.state.step - 1});
     }
     return this._state.step

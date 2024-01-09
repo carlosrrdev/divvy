@@ -34,11 +34,12 @@ function renderList(state) {
         expenseLi.dataset.e_id = expense.id;
 
         expenseCheckbox.type = "checkbox";
-        expenseCheckbox.className = "divvy-checkbox"
+        expenseCheckbox.className = "divvy-checkbox peer"
         expenseLi.className = "flex items-center gap-x-2"
         expenseCheckbox.setAttribute("id", `${user.id}_${expense.id}`)
         expenseLabel.setAttribute("for", `${user.id}_${expense.id}`)
         expenseLabel.textContent = expense.name
+        expenseLabel.className = "peer-checked:text-indigo-500 dark:peer-checked:text-teal-500"
 
         expenseCheckbox.addEventListener('change', (e) => checkboxChange(e, expenseLi))
 
@@ -56,6 +57,14 @@ function renderList(state) {
   }
 }
 
+/**
+ * Handles the change event of a checkbox.
+ *
+ * @param {Event} e - The change event object.
+ * @param {HTMLLIElement} li - The list item element associated with the checkbox.
+ *
+ * @return {void}
+ */
 function checkboxChange(e, li) {
   const userId = li.dataset.u_id;
   const expId = li.dataset.e_id;

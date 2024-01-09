@@ -35,7 +35,7 @@
       <section id="step_1">
         <div class="divvy-step md:animate-enter-right">
           <div class="hidden md:flex flex-col">
-            <p class="text-lg font-bold lg:text-2xl">Step 1. Add users</p>
+            <p class="text-lg md:text-xl font-bold lg:text-2xl">Step 1. Add users</p>
             <small class="dark:text-indigo-400 lg:text-base">Start by adding participating members</small>
             <small class="text-indigo-700 dark:text-teal-400">Minimum 2 users</small>
           </div>
@@ -54,7 +54,7 @@
       <section id="step_2" class="hidden md:block">
         <div class="divvy-step md:animate-enter-right">
           <div class="hidden md:flex flex-col">
-            <p class="text-lg font-bold lg:text-2xl">Step 2. Add expenses</p>
+            <p class="text-lg md:text-xl font-bold lg:text-2xl">Step 2. Add expenses</p>
             <small class="dark:text-indigo-400 lg:text-base">Expenses and their amounts</small>
           </div>
           <form id="step_2_form">
@@ -81,7 +81,7 @@
       <section id="step_3" class="hidden md:block">
         <div class="divvy-step md:animate-fade-in">
           <div class="hidden md:flex flex-col">
-            <p class="text-lg font-bold lg:text-2xl">Step 3. Assign expenses</p>
+            <p class="text-lg md:text-xl font-bold lg:text-2xl">Step 3. Assign expenses</p>
             <small class="dark:text-indigo-400 lg:text-base">Who is paying for what?</small>
           </div>
           <p id="step_3_initial_message" class="md:mt-10 text-indigo-800/80 dark:text-indigo-300/70">
@@ -93,13 +93,12 @@
       <section id="results" class="hidden md:block">
         <div class="divvy-step divvy-results md:animate-enter-left">
           <div class="hidden md:flex flex-col">
-            <p class="text-lg font-bold lg:text-2xl">Results</p>
+            <p class="text-lg md:text-xl font-bold lg:text-2xl">Results</p>
           </div>
-          <div class="md:mt-10 text-indigo-300">
-            <p>Results will show up here after you've added users, expenses,
+            <p id="results_initial_message" class="md:mt-10 text-indigo-300">Results will show up here after you've added users, expenses,
               and assigned those expenses to each user.
             </p>
-          </div>
+          <ul id="results_list" class="flex flex-col gap-y-4"></ul>
         </div>
       </section>
     </div>
@@ -110,11 +109,6 @@
       <small>&copy; 2023-2024. All rights reserved</small>
       <a class="text-sm underline" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">
         View source code
-      </a>
-      <a href='https://ko-fi.com/B0B8S3PDX' class="mt-4" target='_blank'>
-        <img width="120px" class="w-32"
-             src='https://storage.ko-fi.com/cdn/kofi1.png?v=3'
-             alt='Buy Me a Coffee at ko-fi.com'/>
       </a>
     </div>
   </footer>
