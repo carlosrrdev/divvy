@@ -19,8 +19,8 @@ function renderResults(state) {
       const expenseElement = document.createElement('li');
       const expenseTitleContainer = document.createElement('div')
       const membersList = document.createElement('ul');
-      membersList.className = "ml-2 pl-4 pt-2 border-l border-indigo-200 hidden"
-      expenseTitleContainer.className = "flex border-b border-indigo-200 justify-between font-bold"
+      membersList.className = "ml-2 pl-4 pt-2 border-l border-indigo-500 hidden"
+      expenseTitleContainer.className = "flex border-b border-indigo-500 justify-between font-bold"
       expenseTitleContainer.innerHTML = `
       <p>${expense.name}</p>
       <p>$${expense.amount}</p>
@@ -30,10 +30,10 @@ function renderResults(state) {
           membersList.classList.remove('hidden')
           const member = store.getUser(memberId);
           const memberElement = document.createElement('li');
-          memberElement.className = "flex items-center gap-x-2"
+          memberElement.className = "divvy-result-user"
           memberElement.innerHTML = `
         ${userIcon}
-        <span>${member.name}</span>
+        <span class="text-sm">${member.name}</span>
         `
           membersList.appendChild(memberElement);
         });

@@ -27,6 +27,10 @@
   .divvy-results {
     @apply bg-indigo-800 text-indigo-50
   }
+  .divvy-result-user {
+    @apply flex relative before:content-[''] before:w-4 before:h-[1px] before:bg-indigo-500
+    before:absolute before:top-1/2 before:right-full items-center gap-x-2
+  }
   .divvy-input {
     @apply w-full border-indigo-200 rounded-tl-sm rounded-bl-sm
     dark:border-indigo-900
@@ -54,7 +58,7 @@
   }
   .divvy-checkbox {
     @apply bg-indigo-100 border-none focus:outline-none outline-none checked:bg-indigo-500
-    dark:bg-indigo-900
+    dark:bg-indigo-900 dark:checked:bg-teal-600
   }
 
   #divvy-steps-mobile {
