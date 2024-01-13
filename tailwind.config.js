@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import tailwindForm from "@tailwindcss/forms"
 
 export default {
   content: [
@@ -8,44 +7,40 @@ export default {
     "./src/**/*.js"
   ],
   theme: {
+    fontSize: {
+      sm: '0.750rem',
+      base: '1rem',
+      lg: '1.2rem',
+      xl: '1.5rem',
+      '2xl': '1.777rem',
+      '3xl': '2.369rem',
+      '4xl': '3.158rem',
+      '5xl': '4.210rem',
+    },
+    fontFamily: {
+      heading: ['Noto Sans Display', "sans-serif"],
+      body: ['Lato', 'sans-serif'],
+    },
+    fontWeight: {
+      normal: '400',
+      bold: '700',
+    },
     extend: {
       colors: {
-        "indigo-1000": "#01030A"
+        'text-light': 'hsl(199, 61%, 9%)',
+        'background-light': 'hsl(195, 50%, 97%)',
+        'primary-light': 'hsl(216, 90%, 34%)',
+        'secondary-light': 'hsl(216, 50%, 10%)',
+        'accent-light': 'hsl(176, 60%, 51%)',
+        'text-dark': 'hsl(199, 61%, 91%)',
+        'background-dark': 'hsl(223, 77%, 5%)',
+        'primary-dark': 'hsl(216, 90%, 66%)',
+        'secondary-dark': 'hsl(216, 55%, 1%)',
+        'accent-dark': 'hsl(176, 60%, 49%)',
       },
-      animation: {
-        "enter-right": "enterRight 2s cubic-bezier(.33,0,.07,.98) forwards",
-        "enter-left": "enterLeft 2s cubic-bezier(.33,0,.07,.98) forwards",
-        "enter-left-delayed": "enterLeft 2.5s cubic-bezier(.33,0,.07,.98) forwards",
-        "enter-top": "enterTop 2s cubic-bezier(.33,0,.07,.98) forwards",
-        "enter-bot": "enterBot 2s cubic-bezier(.33,0,.07,.98) forwards",
-        "fade-in": "fadeIn 2s cubic-bezier(.33,0,.07,.98) forwards",
-      },
-      keyframes: {
-        enterRight: {
-          "0%": {opacity: 0, transform: "translateX(-15px)"},
-          "100%": {opacity: 1, transform: "translateX(0)"}
-        },
-        enterLeft: {
-          "0%": {opacity: 0, transform: "translateX(15px)"},
-          "100%": {opacity: 1, transform: "translateX(0)"}
-        },
-        enterTop: {
-          "0%": {opacity: 0, transform: "translateY(-15px)"},
-          "100%": {opacity: 1, transform: "translateY(0)"}
-        },
-        enterBot: {
-          "0%": {opacity: 0, transform: "translateY(15px)"},
-          "100%": {opacity: 1, transform: "translateY(0)"}
-        },
-        fadeIn: {
-          "0%": {opacity: 0},
-          "100%": {opacity: 1}
-        }
-      }
+
     },
   },
-  plugins: [
-    tailwindForm()
-  ],
+  plugins: [],
 }
 

@@ -1,84 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+Display:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  .divvy-grid {
-    @apply min-h-screen grid grid-rows-[auto_1fr_auto]
+  .page-body {
+    @apply font-body text-text-light bg-secondary-dark
   }
-  .divvy-container {
-    @apply w-full max-w-screen-2xl mx-auto p-6 md:p-8
+  .page-grid {
+    @apply w-full min-h-svh grid grid-rows-[auto_1fr] gap-y-10 bg-background-light
   }
-  .divvy-header {
-    @apply border-b border-indigo-50
-    dark:border-indigo-950
-  }
-  .divvy-footer {
-    @apply bg-indigo-950 text-indigo-100 border-t border-indigo-50
-    dark:bg-indigo-1000 dark:text-slate-400 dark:border-indigo-950
-  }
-  .divvy-steps-container {
-    @apply py-5 h-full flex flex-col gap-y-10 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-10
-  }
-  .divvy-step {
-    @apply flex flex-col gap-y-4 md:p-5 md:h-full md:rounded-sm md:border md:border-indigo-100
-    dark:md:border-indigo-950
-  }
-  .divvy-results {
-    @apply bg-indigo-800 text-indigo-50
-  }
-  .divvy-result-user {
-    @apply flex relative before:content-[''] before:w-4 before:h-[1px] before:bg-indigo-500
-    before:absolute before:top-1/2 before:right-full items-center gap-x-2
-  }
-  .divvy-input {
-    @apply w-full border-indigo-200 rounded-tl-sm rounded-bl-sm
-    dark:border-indigo-900
-  }
-  .divvy-form-input {
-    @apply dark:bg-slate-900
-  }
-  .divvy-form-btn {
-    @apply px-4 py-2 rounded-tr-sm rounded-br-sm bg-indigo-500 text-indigo-50
-  }
-  .divvy-step-btn {
-    @apply px-2 py-1 rounded-sm text-sm h-fit border bg-indigo-500 text-indigo-50 dark:bg-teal-600
-    dark:border-teal-300
-  }
-  .divvy-ul {
-    @apply flex flex-col gap-y-2 md:h-40 overflow-y-auto
-  }
-  .divvy-li {
-    @apply py-2 px-4 border h-fit border-indigo-200 rounded-sm flex justify-between items-center
-    dark:border-indigo-800
-  }
-  .divvy-li-grid {
-    @apply py-2 px-4 h-fit border border-indigo-200 rounded-sm grid grid-cols-[1fr_auto_auto] gap-x-8
-    dark:border-indigo-800
-  }
-  .divvy-checkbox {
-    @apply bg-indigo-100 border-none focus:outline-none outline-none checked:bg-indigo-500
-    dark:bg-indigo-900 dark:checked:bg-teal-600
+  .container {
+    @apply p-4 max-w-screen-2xl mx-auto
   }
 
-  #divvy-steps-mobile {
-    @apply md:hidden
+  .footer {
+    @apply text-text-dark bg-secondary-dark
   }
-  /* row start, column star, row end, column end */
-  #step_1 {
-    @apply h-full md:row-start-1 md:col-start-1 md:row-end-2 md:col-end-2
-  }
-  #step_2 {
-    @apply h-full md:row-start-2 md:col-start-1 md:row-end-3 md:col-end-2
-  }
-  #step_3 {
-    @apply h-full md:row-start-1 md:col-start-2 md:row-end-3 md:col-end-3
-  }
-  #results {
-    @apply h-full md:row-start-1 md:col-start-3 md:row-end-3 md:col-end-4
-  }
-}
-
-dialog::backdrop {
-  background-color: rgba(0,0,0,0.7);
 }

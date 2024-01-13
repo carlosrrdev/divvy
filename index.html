@@ -10,109 +10,81 @@
   <link rel="shortcut icon" href="/divvy.svg" type="image/x-icon">
   <title>Divvy | Expense splitting</title>
 </head>
-<body class="dark:bg-slate-950 dark:text-indigo-200">
-<div class="divvy-grid">
-  <header class="divvy-header">
-    <nav class="divvy-container">
+<body class="page-body">
+<div class="page-grid">
+  <header>
+    <div class="container flex justify-between items-center">
       <div class="flex items-center">
-        <img width="32px" class="w-8" src="/divvy.svg" alt="logo">
-        <p class="font-bold text-xl">Divvy</p>
+        <p class="font-heading text-xl">Divvy</p>
       </div>
-    </nav>
+      <div>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </header>
-  <main class="divvy-container">
-    <div class="divvy-steps-container">
-      <div id="divvy-steps-mobile" class="flex justify-between">
-        <div class="flex flex-col">
-          <p class="text-lg font-bold" id="divvy-current-step">Step 1. Add users</p>
-          <small id="divvy-current-step-sub" class="dark:text-indigo-400">Start by adding participating members</small>
+  <main>
+    <div class="container">
+      <section class="flex items-center justify-between">
+        <div>
+          <p class="text-xl font-bold" id="date-week"></p>
+          <p id="date-full"></p>
         </div>
-        <div class="flex gap-x-2">
-          <button id="prev_step_btn" style="display: none" class="divvy-step-btn">Back</button>
-          <button id="next_step_btn" style="display: none" class="divvy-step-btn">Next</button>
-        </div>
-      </div>
-      <section id="step_1">
-        <div class="divvy-step md:animate-enter-top">
-          <div class="hidden md:flex flex-col">
-            <p class="text-lg md:text-xl font-bold lg:text-2xl">Step 1. Add users</p>
-            <small class="dark:text-indigo-400 lg:text-base">Start by adding participating members</small>
-            <small class="text-indigo-700 dark:text-teal-400">Minimum 2 users</small>
-          </div>
-          <form id="step_1_form">
-            <fieldset class="flex flex-col gap-y-1">
-              <label class="text-sm" for="user_name_input">User name</label>
-              <div class="flex">
-                <input class="divvy-input divvy-form-input" type="text" id="user_name_input" required>
-                <button class="divvy-form-btn" type="submit">Add</button>
-              </div>
-            </fieldset>
-          </form>
-          <ul class="divvy-ul" id="step_1_list"></ul>
-        </div>
-      </section>
-      <section id="step_2" class="hidden md:block">
-        <div class="divvy-step md:animate-enter-bot">
-          <div class="hidden md:flex flex-col">
-            <p class="text-lg md:text-xl font-bold lg:text-2xl">Step 2. Add expenses</p>
-            <small class="dark:text-indigo-400 lg:text-base">Expenses and their amounts</small>
-          </div>
-          <form id="step_2_form">
-            <div class="flex gap-x-4 lg:gap-x-8 items-end">
-              <fieldset class="flex flex-1 flex-col gap-y-1">
-                <label class="text-sm" for="expense_name_input">Expense name</label>
-                <input class="divvy-input divvy-form-input" type="text" id="expense_name_input" required>
-              </fieldset>
-              <fieldset class="flex flex-col gap-y-1">
-                <label class="text-sm" for="expense_amount_input">Amount</label>
-                <div class="flex border items-center divvy-input divvy-form-input">
-                  <span class="mx-1">&dollar;</span>
-                  <div class="flex">
-                    <input class="border-0 w-24 divvy-form-input" type="text" id="expense_amount_input">
-                    <button class="divvy-form-btn" type="submit">Add</button>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-          </form>
-          <ul class="divvy-ul" id="step_2_list"></ul>
-        </div>
-      </section>
-      <section id="step_3" class="hidden md:block">
-        <div class="divvy-step md:animate-enter-left">
-          <div class="hidden md:flex flex-col">
-            <p class="text-lg md:text-xl font-bold lg:text-2xl">Step 3. Assign expenses</p>
-            <small class="dark:text-indigo-400 lg:text-base">Who is paying for what?</small>
-          </div>
-          <p id="step_3_initial_message" class="md:mt-10 text-indigo-800/80 dark:text-indigo-300/70">
-            Will automatically update once you add users and expenses.
-          </p>
-          <ul id="step_3_list" class="flex flex-col gap-y-4"></ul>
-        </div>
-      </section>
-      <section id="results" class="hidden md:block">
-        <div class="divvy-step divvy-results md:animate-enter-left-delayed">
-          <div class="hidden md:flex flex-col">
-            <p class="text-lg md:text-xl font-bold lg:text-2xl">Results</p>
-          </div>
-            <p id="results_initial_message" class="md:mt-10 text-indigo-300">Results will show up here after you've added users, expenses,
-              and assigned those expenses to each user.
-            </p>
-          <ul id="results_list" class="flex flex-col gap-y-4"></ul>
-        </div>
+        <button class="ml-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+        </button>
       </section>
     </div>
   </main>
-  <footer class="divvy-footer">
-    <div class="divvy-container flex flex-col items-center">
-      <small>Made with <span class="text-teal-400">&hearts;</span> by Carlos Rodriguez</small>
-      <small>&copy; 2023-2024. All rights reserved</small>
-      <a class="text-sm underline" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">
+</div>
+<footer class="footer p-6">
+  <div class="container text-sm flex flex-col gap-y-6">
+
+    <div class="border-b pb-6 border-slate-600">
+      <p class="font-heading text-3xl">Divvy</p>
+      <p class="text-lg text-slate-500">Expense tracking and splitting</p>
+    </div>
+    <div class="flex gap-x-2 items-center">
+      <a href="https://github.com/carlosrrdev" title="github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2c2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2a4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6c-.6.6-.6 1.2-.5 2V21"/>
+        </svg>
+      </a>
+      <a href="">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0-2 0m6 0a1 1 0 1 0 2 0a1 1 0 0 0-2 0"/>
+            <path
+              d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833-1.667 3.5-3c.667-1.667.5-5.833-1.5-11.5c-1.457-1.015-3-1.34-4.5-1.5l-.972 1.923a11.913 11.913 0 0 0-4.053 0L9 4c-1.5.16-3.043.485-4.5 1.5c-2 5.667-2.167 9.833-1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2-2 2-3"/>
+            <path d="M7 16.5c3.5 1 6.5 1 10 0"/>
+          </g>
+        </svg>
+      </a>
+      <a href="mailto:rr.carlos.dev@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="m3 7l9 6l9-6"/>
+          </g>
+        </svg>
+      </a>
+    </div>
+    <div>
+      <p>Made with <span class="text-rose-500"> &hearts;</span> by Carlos Rodriguez</p>
+      <a class="text-teal-500" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">
         View source code
       </a>
     </div>
-  </footer>
-</div>
+    <p>Copyright &copy; 2024</p>
+  </div>
+</footer>
 <noscript>This site requires Javascript to properly function. Please enable Javascript and refresh the page.</noscript>
 <script type="module" src="/app.js"></script>
 </body>
