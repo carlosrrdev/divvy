@@ -12,40 +12,67 @@
 </head>
 <body class="page-body">
 <div class="page-grid">
-  <header>
-    <div class="container flex justify-between items-center">
+  <header class="header">
+    <div class="container py-4 flex justify-between items-center">
       <div class="flex items-center">
         <p class="font-heading text-xl">Divvy</p>
       </div>
       <div>
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        <button aria-label="Toggle menu">
+          <svg role="img" aria-label="Mobile menu" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"
+               viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
       </div>
     </div>
   </header>
-  <main>
-    <div class="container">
-      <section class="flex items-center justify-between">
-        <div>
-          <p class="text-xl font-bold" id="date-week"></p>
-          <p id="date-full"></p>
-        </div>
-        <button class="ml-auto">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24">
+  <main class="main">
+    <div class="container py-2">
+      <div class="flex flex-col gap-y-12">
+        <section class="flex items-center justify-between">
+          <div>
+            <p class="text-xl font-bold" id="date-week"></p>
+            <p id="date-full"></p>
+          </div>
+          <button id="mobile-create-btn" aria-label="Create divvy"
+                  class="ml-auto bg-indigo-600 rounded-sm p-2 flex items-center gap-x-2">
+            <span>Create</span>
+            <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6m-3-3v6"/>
+            </svg>
+          </button>
+        </section>
+        <section>
+          <div class="flex justify-between items-center">
+            <p class="font-[300]">Your previous divvy's</p>
+            <button aria-label="Filter options">
+              <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/>
+              </svg>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="bg-background-light min-h-full text-text-light">
+      <div id="prev-divvy-container" class="container min-h-full flex justify-center items-center">
+        <div id="empty-divvy" class="flex flex-col items-center text-slate-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  d="m8 20l6-6l3-3l1.5-1.5a2.828 2.828 0 1 0-4-4L4 16v4zm5.5-13.5l4 4M19 22v.01M19 19a2.003 2.003 0 0 0 .914-3.782a1.98 1.98 0 0 0-2.414.483"/>
           </svg>
-        </button>
-      </section>
+          <p class="text-center">No divvies found! <br>Try creating a new one!</p>
+        </div>
+      </div>
     </div>
   </main>
 </div>
 <footer class="footer p-6">
   <div class="container text-sm flex flex-col gap-y-6">
-
     <div class="border-b pb-6 border-slate-600">
       <p class="font-heading text-3xl">Divvy</p>
       <p class="text-lg text-slate-500">Expense tracking and splitting</p>
@@ -78,13 +105,24 @@
     </div>
     <div>
       <p>Made with <span class="text-rose-500"> &hearts;</span> by Carlos Rodriguez</p>
-      <a class="text-teal-500" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">
+      <a class="text-indigo-400" href="https://github.com/carlosrrdev/divvy" target="_blank" rel="noreferrer">
         View source code
       </a>
     </div>
     <p>Copyright &copy; 2024</p>
   </div>
 </footer>
+<dialog id="mobile-steps-dialog" class="bg-transparent h-full w-full">
+  <div class="bg-secondary-dark text-text-dark h-full w-full p-4">
+    <button aria-label="Cloe dialog" id="close-dialog-btn">
+      <svg role="img" aria-label="Close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div>creating new divvy</div>
+  </div>
+</dialog>
 <noscript>This site requires Javascript to properly function. Please enable Javascript and refresh the page.</noscript>
 <script type="module" src="/app.js"></script>
 </body>

@@ -28,7 +28,7 @@ export default {
     extend: {
       colors: {
         'text-light': 'hsl(199, 61%, 9%)',
-        'background-light': 'hsl(195, 50%, 97%)',
+        'background-light': 'hsl(195, 28%, 90%)',
         'primary-light': 'hsl(216, 90%, 34%)',
         'secondary-light': 'hsl(216, 50%, 10%)',
         'accent-light': 'hsl(176, 60%, 51%)',

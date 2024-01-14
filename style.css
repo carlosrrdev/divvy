@@ -6,16 +6,26 @@
 
 @layer components {
   .page-body {
-    @apply font-body text-text-light bg-secondary-dark
+    @apply font-body text-text-dark bg-secondary-dark
   }
   .page-grid {
-    @apply w-full min-h-svh grid grid-rows-[auto_1fr] gap-y-10 bg-background-light
+    @apply w-full min-h-svh grid grid-rows-[auto_1fr] gap-y-10
   }
   .container {
-    @apply p-4 max-w-screen-2xl mx-auto
+    @apply px-4 max-w-screen-2xl mx-auto
   }
 
+  .header {
+    @apply border-b border-neutral-900
+  }
+  .main {
+    @apply h-full grid grid-rows-[auto_1fr]
+  }
   .footer {
     @apply text-text-dark bg-secondary-dark
   }
+}
+
+dialog::backdrop {
+  background-color: hsl(0 0% 0%/85%);
 }

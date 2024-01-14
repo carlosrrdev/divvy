@@ -1,4 +1,5 @@
 import "./style.css";
+import "./js/mobile.js";
 import {format} from "date-fns";
 
 const dateWeekElement = document.getElementById('date-week')
