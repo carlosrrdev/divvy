@@ -42,3 +42,19 @@ export function sortDivviesByDate(divvies, order = 'desc') {
     }
   });
 }
+
+/**
+ * Handles the styles of the alert element
+ * @param {boolean} isError
+ * @param {HTMLElement} el
+ */
+
+export function alertStyleHandler(isError, el) {
+  if (isError) {
+    el.classList.remove('bg-success')
+    el.classList.add('bg-error');
+  } else {
+    el.classList.add('bg-success')
+    el.classList.remove('bg-error');
+  }
+}

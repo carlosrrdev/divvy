@@ -3,6 +3,7 @@ import Alpine from 'alpinejs';
 import "htmx.org";
 import localforage from "localforage";
 import {splitEvenlyStore} from "./src/stores/split_evenly.js";
+import {divvyUpStore} from "./src/stores/divvy.js";
 import {saveStore} from "./src/stores/save.js";
 import {firebaseStore} from "./src/stores/firebase.js";
 import {viewDivvyStore} from "./src/stores/view_divvy.js";
@@ -34,7 +35,8 @@ localforage.config({
   description: "Local db for Divvy"
 })
 
-Alpine.store('dv_split', splitEvenlyStore)
+Alpine.store('sp', splitEvenlyStore)
+Alpine.store('dv_divvy', divvyUpStore)
 Alpine.store('dv_fb', firebaseStore)
 Alpine.store('dv_save', saveStore)
 Alpine.store('dv_vd', viewDivvyStore)

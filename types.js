@@ -1,3 +1,5 @@
+/** @typedef {import("/src/classes/SplitDivvy.js").SplitDivvy} */
+
 /**
  * Divvy object to be saved in local storage and user's account
  * @typedef {Object} Divvy
