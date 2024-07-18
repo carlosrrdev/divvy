@@ -5,13 +5,14 @@ import {format} from 'date-fns'
 import {sortDivviesByDate} from "../util.js";
 
 /**
- * @type {import("/types.js").Divvy} Divvy
- * @type {import("/types.js").SaveStore} SaveStore
+ * @type {import("/src/classes/SplitDivvy.js").SplitDivvyObj}
  */
 
-/** @type SaveStore */
+/**
+ * The Save store is a core store and handles all functions related to saving both to local storage
+ * and to Firebase
+ */
 export const saveStore = {
-
   storedData: [],
   inFirebaseOnly: [],
   inLocalOnly: [],
@@ -24,8 +25,8 @@ export const saveStore = {
 
   /**
    * Saves the data to local storage and Firestore if the user is authenticated.
-   * @param {Divvy} data - The data to be saved.
-   * @return {Promise<void>} - A promise that resolves when the data is saved.
+   * @param {SplitDivvyObj} data - The Divvy object to be saved.
+   * @return {Promise<void>} - Resolves when the data is saved.
    */
   async saveData(data) {
     try {
@@ -41,7 +42,7 @@ export const saveStore = {
 
   /**
    * Saves data locally to the browsers local storage.
-   * @param {Divvy} data - The data to be saved.
+   * @param {SplitDivvyObj} data - The Divvy object to be saved locally.
    * @return {Promise<void>} - A promise that resolves when the data is successfully saved.
    */
   async saveToLocal(data) {
@@ -60,7 +61,7 @@ export const saveStore = {
 
   /**
    * Saves data to Firestore.
-   * @param {Divvy} data - The data to save to Firestore.
+   * @param {SplitDivvyObj} data - The Divvy object to save to Firestore.
    * @return {Promise<void>} - A Promise that resolves when the data is successfully saved to Firestore.
    */
   async saveToFirestore(data) {
@@ -221,7 +222,7 @@ export const saveStore = {
       }
     }
 
-    /** @type {Array<Divvy>} */
+    /** @type {Array<SplitDivvyObj>} */
     const oldLocalData = JSON.parse(await localforage.getItem('dv_data'));
 
     const index = oldLocalData.findIndex(obj => obj.id === id);
@@ -233,10 +234,10 @@ export const saveStore = {
 
   /**
    * Appends additional information to the Divvy object
-   * @param {Divvy} divvy
+   * @param {SplitDivvyObj} divvy
    * @param {boolean} cloud
    * @param {boolean} local
-   * @return {Divvy}
+   * @return {DivvyObj}
    */
   appendDivvyObj(divvy, cloud, local) {
     const timestamp = Timestamp.fromDate(new Date(divvy.createdAt)).toDate()

@@ -1,7 +1,7 @@
 import {compareAsc} from 'date-fns'
 
 /**
- * @type {import("../types.js").Divvy} Divvy
+ * @type {import("/src/classes/SplitDivvy.js").DivvyObj}
  */
 
 /**
@@ -26,9 +26,9 @@ export function roundUpToNearest(num) {
 
 /**
  * Sorts the given array of Divvies by createdAt date
- * @param {Array<Divvy>} divvies
+ * @param {Array<DivvyObj>} divvies
  * @param {("desc"|"asc")} order
- * @return {Array<Divvy>}
+ * @return {Array<DivvyObj>}
  */
 export function sortDivviesByDate(divvies, order = 'desc') {
   return divvies.sort((a, b) => {

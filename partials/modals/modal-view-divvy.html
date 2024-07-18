@@ -1,57 +1,57 @@
-<template x-data x-if="$store.dv_vd.isModalVisible">
+<template x-data x-if="$store.vd.isModalVisible">
   <dialog id="modal_view_divvy" class="modal">
     <div class="modal-box">
       <div class="text-center mb-6">
-        <h3 x-text="$store.dv_vd.loadedData.name"
+        <h3 x-text="$store.vd.divvy.name"
             class="text-3xl md:text-3xl lg:text-4xl dv-font-heading"></h3>
-        <p x-text="$store.dv_vd.loadedData.fDate" class="text-sm md:text-base text-accent"></p>
+        <p x-text="$store.vd.divvy.fDate" class="text-sm md:text-base text-accent"></p>
       </div>
       <div class="flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-x-4">
         <div class="dv-view-cell">
           <h4 class="text-xl mb-4 dv-font-heading text-secondary">Expenses</h4>
           <ul class="flex flex-col gap-y-1">
-            <template x-for="exp in $store.dv_vd.loadedData.expenses">
+            <template x-for="exp in $store.vd.divvy.expenses">
               <li class="flex py-1 justify-between border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
-                <span x-text="exp.expName"></span>
-                <span x-text="`$${exp.expAmount}`"></span>
+                <span x-text="exp.exp_name"></span>
+                <span x-text="`$${exp.exp_amount}`"></span>
               </li>
             </template>
           </ul>
-          <p class="text-right text-accent mt-2" x-text="`Total: $${$store.dv_vd.calcExpTotal()}`"></p>
+          <p class="text-right text-accent mt-2" x-text="`Total: $${$store.vd.divvy.expenseTotal}`"></p>
         </div>
         <div class="dv-view-cell">
           <h4 class="text-xl mb-4 dv-font-heading text-secondary">Members</h4>
           <ul class="flex flex-col gap-y-1">
-            <template x-for="mem in $store.dv_vd.loadedData.members">
+            <template x-for="mem in $store.vd.divvy.members">
               <li class="py-1 border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
-                <span x-text="mem"></span>
+                <span x-text="mem.mem_name"></span>
               </li>
             </template>
           </ul>
         </div>
       </div>
       <div class="dv-view-cell border-none bg-success dark:text-black mt-4">
-        <template x-if="$store.dv_vd.loadedData.complex">
+        <template x-if="$store.vd.divvy.complex">
           <p>build later for complex</p>
         </template>
-        <template x-if="!$store.dv_vd.loadedData.complex">
+        <template x-if="!$store.vd.divvy.complex">
           <p class="dv-font-heading text-xl">
             Split evenly:
-            <span x-text="`$${$store.dv_vd.calcSplitTotal()}`"></span>
+            <span x-text="`$${$store.vd.divvy.expenseSplit}`"></span>
           </p>
         </template>
       </div>
       <div class="modal-action justify-between">
         <div>
-          <button @click="$store.dv_vd.showConfirmDelete = true" x-show="!$store.dv_vd.showConfirmDelete"
+          <button @click="$store.vd.showConfirmDelete = true" x-show="!$store.vd.showConfirmDelete"
                   class="btn btn-outline">Delete
           </button>
-          <button @click="$store.dv_vd.deleteDivvy($store.dv_vd.loadedData.id)"
-                  x-show="$store.dv_vd.showConfirmDelete" class="btn btn-error">Confirm delete
+          <button @click="$store.vd.deleteDivvy($store.vd.divvy.id)"
+                  x-show="$store.vd.showConfirmDelete" class="btn btn-error">Confirm delete
           </button>
         </div>
         <form method="dialog">
-          <button @click.prevent="$store.dv_vd.hideDivvyModal()" class="btn btn-outline btn-accent">Close</button>
+          <button @click.prevent="$store.vd.hideDivvyModal()" class="btn btn-outline btn-accent">Close</button>
         </form>
       </div>
     </div>

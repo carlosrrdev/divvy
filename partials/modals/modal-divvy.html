@@ -1,90 +1,99 @@
 <dialog x-data id="modal_divvy" class="modal">
   <div class="modal-box w-11/12 max-w-7xl">
-    <h3 class="text-2xl md:text-3xl lg:text-4xl mb-4 dv-font-heading text-center">
+    <h3 class="text-2xl md:text-3xl lg:text-4xl dv-font-heading text-center">
       Divvy Up
     </h3>
-    <div class="h-10 flex justify-center items-center my-4 dark:text-base-100">
+    <div class="h-6 md:h-10 flex justify-center items-center my-4 dark:text-base-100">
       <p x-transition:enter.duration.500ms
-         x-show="$store.dv_divvy.isAlertVisible" id="divvy_alert" x-text="$store.dv_divvy.alertText"
-         class="rounded py-2 px-4"></p>
+         x-show="$store.dv.isAlertVisible" id="divvy_alert" x-text="$store.dv.alertText"
+         class="rounded text-sm md:text-base py-2 px-4"></p>
     </div>
     <div class="flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-4 lg:gap-x-8 xl:gap-x-14">
       <div>
-        <form @submit.prevent="$store.dv_divvy.addNewMember($refs.dv_member_input)"
+        <form @submit.prevent="$store.dv.addNewMember($refs.dv_member_input)"
               class="flex flex-col gap-y-4">
-          <label class="input input-bordered flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block" viewBox="0 0 24 24">
+          <label class="input input-sm md:input-md input-bordered flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block"
+                 viewBox="0 0 24 24">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"/>
             </svg>
-            <input :disabled="$store.dv_divvy.isDivvyComplete" x-ref="dv_member_input" type="text" class="grow" required
+            <input :disabled="$store.dv.isDivvyComplete" x-ref="dv_member_input" type="text" class="grow" required
                    placeholder="Member name"/>
           </label>
-          <div class="mt-4 md:mt-0 grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
-            <button :disabled="$store.dv_divvy.isDivvyComplete" class="btn btn-secondary">Add
+          <div class="grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
+            <button :disabled="$store.dv.isDivvyComplete" class="btn btn-sm md:btn-md btn-secondary">Add
               member
             </button>
-            <button :disabled="$store.dv_divvy.isDivvyComplete" @click.prevent
-                    onclick="modal_members_divvy.showModal()" class="btn">
+            <button :disabled="$store.dv.isDivvyComplete" @click.prevent
+                    onclick="modal_members_divvy.showModal()" class="btn btn-sm md:btn-md">
               <span>View members</span>
-              <span x-text="$store.dv_divvy.members.length"
-                    :class="$store.dv_divvy.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
+              <span x-text="$store.dv.cd.members.length"
+                    :class="$store.dv.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
             </button>
           </div>
         </form>
 
         <div class="divider"></div>
 
-        <form @submit.prevent="$store.dv_divvy.addNewExpense($refs.dv_exp_name_input, $refs.dv_exp_amount_input)"
+        <form @submit.prevent="$store.dv.addNewExpense($refs.dv_exp_name_input, $refs.dv_exp_amount_input)"
               class="flex flex-col gap-y-4">
           <div class="flex flex-col gap-y-2 md:grid md:grid-cols-2 md:gap-x-2">
-            <label class="input input-bordered flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block" viewBox="0 0 24 24">
+            <label class="input input-sm md:input-md input-bordered flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block"
+                   viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                   <path d="M12.5 21H8.574a3 3 0 0 1-2.965-2.544l-1.255-8.152A2 2 0 0 1 6.331 8H17.67a2 2 0 0 1 1.977 2.304l-.263 1.708M16 19h6m-3-3v6"/>
                   <path d="M9 11V6a3 3 0 0 1 6 0v5"/>
                 </g>
               </svg>
-              <input :disabled="$store.dv_divvy.isDivvyComplete" x-ref="dv_exp_name_input" type="text" class="grow"
+              <input :disabled="$store.dv.isDivvyComplete" x-ref="dv_exp_name_input" type="text" class="grow"
                      required placeholder="Expense title"/>
             </label>
-            <label class="input input-bordered flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block" viewBox="0 0 24 24">
+            <label class="input input-sm md:input-md input-bordered flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block"
+                   viewBox="0 0 24 24">
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M16.7 8A3 3 0 0 0 14 6h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1-2.7-2M12 3v3m0 12v3"/>
               </svg>
-              <input :disabled="$store.dv_divvy.isDivvyComplete" x-ref="dv_exp_amount_input" type="number" step="0.01"
+              <input :disabled="$store.dv.isDivvyComplete" x-ref="dv_exp_amount_input" type="number" step="0.01"
                      class="grow" placeholder="0.00" required/>
             </label>
           </div>
-          <div class="mt-4 md:mt-0 grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
-            <button :disabled="$store.dv_divvy.isDivvyComplete" class="btn btn-secondary">Add
+          <div class="grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
+            <button :disabled="$store.dv.isDivvyComplete" class="btn btn-sm md:btn-md btn-secondary">Add
               expense
             </button>
-            <button :disabled="$store.dv_divvy.isDivvyComplete" @click.prevent
-                    onclick="modal_expenses_divvy.showModal()" class="btn">
+            <button :disabled="$store.dv.isDivvyComplete" @click.prevent
+                    onclick="modal_expenses_divvy.showModal()" class="btn btn-sm md:btn-md">
               <span>View expenses</span>
-              <span x-text="$store.dv_divvy.expenses.length"
-                    :class="$store.dv_divvy.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
+              <span x-text="$store.dv.cd.expenses.length"
+                    :class="$store.dv.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
             </button>
           </div>
-          <button class="btn btn-secondary btn-outline">Assign expenses</button>
+          <button :disabled="!$store.dv.isResultValid()" :class="!$store.dv.isResultValid()? 'btn-disabled': ''"
+                  @click.prevent="" onclick="modal_assign_expenses.showModal()"
+                  class="btn btn-sm md:btn-md btn-accent dark:btn-info">
+            Assign expenses
+          </button>
         </form>
 
         <div class="divider md:hidden"></div>
 
-        <button onclick="modal_results_divvy.showModal()" class="btn btn-secondary w-full md:hidden">View Divvy Results
+        <button onclick="modal_results_divvy.showModal()" class="btn btn-sm md:btn-md btn-secondary w-full md:hidden">
+          View Divvy Results
         </button>
       </div>
 
       <div class="hidden md:divider md:divider-horizontal"></div>
       <div class="hidden md:flex md:flex-col">
-        <small class="inline-block m-auto" x-show="!$store.dv_divvy.isResultValid()">
-          Please add at least two
-          members and one expense to view your results
+        <small class="inline-block m-auto" x-show="!$store.dv.isResultValid()">
+          There must be <span class="text-warning">at least two members and expenses</span>.
+          Each member must have <span class="text-warning">at least one expenses assigned to them</span>.
         </small>
-        <div class="flex flex-col" x-show="$store.dv_divvy.isResultValid()">
+        <div class="flex flex-col gap-y-4" x-show="$store.dv.isResultValid()">
           <div>
+            <p class="text-accent">Total</p>
             <h4 class="text-4xl dv-font-heading flex items-center gap-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" class="w-8 h-8" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -92,10 +101,23 @@
                   <path d="M12 14a2 2 0 1 0 4 0a2 2 0 1 0-4 0m5-5V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
                 </g>
               </svg>
-              <span x-text="`$${$store.dv_divvy.calcSplitTotal()}`"></span>
+              <span x-text="`$${$store.dv.cd.calcExpTotal()}`"></span>
             </h4>
-            <p>Evenly split between everyone</p>
           </div>
+          <ul class="flex flex-col gap-y-2">
+            <template x-for="member in $store.dv.cd.members" :key="member.mem_id">
+              <li class="flex items-center gap-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" class="w-6 h-6" viewBox="0 0 24 24">
+                  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/>
+                    <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm15 4h.01M6 12h.01"/>
+                  </g>
+                </svg>
+                <span x-text="member.mem_name" class="font-bold text-xl"></span>
+                <span x-text="`$${$store.dv.cd.calculateUserExpenses(member.mem_id)}`" class="badge badge-lg badge-success"></span>
+              </li>
+            </template>
+          </ul>
           <div class="collapse rounded-md collapse-arrow border border-base-300 dark:border-gray-600 bg-base-100">
             <input aria-hidden="true" type="checkbox"/>
             <div class="collapse-title font-medium">
@@ -103,7 +125,7 @@
             </div>
             <div class="collapse-content">
               <ul class="flex flex-col gap-y-2">
-                <template x-for="expense in $store.dv_divvy.expenses">
+                <template x-for="expense in $store.dv.cd.expenses">
                   <li class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
                     <span x-text="expense.exp_name"></span>
                     <span x-text="`$${expense.exp_amount}`"></span>
@@ -112,14 +134,14 @@
               </ul>
               <p class="font-bold mt-4 ml-auto text-lg">
                 <span>Expense total:</span>
-                <span x-text="`$${$store.dv_divvy.calcExpTotal()}`"></span>
+                <span x-text="`$${$store.dv.cd.calcExpTotal()}`"></span>
               </p>
               <div class="divider"></div>
               <ul class="flex flex-col gap-y-2">
-                <template x-for="member in $store.dv_divvy.members">
+                <template x-for="member in $store.dv.cd.members">
                   <li class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
                     <span x-text="member.mem_name"></span>
-                    <span x-text="`$${$store.dv_divvy.calcSplitTotal()}`"></span>
+                    <span x-text="`testing 2`"></span>
                   </li>
                 </template>
               </ul>
@@ -129,21 +151,21 @@
       </div>
     </div>
     <div class="modal-action">
-      <button @click="$store.dv_divvy.resetAll()" class="btn btn-outline btn-accent mr-auto">Reset</button>
+      <button @click="$store.dv.resetAll()" class="btn btn-outline btn-sm md:btn-md btn-accent mr-auto">Reset</button>
       <form @submit.prevent="" class="hidden md:flex flex-col md:flex-row items-center gap-x-2">
-        <label :class="(!$store.dv_divvy.isResultValid() || $store.dv_divvy.isDivvyComplete)? 'input-disabled': ''"
+        <label :class="(!$store.dv.isResultValid() || $store.dv.isDivvyComplete)? 'input-disabled': ''"
                class="input input-bordered flex items-center mx-auto">
-          <input :disabled="!$store.dv_divvy.isResultValid() || $store.dv_divvy.isDivvyComplete" type="text" required
-                 :value="$store.dv_divvy.divvyName" x-ref="dv_name">
+          <input :disabled="!$store.dv.isResultValid() || $store.dv.isDivvyComplete" type="text" required
+                 :value="$store.dv.cd.divvyName" x-ref="dv_name">
         </label>
-        <button @click="$store.dv_divvy.saveDivvy($refs.dv_name.value)"
-                :disabled="!$store.dv_divvy.isResultValid() || $store.dv_divvy.isDivvyComplete" class="btn btn-success">
-          <span :class="$store.dv_divvy.isLoading? 'loading': ''" class="loading-spinner"></span>
-          <span x-text="$store.dv_divvy.saveBtnText"></span>
+        <button @click="$store.dv.saveDivvy($refs.dv_name.value)"
+                :disabled="!$store.dv.isResultValid() || $store.dv.isDivvyComplete" class="btn btn-success">
+          <span :class="$store.dv.isLoading? 'loading': ''" class="loading-spinner"></span>
+          <span x-text="$store.dv.saveBtnText"></span>
         </button>
       </form>
       <form method="dialog">
-        <button class="btn btn-outline btn-secondary">Close</button>
+        <button class="btn btn-outline btn-sm md:btn-md btn-secondary">Close</button>
       </form>
     </div>
   </div>
@@ -151,12 +173,12 @@
     <dialog id="modal_members_divvy" class="modal">
       <div class="modal-box max-w-sm">
         <h3 class="dv-font-heading mb-4 text-2xl">Members</h3>
-        <small x-show="$store.dv_divvy.members.length < 1">No members. Try adding some!</small>
+        <small x-show="$store.dv.cd.members.length < 1">No members. Try adding some!</small>
         <ul class="mb-4 flex flex-col gap-y-2">
-          <template x-for="member in $store.dv_divvy.members" :key="member.mem_id">
+          <template x-for="member in $store.dv.cd.members" :key="member.mem_id">
             <li class="flex justify-between py-2 items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
               <span x-text="member.mem_name"></span>
-              <button @click="$store.dv_divvy.removeMember(member.mem_id)" class="btn btn-sm btn-outline btn-error">
+              <button @click="$store.dv.cd.removeMember(member.mem_id)" class="btn btn-sm btn-outline btn-error">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2"
@@ -167,8 +189,8 @@
           </template>
         </ul>
         <div class="modal-action">
-          <button @click="$store.dv_divvy.resetMembers()"
-                  :class="$store.dv_divvy.members.length < 1? 'btn-disabled': ''"
+          <button @click="$store.dv.cd.resetMembers()"
+                  :class="$store.dv.cd.members.length < 1? 'btn-disabled': ''"
                   class="btn mr-auto btn-outline btn-error">Clear all
           </button>
           <form method="dialog">
@@ -180,13 +202,13 @@
     <dialog id="modal_expenses_divvy" class="modal">
       <div class="modal-box max-w-sm">
         <h3 class="dv-font-heading mb-4 text-2xl">Expenses</h3>
-        <small x-show="$store.dv_divvy.expenses.length < 1">No expenses. Try adding some!</small>
+        <small x-show="$store.dv.cd.expenses.length < 1">No expenses. Try adding some!</small>
         <ul class="mb-4 flex flex-col gap-y-2">
-          <template x-for="expense in $store.dv_divvy.expenses" :key="expense.exp_id">
+          <template x-for="expense in $store.dv.cd.expenses" :key="expense.exp_id">
             <li class="flex py-2 items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
               <span x-text="expense.exp_name"></span>
               <span x-text="`$${expense.exp_amount}`" class="ml-auto mr-4"></span>
-              <button @click="$store.dv_divvy.removeExpense(expense.exp_id)" class="btn btn-sm btn-outline btn-error">
+              <button @click="$store.dv.cd.removeExpense(expense.exp_id)" class="btn btn-sm btn-outline btn-error">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2"
@@ -197,8 +219,8 @@
           </template>
         </ul>
         <div class="modal-action">
-          <button @click="$store.dv_divvy.resetExpenses()"
-                  :class="$store.dv_divvy.expenses.length < 1? 'btn-disabled': ''"
+          <button @click="$store.dv.cd.resetExpenses()"
+                  :class="$store.dv.cd.expenses.length < 1? 'btn-disabled': ''"
                   class="btn mr-auto btn-outline btn-error">Clear all
           </button>
           <form method="dialog">
@@ -210,11 +232,11 @@
     <dialog id="modal_results_divvy" class="modal">
       <div class="modal-box">
         <h3 class="dv-font-heading text-2xl mb-4">Results</h3>
-        <small x-show="!$store.dv_divvy.isResultValid()">
-          Please add at least two
-          members and one expense to view your results
+        <small x-show="!$store.dv.isResultValid()">
+          There must be <span class="text-warning">at least two members and expenses</span>.
+          Each member must have <span class="text-warning">at least one expenses assigned to them</span>.
         </small>
-        <div class="flex flex-col" x-show="$store.dv_divvy.isResultValid()">
+        <div class="flex flex-col" x-show="$store.dv.isResultValid()">
           <div class="my-4">
             <h4 class="text-4xl dv-font-heading flex items-center gap-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" class="w-8 h-8" viewBox="0 0 24 24">
@@ -223,7 +245,7 @@
                   <path d="M12 14a2 2 0 1 0 4 0a2 2 0 1 0-4 0m5-5V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
                 </g>
               </svg>
-              <span x-text="`$${$store.dv_divvy.calcSplitTotal()}`"></span>
+              <span x-text="`testing 3`"></span>
             </h4>
             <p>Evenly split between everyone</p>
           </div>
@@ -234,7 +256,7 @@
             </div>
             <div class="collapse-content">
               <ul class="flex flex-col gap-y-2">
-                <template x-for="expense in $store.dv_divvy.expenses">
+                <template x-for="expense in $store.dv.cd.expenses">
                   <li class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
                     <span x-text="expense.exp_name"></span>
                     <span x-text="`$${expense.exp_amount}`"></span>
@@ -243,14 +265,14 @@
               </ul>
               <p class="font-bold mt-4 ml-auto text-lg">
                 <span>Expense total:</span>
-                <span x-text="`$${$store.dv_divvy.calcExpTotal()}`"></span>
+                <span x-text="`$${$store.dv.cd.calcExpTotal()}`"></span>
               </p>
               <div class="divider"></div>
               <ul class="flex flex-col gap-y-2">
-                <template x-for="member in $store.dv_divvy.members">
+                <template x-for="member in $store.dv.cd.members">
                   <li class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
                     <span x-text="member.mem_name"></span>
-                    <span x-text="`$${$store.dv_divvy.calcSplitTotal()}`"></span>
+                    <span x-text="`testing 4`"></span>
                   </li>
                 </template>
               </ul>
@@ -259,20 +281,52 @@
         </div>
         <div class="modal-action flex-col">
           <form @submit.prevent="" class="flex flex-col items-center gap-y-2 mb-4">
-            <label :class="(!$store.dv_divvy.isResultValid() || $store.dv_divvy.isDivvyComplete)? 'input-disabled': ''"
+            <label :class="(!$store.dv.isResultValid() || $store.dv.isDivvyComplete)? 'input-disabled': ''"
                    class="input input-bordered flex items-center w-full mx-auto">
-              <input :disabled="!$store.dv_divvy.isResultValid() || $store.dv_divvy.isDivvyComplete" type="text"
+              <input :disabled="!$store.dv.isResultValid() || $store.dv.isDivvyComplete" type="text"
                      required x-ref="dv_name_mobile"
-                     :value="$store.dv_divvy.divvyName">
+                     :value="$store.dv.cd.divvyName">
             </label>
-            <button @click="$store.dv_divvy.saveDivvy($refs.dv_name_mobile.value)"
-                    :disabled="!$store.dv_divvy.isResultValid() || $store.dv_divvy.isDivvyComplete"
+            <button @click="$store.dv.saveDivvy($refs.dv_name_mobile.value)"
+                    :disabled="!$store.dv.isResultValid() || $store.dv.isDivvyComplete"
                     class="btn w-full btn-success">Save
               results
             </button>
           </form>
           <form method="dialog" class="ml-0 flex">
             <button class="btn btn-outline ml-auto btn-secondary">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="modal_assign_expenses" tabindex="0" class="modal">
+      <div class="modal-box w-11/12 max-w-xl">
+        <h3 class="dv-font-heading text-2xl mb-2">Assign expenses</h3>
+        <small class="mb-4 block">All members must have at least one expenses assigned to them</small>
+        <ul class="flex flex-col gap-y-2">
+          <template x-for="member in $store.dv.cd.members" :key="member.mem_id">
+            <li class="bg-white dark:bg-base-300 rounded-lg p-2 border border-neutral-200 dark:border-neutral-800">
+              <p class="font-bold" x-text="member.mem_name"></p>
+              <ul class="grid grid-cols-4 mt-2 gap-2">
+                <template x-for="expense in $store.dv.cd.expenses" :key="expense.exp_id">
+                  <div x-data="{checked: false}" class="w-full">
+                    <label :class="checked? 'btn-success':'btn-outline btn-accent border-neutral-300 dark:border-neutral-700'"
+                           class="btn w-full btn-sm">
+                      <span x-text="expense.exp_name"></span>
+                      <input :checked="checked"
+                             @click="$store.dv.addExpenseToMember(member.mem_id, expense.exp_id, $event)"
+                             @change="checked = !checked" class="hidden" type="checkbox"
+                             :id="`${member.mem_id}_${expense.exp_id}`">
+                    </label>
+                  </div>
+                </template>
+              </ul>
+            </li>
+          </template>
+        </ul>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn">Close</button>
           </form>
         </div>
       </div>

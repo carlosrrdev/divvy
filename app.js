@@ -36,10 +36,10 @@ localforage.config({
 })
 
 Alpine.store('sp', splitEvenlyStore)
-Alpine.store('dv_divvy', divvyUpStore)
+Alpine.store('dv', divvyUpStore)
 Alpine.store('dv_fb', firebaseStore)
 Alpine.store('dv_save', saveStore)
-Alpine.store('dv_vd', viewDivvyStore)
+Alpine.store('vd', viewDivvyStore)
 
 
 Alpine.start();

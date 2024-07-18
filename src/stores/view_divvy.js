@@ -1,40 +1,24 @@
 import {roundUpToNearest} from "../util.js";
 
+/** @type {import("/src/classes/SplitDivvy.js").SplitDivvyObj} */
 
 /**
- * @type {import('/types.js').ViewDivvyStore} ViewDivvyStore
- */
-
-
-/**
- * @type {ViewDivvyStore}
+ * TODO type later
  */
 export const viewDivvyStore = {
   isModalVisible: false,
   showConfirmDelete: false,
-  loadedData: {},
+  /** @type {DivvyObj} */
+  divvy: {},
 
   showDivvyModal(data) {
     this.isModalVisible = true;
     this.showConfirmDelete = false;
-    this.loadedData = data;
+    this.divvy = data;
 
     setTimeout(() => {
       document.getElementById('modal_view_divvy').showModal()
     }, 0)
-  },
-
-  calcExpTotal() {
-    let total = 0;
-    this.loadedData.expenses.forEach(expense => {
-      total += expense.expAmount;
-    });
-    return roundUpToNearest(total);
-  },
-
-  calcSplitTotal() {
-    let splitTotal = this.calcExpTotal() / this.loadedData.members.length;
-    return roundUpToNearest(splitTotal);
   },
 
   async deleteDivvy(id) {

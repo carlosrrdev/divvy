@@ -1,18 +1,18 @@
 <dialog x-data id="modal_split" class="modal">
   <div class="modal-box w-11/12 max-w-7xl">
-    <h3 class="text-2xl md:text-3xl lg:text-4xl mb-4 dv-font-heading text-center">
+    <h3 class="text-2xl md:text-3xl lg:text-4xl dv-font-heading text-center">
       Split evenly
     </h3>
-    <div class="h-10 flex justify-center items-center my-4 dark:text-base-100">
+    <div class="h-6 md:h-10 flex justify-center items-center my-4 dark:text-base-100">
       <p x-transition:enter.duration.500ms
          x-show="$store.sp.isAlertVisible" id="split_alert" x-text="$store.sp.alertText"
-         class="rounded py-2 px-4"></p>
+         class="rounded text-sm md:text-base py-2 px-4"></p>
     </div>
     <div class="flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-4 lg:gap-x-8 xl:gap-x-14">
       <div>
         <form @submit.prevent="$store.sp.addNewMember($refs.dv_member_input)"
               class="flex flex-col gap-y-4">
-          <label class="input input-bordered flex items-center gap-2">
+          <label class="input input-sm md:input-md input-bordered flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block" viewBox="0 0 24 24">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"/>
@@ -20,12 +20,12 @@
             <input :disabled="$store.sp.isDivvyComplete" x-ref="dv_member_input" type="text" class="grow" required
                    placeholder="Member name"/>
           </label>
-          <div class="mt-4 md:mt-0 grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
-            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-secondary">Add
+          <div class="grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
+            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-sm md:btn-md btn-secondary">Add
               member
             </button>
             <button :disabled="$store.sp.isDivvyComplete" @click.prevent
-                    onclick="modal_members_split.showModal()" class="btn">
+                    onclick="modal_members_split.showModal()" class="btn btn-sm md:btn-md">
               <span>View members</span>
               <span x-text="$store.sp.cd.members.length"
                     :class="$store.sp.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
@@ -38,7 +38,7 @@
         <form @submit.prevent="$store.sp.addNewExpense($refs.dv_exp_name_input, $refs.dv_exp_amount_input)"
               class="flex flex-col gap-y-4">
           <div class="flex flex-col gap-y-2 md:grid md:grid-cols-2 md:gap-x-2">
-            <label class="input input-bordered flex items-center gap-2">
+            <label class="input input-sm md:input-md input-bordered flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                   <path d="M12.5 21H8.574a3 3 0 0 1-2.965-2.544l-1.255-8.152A2 2 0 0 1 6.331 8H17.67a2 2 0 0 1 1.977 2.304l-.263 1.708M16 19h6m-3-3v6"/>
@@ -48,7 +48,7 @@
               <input :disabled="$store.sp.isDivvyComplete" x-ref="dv_exp_name_input" type="text" class="grow"
                      required placeholder="Expense title"/>
             </label>
-            <label class="input input-bordered flex items-center gap-2">
+            <label class="input input-sm md:input-md input-bordered flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" class="w-5 h-5 hidden xl:block" viewBox="0 0 24 24">
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M16.7 8A3 3 0 0 0 14 6h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1-2.7-2M12 3v3m0 12v3"/>
@@ -57,12 +57,12 @@
                      class="grow" placeholder="0.00" required/>
             </label>
           </div>
-          <div class="mt-4 md:mt-0 grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
-            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-secondary">Add
+          <div class="grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
+            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-sm md:btn-md btn-secondary">Add
               expense
             </button>
             <button :disabled="$store.sp.isDivvyComplete" @click.prevent
-                    onclick="modal_expenses_split.showModal()" class="btn">
+                    onclick="modal_expenses_split.showModal()" class="btn btn-sm md:btn-md">
               <span>View expenses</span>
               <span x-text="$store.sp.cd.expenses.length"
                     :class="$store.sp.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
@@ -72,18 +72,17 @@
 
         <div class="divider md:hidden"></div>
 
-        <button onclick="modal_results_split.showModal()" class="btn btn-secondary w-full md:hidden">View Split Results
+        <button onclick="modal_results_split.showModal()" class="btn btn-sm md:btn-md btn-secondary w-full md:hidden">View Split Results
         </button>
       </div>
 
       <div class="hidden md:divider md:divider-horizontal"></div>
       <div class="hidden md:flex md:flex-col">
-<!--        <h3 class="dv-font-heading text-2xl mb-4">Results</h3>-->
         <small class="inline-block m-auto" x-show="!$store.sp.isResultValid()">
           Please add at least two
           members and one expense to view your results
         </small>
-        <div class="flex flex-col" x-show="$store.sp.isResultValid()">
+        <div class="flex flex-col gap-y-4" x-show="$store.sp.isResultValid()">
           <div>
             <h4 class="text-4xl dv-font-heading flex items-center gap-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" class="w-8 h-8" viewBox="0 0 24 24">
@@ -129,7 +128,7 @@
       </div>
     </div>
     <div class="modal-action">
-      <button @click="$store.sp.resetAll()" class="btn btn-outline btn-accent mr-auto">Reset</button>
+      <button @click="$store.sp.resetAll()" class="btn btn-outline btn-sm md:btn-md btn-accent mr-auto">Reset</button>
       <form @submit.prevent="" class="hidden md:flex flex-col md:flex-row items-center gap-x-2">
         <label :class="(!$store.sp.isResultValid() || $store.sp.isDivvyComplete)? 'input-disabled': ''"
                class="input input-bordered flex items-center mx-auto">
@@ -143,7 +142,7 @@
         </button>
       </form>
       <form method="dialog">
-        <button class="btn btn-outline btn-secondary">Close</button>
+        <button class="btn btn-outline btn-sm md:btn-md btn-secondary">Close</button>
       </form>
     </div>
   </div>
