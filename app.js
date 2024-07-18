@@ -8,7 +8,7 @@ import {saveStore} from "./src/stores/save.js";
 import {firebaseStore} from "./src/stores/firebase.js";
 import {viewDivvyStore} from "./src/stores/view_divvy.js";
 import {initializeApp} from 'firebase/app';
-import {getAnalytics} from "firebase/analytics"
+// import {getAnalytics} from "firebase/analytics"
 import {getAuth} from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
 
@@ -25,7 +25,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const db = getFirestore(app)
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
 window.Alpine = Alpine;
 
