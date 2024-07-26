@@ -71,7 +71,7 @@
                     :class="$store.dv.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
             </button>
           </div>
-          <button :disabled="!$store.dv.isResultValid()" :class="!$store.dv.isResultValid()? 'btn-disabled': ''"
+          <button :disabled="!$store.dv.canAssign()" :class="!$store.dv.canAssign()? 'btn-disabled': ''"
                   @click.prevent="" onclick="modal_assign_expenses.showModal()"
                   class="btn btn-sm md:btn-md btn-accent dark:btn-info">
             Assign expenses
@@ -114,7 +114,8 @@
                   </g>
                 </svg>
                 <span x-text="member.mem_name" class="font-bold text-xl"></span>
-                <span x-text="`$${$store.dv.cd.calculateUserExpenses(member.mem_id)}`" class="badge badge-lg badge-success"></span>
+                <span x-text="`$${$store.dv.cd.calculateUserExpenses(member.mem_id)}`"
+                      class="ml-auto badge badge-lg badge-success"></span>
               </li>
             </template>
           </ul>
@@ -126,22 +127,21 @@
             <div class="collapse-content">
               <ul class="flex flex-col gap-y-2">
                 <template x-for="expense in $store.dv.cd.expenses">
-                  <li class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
-                    <span x-text="expense.exp_name"></span>
-                    <span x-text="`$${expense.exp_amount}`"></span>
-                  </li>
-                </template>
-              </ul>
-              <p class="font-bold mt-4 ml-auto text-lg">
-                <span>Expense total:</span>
-                <span x-text="`$${$store.dv.cd.calcExpTotal()}`"></span>
-              </p>
-              <div class="divider"></div>
-              <ul class="flex flex-col gap-y-2">
-                <template x-for="member in $store.dv.cd.members">
-                  <li class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 last-of-type:border-none">
-                    <span x-text="member.mem_name"></span>
-                    <span x-text="`testing 2`"></span>
+                  <li class="border p-4 rounded border-gray-300 dark:border-gray-700">
+                    <div class="flex text-lg font-bold justify-between items-center">
+                      <span x-text="expense.exp_name"></span>
+                      <span x-text="`$${expense.exp_amount}/${expense.exp_members.length}`"></span>
+                    </div>
+                    <ul>
+                      <template x-for="member in $store.dv.cd.getExpenseMembers(expense.exp_id)">
+                        <li class="border-b border-gray-300 dark:border-gray-700 last-of-type:border-none">
+                          <div class="flex justify-between items-center">
+                            <span x-text="member"></span>
+                            <span x-text="`$${expense.exp_amount/expense.exp_members.length}`"></span>
+                          </div>
+                        </li>
+                      </template>
+                    </ul>
                   </li>
                 </template>
               </ul>
@@ -236,8 +236,9 @@
           There must be <span class="text-warning">at least two members and expenses</span>.
           Each member must have <span class="text-warning">at least one expenses assigned to them</span>.
         </small>
-        <div class="flex flex-col" x-show="$store.dv.isResultValid()">
+        <div class="flex flex-col gap-y-4" x-show="$store.dv.isResultValid()">
           <div class="my-4">
+            <p class="text-sm text-accent">Total</p>
             <h4 class="text-4xl dv-font-heading flex items-center gap-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" class="w-8 h-8" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -245,10 +246,24 @@
                   <path d="M12 14a2 2 0 1 0 4 0a2 2 0 1 0-4 0m5-5V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
                 </g>
               </svg>
-              <span x-text="`testing 3`"></span>
+              <span x-text="`$${$store.dv.cd.calcExpTotal()}`"></span>
             </h4>
-            <p>Evenly split between everyone</p>
           </div>
+          <ul class="flex flex-col gap-y-2">
+            <template x-for="member in $store.dv.cd.members" :key="member.mem_id">
+              <li class="flex items-center gap-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" class="w-6 h-6" viewBox="0 0 24 24">
+                  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/>
+                    <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm15 4h.01M6 12h.01"/>
+                  </g>
+                </svg>
+                <span x-text="member.mem_name" class="font-bold text-xl"></span>
+                <span x-text="`$${$store.dv.cd.calculateUserExpenses(member.mem_id)}`"
+                      class="ml-auto badge badge-lg badge-success"></span>
+              </li>
+            </template>
+          </ul>
           <div class="collapse rounded-md collapse-arrow border border-base-300 dark:border-gray-600 bg-base-100">
             <input aria-hidden="true" type="checkbox"/>
             <div class="collapse-title font-medium">

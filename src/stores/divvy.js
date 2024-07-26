@@ -28,8 +28,12 @@ export const divvyUpStore = {
 
   /** @type {function():boolean} */
   isResultValid: function () {
-    // return this.cd.members.length >= 2 && this.cd.expenses.length >= 2;
-    return true;
+    return this.cd.members.every(mem => mem.mem_expenses.length > 0) && this.cd.members.length >= 2 && this.cd.expenses.length >= 2;
+  },
+
+  /** @type {function(): boolean} */
+  canAssign: function () {
+    return this.cd.members.length >= 2 && this.cd.expenses.length >= 2
   },
 
   /**
@@ -137,11 +141,10 @@ export const divvyUpStore = {
    * @param {MouseEvent} event
    */
   addExpenseToMember(mem_id, exp_id, event) {
-    if(event.target.checked) {
+    if (event.target.checked) {
       this.cd.assignExpenseToMember(mem_id, exp_id)
     } else {
       this.cd.removeExpenseFromMember(mem_id, exp_id)
     }
-    console.log(this.cd)
   }
 }

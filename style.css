@@ -33,6 +33,10 @@
     .dv-view-cell {
         @apply p-4 rounded-md border border-base-200 dark:border-neutral-800
     }
+
+    .modal-box {
+        @apply rounded-lg
+    }
 }
 
 :root:has(:is(.modal-open,.modal-target,.modal-toggle:checked+.modal,.modal[open])) {
