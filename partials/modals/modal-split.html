@@ -1,8 +1,9 @@
 <dialog x-data id="modal_split" class="modal">
   <div class="modal-box w-11/12 max-w-7xl">
     <h3 class="text-2xl md:text-3xl lg:text-4xl dv-font-heading text-center">
-      Split evenly
+      Simple
     </h3>
+    <p class="text-center text-neutral">Evenly split between everyone</p>
     <div class="h-6 md:h-10 flex justify-center items-center my-4 dark:text-base-100">
       <p x-transition:enter.duration.500ms
          x-show="$store.sp.isAlertVisible" id="split_alert" x-text="$store.sp.alertText"
@@ -21,14 +22,14 @@
                    placeholder="Member name"/>
           </label>
           <div class="grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
-            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-sm md:btn-md btn-secondary">Add
+            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-sm md:btn-md btn-primary">Add
               member
             </button>
             <button :disabled="$store.sp.isDivvyComplete" @click.prevent
                     onclick="modal_members_split.showModal()" class="btn btn-sm md:btn-md">
               <span>View members</span>
               <span x-text="$store.sp.cd.members.length"
-                    :class="$store.sp.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
+                    :class="$store.sp.isDivvyComplete? 'badge-ghost': 'badge-primary'" class="badge"></span>
             </button>
           </div>
         </form>
@@ -58,14 +59,14 @@
             </label>
           </div>
           <div class="grid grid-cols-[auto_1fr] md:grid-cols-2 gap-x-2">
-            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-sm md:btn-md btn-secondary">Add
+            <button :disabled="$store.sp.isDivvyComplete" class="btn btn-sm md:btn-md btn-primary">Add
               expense
             </button>
             <button :disabled="$store.sp.isDivvyComplete" @click.prevent
                     onclick="modal_expenses_split.showModal()" class="btn btn-sm md:btn-md">
               <span>View expenses</span>
               <span x-text="$store.sp.cd.expenses.length"
-                    :class="$store.sp.isDivvyComplete? 'badge-ghost': 'badge-secondary'" class="badge"></span>
+                    :class="$store.sp.isDivvyComplete? 'badge-ghost': 'badge-primary'" class="badge"></span>
             </button>
           </div>
         </form>
@@ -128,7 +129,7 @@
       </div>
     </div>
     <div class="modal-action">
-      <button @click="$store.sp.resetAll()" class="btn btn-outline btn-sm md:btn-md btn-accent mr-auto">Reset</button>
+      <button @click="$store.sp.resetAll()" class="btn btn-outline btn-sm md:btn-md btn-neutral mr-auto">Reset</button>
       <form @submit.prevent="" class="hidden md:flex flex-col md:flex-row items-center gap-x-2">
         <label :class="(!$store.sp.isResultValid() || $store.sp.isDivvyComplete)? 'input-disabled': ''"
                class="input input-bordered flex items-center mx-auto">
@@ -142,7 +143,7 @@
         </button>
       </form>
       <form method="dialog">
-        <button class="btn btn-outline btn-sm md:btn-md btn-secondary">Close</button>
+        <button class="btn btn-outline btn-sm md:btn-md btn-neutral">Close</button>
       </form>
     </div>
   </div>
@@ -171,7 +172,7 @@
                   class="btn mr-auto btn-outline btn-error">Clear all
           </button>
           <form method="dialog">
-            <button class="btn btn-secondary">Close</button>
+            <button class="btn btn-neutral">Close</button>
           </form>
         </div>
       </div>
@@ -201,7 +202,7 @@
                   class="btn mr-auto btn-outline btn-error">Clear all
           </button>
           <form method="dialog">
-            <button class="btn btn-secondary">Close</button>
+            <button class="btn btn-neutral">Close</button>
           </form>
         </div>
       </div>

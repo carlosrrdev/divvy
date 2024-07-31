@@ -1,6 +1,7 @@
 import {Divvy} from "./Divvy.js";
 import {nanoid} from "nanoid";
 import {capitalizeFirstLetter, roundUpToNearest} from "../util.js";
+import {Timestamp} from "firebase/firestore";
 
 /**
  * @typedef {Object} DivvyUpObj
@@ -79,6 +80,24 @@ export class DivvyUp extends Divvy {
   }
 
   /**
+   * Creates the Divvy object that will be sent to local storage and Firebase for saving
+   * @param {string} dvName
+   * @return {Promise<DivvyUpObj>}
+   */
+  async createDivvyObj(dvName) {
+    if (dvName.trim() !== '') this.divvyName = dvName;
+    return  {
+      id: nanoid(12),
+      name: dvName,
+      createdAt: Timestamp.now().toDate().toISOString(),
+      members: this.members,
+      expenses: this.expenses,
+      expenseTotal: this.calcExpTotal(),
+      complex: true
+    }
+  }
+
+  /**
    * Assigns an expense to a member and also updates the expense members array
    * @param {string} memId
    * @param {string} expId
@@ -137,5 +156,15 @@ export class DivvyUp extends Divvy {
       })
       return members;
     }
+  }
+
+  /**
+   * Returns the split amount based on the expense amount and expense members
+   * @param {number} amount
+   * @param {Array} expense
+   * @return number
+   */
+  getLocalSplit(amount, expense) {
+    return roundUpToNearest(amount/expense.length)
   }
 }

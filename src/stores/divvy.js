@@ -99,21 +99,20 @@ export const divvyUpStore = {
   },
 
   async saveDivvy(dvName) {
-    // const modalResults = document.getElementById('modal_results_divvy');
-    // this.isLoading = true;
-    // this.saveBtnText = "Saving...";
-    // if (modalResults.open) {
-    //   modalResults.close();
-    // }
-    //
-    // const divvyObj = await this.cd.createDivvyObj(dvName)
-    // await Alpine.store('dv_save').saveData(divvyObj);
-    // this.showAlert(`${divvyObj.name} Saved!`, false)
-    //
-    // this.isLoading = false;
-    // this.isDivvyComplete = true;
-    // this.saveBtnText = "Saved!";
-    console.log("save halted")
+    const modalResults = document.getElementById('modal_results_divvy');
+    this.isLoading = true;
+    this.saveBtnText = "Saving...";
+    if (modalResults.open) {
+      modalResults.close();
+    }
+
+    const divvyObj = await this.cd.createDivvyObj(dvName)
+    await Alpine.store('dv_save').saveData(divvyObj);
+    this.showAlert(`${divvyObj.name} Saved!`, false)
+
+    this.isLoading = false;
+    this.isDivvyComplete = true;
+    this.saveBtnText = "Saved!";
   },
 
   /**

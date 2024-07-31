@@ -4,11 +4,11 @@
       <div class="text-center mb-6">
         <h3 x-text="$store.vd.divvy.name"
             class="text-3xl md:text-3xl lg:text-4xl dv-font-heading"></h3>
-        <p x-text="$store.vd.divvy.fDate" class="text-sm md:text-base text-accent"></p>
+        <p x-text="$store.vd.divvy.fDate" class="text-sm md:text-base text-neutral"></p>
       </div>
       <div class="flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-x-4">
         <div class="dv-view-cell">
-          <h4 class="text-xl mb-4 dv-font-heading text-secondary">Expenses</h4>
+          <h4 class="text-xl mb-4 dv-font-heading">Expenses</h4>
           <ul class="flex flex-col gap-y-1">
             <template x-for="exp in $store.vd.divvy.expenses">
               <li class="flex py-1 justify-between border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
@@ -17,10 +17,10 @@
               </li>
             </template>
           </ul>
-          <p class="text-right text-accent mt-2" x-text="`Total: $${$store.vd.divvy.expenseTotal}`"></p>
+          <p class="text-right text-neutral mt-2" x-text="`Total: $${$store.vd.divvy.expenseTotal}`"></p>
         </div>
         <div class="dv-view-cell">
-          <h4 class="text-xl mb-4 dv-font-heading text-secondary">Members</h4>
+          <h4 class="text-xl mb-4 dv-font-heading">Members</h4>
           <ul class="flex flex-col gap-y-1">
             <template x-for="mem in $store.vd.divvy.members">
               <li class="py-1 border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
@@ -51,7 +51,7 @@
           </button>
         </div>
         <form method="dialog">
-          <button @click.prevent="$store.vd.hideDivvyModal()" class="btn btn-outline btn-accent">Close</button>
+          <button @click.prevent="$store.vd.hideDivvyModal()" class="btn btn-outline">Close</button>
         </form>
       </div>
     </div>

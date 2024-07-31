@@ -9,26 +9,26 @@ export default {
   daisyui: {
     themes: [{
       divvyLight: {
-        "primary": "#7bbbff",
-        "secondary": "#0a0f15",
-        "accent": "#53514c",
-        "neutral": "#dddacd",
-        "base-100": "#f4f5f6",
-        "info": "#b3dffa",
-        "success": "#95f7c6",
-        "warning": "#e49f59",
-        "error": "#fd6f95",
+        "primary": "#0004ff",
+        "secondary": "#cedef3",
+        "accent": "#6131f3",
+        "neutral": "#8a8e9b",
+        "base-100": "#f3f5fc",
+        "info": "#9ce3f9",
+        "success": "#91da4d",
+        "warning": "#d07414",
+        "error": "#ff758e"
       },
       divvyDark: {
-        "primary": "#9a96d7",
-        "secondary": "#8a93cb",
-        "accent": "#86869e",
-        "neutral": "#81819a",
-        "base-100": "#121219",
-        "info": "#363855",
-        "success": "#3bcf8d",
-        "warning": "#dfb65f",
-        "error": "#ea6886",
+        "primary": "#8c98c0",
+        "secondary": "#96bec9",
+        "accent": "#a2b4ef",
+        "neutral": "#696c77",
+        "base-100": "#151517",
+        "info": "#9ce3f9",
+        "success": "#94bb8c",
+        "warning": "#e1b96e",
+        "error": "#e3819e"
       }
     },],
     darkTheme: "divvyDark"
