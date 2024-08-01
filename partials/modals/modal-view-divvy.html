@@ -1,6 +1,6 @@
 <template x-data x-if="$store.vd.isModalVisible">
   <dialog id="modal_view_divvy" class="modal">
-    <div class="modal-box">
+    <div class="modal-box w-11/12 max-w-2xl">
       <div class="text-center mb-6">
         <h3 x-text="$store.vd.divvy.name"
             class="text-3xl md:text-3xl lg:text-4xl dv-font-heading"></h3>
@@ -23,8 +23,10 @@
           <h4 class="text-xl mb-4 dv-font-heading">Members</h4>
           <ul class="flex flex-col gap-y-1">
             <template x-for="mem in $store.vd.divvy.members">
-              <li class="py-1 border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
-                <span x-text="mem.mem_name"></span>
+              <li class="flex items-center gap-x-2 py-1 border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
+                <span x-text="mem.mem_name" class="font-bold"></span>
+                <span x-text="`$${$store.vd.calculateUserExpenses(mem.mem_id)}`"
+                      class="ml-auto badge badge-lg badge-success"></span>
               </li>
             </template>
           </ul>
@@ -32,7 +34,26 @@
       </div>
       <div class="dv-view-cell border-none bg-success dark:text-black mt-4">
         <template x-if="$store.vd.divvy.complex">
-          <p>build later for complex</p>
+          <ul class="flex flex-col gap-y-2">
+            <template x-for="exp in $store.vd.divvy.expenses">
+              <li class="border p-4 rounded border-gray-300 dark:border-neutral-800">
+                <div class="flex text-lg font-bold justify-between items-center">
+                  <span x-text="exp.exp_name"></span>
+                  <span x-text="`$${exp.exp_amount}/${exp.exp_members.length}`"></span>
+                </div>
+                <ul>
+                  <template x-for="mem in $store.vd.getExpenseMembers(exp.exp_id)">
+                    <li class="border-b border-gray-300 dark:border-neutral-700 last-of-type:border-none">
+                      <div class="flex justify-between items-center">
+                        <span x-text="mem"></span>
+                        <span x-text="`$${$store.vd.getLocalSplit(exp.exp_amount, exp.exp_members)}`"></span>
+                      </div>
+                    </li>
+                  </template>
+                </ul>
+              </li>
+            </template>
+          </ul>
         </template>
         <template x-if="!$store.vd.divvy.complex">
           <p class="dv-font-heading text-xl">
