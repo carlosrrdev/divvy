@@ -25,25 +25,27 @@
             <template x-for="mem in $store.vd.divvy.members">
               <li class="flex items-center gap-x-2 py-1 border-b border-base-200 dark:border-neutral-800 last-of-type:border-none">
                 <span x-text="mem.mem_name" class="font-bold"></span>
-                <span x-text="`$${$store.vd.calculateUserExpenses(mem.mem_id)}`"
-                      class="ml-auto badge md:badge-lg badge-success"></span>
+                <template x-if="$store.vd.divvy.complex">
+                   <span x-text="`$${$store.vd.calculateUserExpenses(mem.mem_id)}`"
+                         class="ml-auto badge md:badge-lg badge-success"></span>
+                </template>
               </li>
             </template>
           </ul>
         </div>
       </div>
-      <div class="dv-view-cell border-none bg-white text-sm md:text-base dark:text-black mt-4">
+      <div class="dv-view-cell border-none bg-emerald-300 dark:bg-emerald-500 text-sm md:text-base dark:text-black mt-4">
         <template x-if="$store.vd.divvy.complex">
-          <ul class="flex flex-col gap-y-2">
+          <ul class="flex flex-col">
             <template x-for="exp in $store.vd.divvy.expenses">
-              <li class="border p-4 rounded border-gray-200 dark:border-neutral-800">
+              <li class="p-4 border-b border-emerald-400 last-of-type:border-none">
                 <div class="flex text-base md:text-lg font-bold justify-between items-center">
                   <span x-text="exp.exp_name"></span>
                   <span x-text="`$${exp.exp_amount}/${exp.exp_members.length}`"></span>
                 </div>
                 <ul>
                   <template x-for="mem in $store.vd.getExpenseMembers(exp.exp_id)">
-                    <li class="border-b border-gray-300 dark:border-neutral-700 last-of-type:border-none">
+                    <li class="border-b border-emerald-400 last-of-type:border-none">
                       <div class="flex justify-between items-center">
                         <span x-text="mem"></span>
                         <span x-text="`$${$store.vd.getLocalSplit(exp.exp_amount, exp.exp_members)}`"></span>
@@ -56,7 +58,7 @@
           </ul>
         </template>
         <template x-if="!$store.vd.divvy.complex">
-          <p class="dv-font-heading text-xl">
+          <p class="dv-font-heading p-4 text-lg md:text-xl">
             Split evenly:
             <span x-text="`$${$store.vd.divvy.expenseSplit}`"></span>
           </p>
