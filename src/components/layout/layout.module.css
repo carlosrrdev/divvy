@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--p-xl);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.wrapper header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrapper header nav a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  font-size: 1.25rem;
+}
+.wrapper header nav svg {
+  font-size: 1.50rem;
+}
