@@ -8,6 +8,6 @@
   }
 
   dialog::backdrop {
-    @apply bg-black bg-opacity-50;
+    @apply bg-black bg-opacity-20 dark:bg-opacity-50;
   }
 }

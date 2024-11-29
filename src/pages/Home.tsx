@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {FiPlus, FiFile} from 'react-icons/fi';
 import Modal from "../components/Modal.tsx";
+import {Link} from "react-router";
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,12 +12,12 @@ function Home() {
 
   return (
     <div className={"w-full h-full flex flex-col md:flex-row md:gap-x-4 gap-y-4 justify-center items-center"}>
-      <button type={"button"} className={"btn w-full max-w-52 btn-primary"}>
-        <FiPlus className={"text-xl"} />
+      <Link to={"/new"} className={"btn w-full max-w-52 btn-primary"}>
+        <FiPlus className={"text-xl mr-2"} />
         <span>New Divvy</span>
-      </button>
+      </Link>
       <button type={"button"} onClick={toggleModal} className={"btn w-full max-w-52 btn-outline btn-accent"}>
-        <FiFile className={"text-xl"} />
+        <FiFile className={"text-xl mr-2"} />
         <span>View Saved</span>
       </button>
       <Modal isOpen={isModalOpen} onClose={toggleModal}>
