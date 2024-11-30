@@ -5,6 +5,7 @@
 @layer base {
   body {
     font-family: 'Rubik', system-ui, sans-serif;
+    @apply text-primary;
   }
 
   dialog::backdrop {

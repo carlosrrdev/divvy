@@ -4,9 +4,10 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactElement
+  actionBtn?: React.ReactElement
 }
 
-const Modal: React.FC<ModalProps> = ({isOpen, onClose, children}) => {
+const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, actionBtn}) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -36,10 +37,13 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children}) => {
   };
 
   return (
-    <dialog ref={dialogRef} className="p-0 rounded-md shadow-md">
-      <div className="p-4 bg-white dark:bg-base-100 rounded-md dark:text-white">
+    <dialog ref={dialogRef} className="p-0 w-full mx-auto rounded-md bg-transparent shadow-md">
+      <div className="p-4 bg-white dark:bg-base-100 w-full max-w-lg rounded-md dark:text-white">
         {children}
-        <button onClick={onClose} className="mt-4 btn btn-neutral">Close</button>
+        <div className="flex mt-4 justify-between">
+          {actionBtn}
+          <button onClick={onClose} className="btn btn-sm md:btn-md btn-neutral">Close</button>
+        </div>
       </div>
     </dialog>
   );

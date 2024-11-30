@@ -19,13 +19,13 @@ export default {
             },
         }, {
             divvyDark: {
-                "primary": "#c4ccd9",
+                "primary": "#aac3d3",
                 "secondary": "#4338ca",
-                "accent": "#ae86f3",
+                "accent": "#f3c786",
                 "neutral": "#374151",
-                "base-100": "#131317",
+                "base-100": "#0f0f13",
                 "info": "#22d3ee",
-                "success": "#34d399",
+                "success": "#60d098",
                 "warning": "#f59e0b",
                 "error": "#fb7185",
             },
