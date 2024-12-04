@@ -1,15 +1,24 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import {BrowserRouter, Routes, Route} from 'react-router'
-import Home from './pages/home'
-import './index.css'
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
+import "@radix-ui/themes/styles.css"
+import {Theme} from "@radix-ui/themes";
+import {BrowserRouter, Routes, Route} from "react-router";
+
+import {Home} from "./pages/Home";
+import {NotFound} from "./pages/NotFound.tsx";
+import {Layout} from "./components/Layout.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/"} element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <Theme appearance={"light"} radius={"small"} accentColor={"indigo"}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index={true} element={<Home/>}/>
+          </Route>
+          <Route path={"*"} element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Theme>
   </StrictMode>,
 )
