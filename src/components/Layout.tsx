@@ -5,8 +5,8 @@ import {SunIcon} from "@radix-ui/react-icons";
 
 export const Layout: React.FC = () => {
   return (
-    <Flex style={{backgroundColor: "var(--accent-1)"}} width={"100%"} height={"100dvh"} direction={"column"}>
-      <Grid height={"100%"} rows={"auto 1fr auto"} p={"5"} gap={"7"}>
+    <Flex style={{backgroundColor: "var(--accent-1)"}} width={"100%"} minHeight={"100dvh"}>
+      <Grid width={"100%"} minHeight={"100%"} rows={"auto 1fr auto"} p={"5"} gap={"7"}>
         <header>
           <Container>
             <Flex justify={"between"} align={"center"}>
