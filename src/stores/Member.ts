@@ -15,7 +15,7 @@ interface MemberState {
   removeExpenseFromMember: (id: string, expense: string) => void;
 }
 
-const useMemberStore = create<MemberState>()(
+export const useMemberStore = create<MemberState>()(
   immer((set) => ({
     members: [],
     addMember: (member) => set((state) => {
@@ -40,5 +40,3 @@ const useMemberStore = create<MemberState>()(
     })
   }))
 );
-
-export default useMemberStore;
