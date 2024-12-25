@@ -1,75 +1,80 @@
-import React, {useRef, useEffect} from 'react'
+import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 interface ModalProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
   children: React.ReactNode;
+  isShowing: boolean;
+  setIsShowing: (isShowing: boolean) => void;
+  backdropClose?: boolean;
+  onClose?: () => void;
   closeButtonText?: string;
+  className?: string;
 }
 
-export const Modal: React.FC<ModalProps> = (
-  {
-    isOpen,
-    setIsOpen,
-    children,
-    closeButtonText = "Close"
-  }
-) => {
-
-  const dialogRef = useRef<HTMLDialogElement>(null);
+export default function Modal({
+  children,
+  isShowing,
+  setIsShowing,
+  backdropClose = true,
+  onClose,
+  closeButtonText,
+  className
+}: ModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (dialog) {
-      if (isOpen) {
-        dialog.showModal();
-      } else {
-        dialog.close();
-        setIsOpen(false);
-      }
-    }
-  }, [isOpen, setIsOpen]);
-
-  // close modal on backdrop click
-  useEffect(() => {
-    const handleBackdropClick = (event: MouseEvent) => {
-      const dialog = dialogRef.current;
-      if (dialog && event.target === dialog) {
-        setIsOpen(false);
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
       }
     };
 
-    const dialog = dialogRef.current;
-    if (dialog) {
-      dialog.addEventListener('click', handleBackdropClick);
+    if (isShowing) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      if (dialog) {
-        dialog.removeEventListener('click', handleBackdropClick);
-      }
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
     };
-  }, [isOpen, setIsOpen]);
+  }, [isShowing]);
 
-  if (!isOpen) return null;
+  const handleClose = () => {
+    setIsShowing(false);
+    onClose?.();
+  };
 
-  function handleModalClose() {
-    dialogRef.current?.close()
-    setIsOpen(false);
-  }
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (backdropClose && e.target === modalRef.current) {
+      handleClose();
+    }
+  };
 
-  dialogRef.current?.addEventListener('close', () => {
-    console.log('dialog closed');
-  })
+  if (!isShowing) return null;
 
-  return (
-    <dialog ref={dialogRef} className="modal">
-      <div className="modal-content">
-        {children}
-        <div className="flex mt-6 justify-end">
-          <button className={"px-6 py-2 text-sm md:text-base rounded-md dark:bg-slate-300 dark:text-slate-800"} onClick={handleModalClose}>{closeButtonText}</button>
+  return createPortal(
+    <div
+      ref={modalRef}
+      onClick={handleBackdropClick}
+      className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-fadeIn"
+    >
+      <div className={`modal-content animate-slideIn ${className}`}>
+        <div>
+          {children}
         </div>
+        {closeButtonText && (
+          <div className="flex justify-end mt-6">
+            <button
+              onClick={handleClose}
+              className="px-4 py-2 bg-slate-700 text-slate-100 md:dark:hover:bg-slate-600 rounded-md"
+            >
+              {closeButtonText}
+            </button>
+          </div>
+        )}
       </div>
-    </dialog>
+    </div>,
+    document.body
   );
 }

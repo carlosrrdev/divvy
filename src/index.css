@@ -7,8 +7,22 @@
     font-family: "Cabin", "Roboto", system-ui, -apple-system, sans-serif;
     @apply bg-slate-50 text-neutral-800 dark:bg-neutral-950 dark:text-slate-300;
   }
-  dialog::backdrop {
-    @apply bg-neutral-950/70;
+  fieldset {
+    animation-name: slideIn;
+    animation-duration: 800ms;
+    animation-timing-function: cubic-bezier(.52,.05,.13,.97);
+    animation-fill-mode: both;
+    @apply w-full flex flex-col gap-y-2;
+  }
+  label {
+    @apply text-sm font-medium dark:text-slate-500;
+  }
+  input {
+    @apply w-full border border-slate-300 bg-slate-100 text-slate-900 dark:border-slate-500/10 dark:bg-slate-500/10
+    rounded-sm dark:text-slate-300 text-base px-4 py-2;
+  }
+  button:disabled {
+    @apply bg-slate-400 dark:bg-slate-800 opacity-50 cursor-not-allowed;
   }
 }
 
@@ -32,7 +46,22 @@
     @apply bg-transparent w-full h-full flex justify-center items-center;
   }
   .modal-content {
-    @apply w-full max-w-screen-sm p-6 rounded-md dark:bg-slate-600/20 dark:text-slate-300;
+    @apply w-full max-w-xl p-6 rounded-md dark:bg-neutral-900 dark:text-slate-300;
+  }
+  .divvy-form {
+    @apply max-w-screen-lg mx-auto grid grid-rows-[auto_1fr_1fr_auto] grid-cols-1 h-full md:grid-cols-2 md:grid-rows-[auto_1fr_auto] gap-6;
+  }
+  .divvy-form > fieldset:nth-child(1) {
+    @apply md:col-span-2;
+  }
+  .divvy-form > fieldset:nth-child(2) {
+    @apply md:col-span-1;
+  }
+  .divvy-form > fieldset:nth-child(3) {
+    @apply md:col-span-1;
+  }
+  .divvy-form > fieldset:nth-child(4) {
+    @apply md:col-span-2;
   }
 }
 
@@ -45,4 +74,32 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 500ms ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 800ms cubic-bezier(.52,.05,.13,.97);
 }
