@@ -1,12 +1,15 @@
 import React from "react";
 import {Link} from "react-router";
+import {Button} from "@/components/ui/button.tsx";
 
 export const HomeRoute: React.FC = () => {
   return (
-    <div className={"w-full flex flex-col items-center justify-center"}>
-      <div className={"grid grid-rows-2 md:gris-rows-1 md:grid-cols-2 gap-4"}>
-        <Link className={"cta-btn cta-btn-filled"} to={"/new"}>Create new Divvy</Link>
-        <button className={"cta-btn cta-btn-outline"}>View saved</button>
+    <div className={"flex flex-1 flex-col justify-center items-center"}>
+      <div className={"flex flex-col gap-y-4"}>
+        <Button asChild size={"lg"}>
+          <Link to={"/new"}>Create new Divvy</Link>
+        </Button>
+        <Button variant={"outline"} size={"lg"}>View saved</Button>
       </div>
     </div>
   )
