@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -22,20 +22,39 @@ import {ExpensesTable} from "@/components/ExpensesTable.tsx";
 
 export const NewDivvyRoute: React.FC = () => {
 
+  const [divvyTitle, setDivvyTitle] = useState<string>("My New Divvy")
   const [members, setMembers] = useState<Member[]>([])
   const [expenses, setExpenses] = useState<Expense[]>([])
+  const [isSplitValid, setIsSplitValid] = useState<boolean>(false)
+  const [isDivvyValid, setIsDivvyValid] = useState<boolean>(false)
+
+  useEffect(() => {
+    if(members.length >= 2 && expenses.length > 0) {
+      setIsSplitValid(true)
+    } else {
+      setIsSplitValid(false)
+    }
+  },[members, expenses])
+
+  useEffect(() => {
+    if(members.length >= 2 && expenses.length >= 2) {
+      setIsDivvyValid(true)
+    } else {
+      setIsDivvyValid(false)
+    }
+  }, [members, expenses])
 
   return (
-    <div className={"w-full grid grid-rows-[auto_auto_1fr_auto] gap-y-4"}>
+    <div className={"w-full max-w-screen-lg mx-auto grid grid-rows-[auto_auto_1fr_auto] gap-y-4"}>
       <section>
-        <Label htmlFor={"divvy-title"}>New Divvy</Label>
-        <Input type={"text"} id={"divvy-title"}/>
+        <Label htmlFor={"divvy-title"}>Divvy Title</Label>
+        <Input type={"text"} id={"divvy-title"} autoFocus={true} value={divvyTitle} onChange={(e) => setDivvyTitle(e.target.value)}/>
       </section>
       <section className={"grid grid-cols-2 my-4 gap-x-4"}>
         <AddMember setMember={setMembers}/>
         <AddExpense setExpense={setExpenses}/>
       </section>
-      <section>
+      <section className={"lg:hidden"}>
         <Tabs className={"h-full grid grid-rows-[auto_1fr]"} defaultValue="members">
           <TabsList className="grid w-full grid-cols-2 mb-4">
             <TabsTrigger value="members">Members</TabsTrigger>
@@ -67,9 +86,13 @@ export const NewDivvyRoute: React.FC = () => {
           </TabsContent>
         </Tabs>
       </section>
+      <section className={"hidden lg:grid lg:grid-cols-2 gap-x-4"}>
+        <MembersTable members={members} setMembers={setMembers}/>
+        <ExpensesTable expenses={expenses} setExpenses={setExpenses}/>
+      </section>
       <section className={"grid grid-cols-2 gap-x-4 gap-y-2"}>
-        <Button disabled={true}>Split Evenly</Button>
-        <Button disabled={true}>Divvy Up!</Button>
+        <Button disabled={!isSplitValid}>Split Evenly</Button>
+        <Button disabled={!isDivvyValid}>Divvy Up!</Button>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button className={"col-span-2"} variant="outline">Which do I pick?</Button>

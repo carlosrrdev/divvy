@@ -6,17 +6,20 @@ import {Layout} from "./routes/_layout.tsx";
 import {HomeRoute} from "./routes/home.tsx";
 import {NewDivvyRoute} from "./routes/new.tsx";
 import {NotFoundRoute} from "./routes/error.tsx";
+import {ThemeProvider} from "@/components/ThemeProvider.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout/>}>
-          <Route index={true} element={<HomeRoute/>}/>
-          <Route path={"new"} element={<NewDivvyRoute/>}/>
-        </Route>
-        <Route path={"*"} element={<NotFoundRoute/>}/>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider defaultTheme={"system"}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout/>}>
+            <Route index={true} element={<HomeRoute/>}/>
+            <Route path={"new"} element={<NewDivvyRoute/>}/>
+          </Route>
+          <Route path={"*"} element={<NotFoundRoute/>}/>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )

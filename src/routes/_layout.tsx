@@ -1,8 +1,9 @@
 import React from "react";
 import {Outlet, Link} from "react-router";
-import {TbSun, TbSettings} from 'react-icons/tb'
+import {TbSettings} from 'react-icons/tb'
 import {Button} from "@/components/ui/button.tsx";
 import {Toaster} from "@/components/ui/toaster.tsx";
+import {ToggleTheme} from "@/components/ToggleTheme.tsx";
 
 export const Layout: React.FC = () => {
   return (
@@ -13,9 +14,7 @@ export const Layout: React.FC = () => {
             <Link className={"text-2xl font-bold"} to={"/"}>divvy</Link>
             <ul className={"flex gap-x-4 items-center"}>
               <li>
-                <Button variant={"ghost"} size={"icon"}>
-                  <TbSun className={"w-12"}/>
-                </Button>
+                <ToggleTheme/>
               </li>
               <li>
                 <Button variant={"ghost"} size={"icon"}>
