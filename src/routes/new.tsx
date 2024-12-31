@@ -1,11 +1,9 @@
-import React from 'react'
-import {TbUserPlus, TbCash} from 'react-icons/tb'
+import React, {useState} from 'react'
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card.tsx";
-import {Table, TableHeader, TableRow, TableHead, TableBody, TableCell} from "@/components/ui/table.tsx";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,8 +14,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
+import {Member, Expense} from "@/types.ts";
+import {AddMember} from "@/components/AddMember.tsx";
+import {AddExpense} from "@/components/AddExpense.tsx";
+import {MembersTable} from "@/components/MembersTable.tsx";
+import {ExpensesTable} from "@/components/ExpensesTable.tsx";
 
 export const NewDivvyRoute: React.FC = () => {
+
+  const [members, setMembers] = useState<Member[]>([])
+  const [expenses, setExpenses] = useState<Expense[]>([])
+
   return (
     <div className={"w-full grid grid-rows-[auto_auto_1fr_auto] gap-y-4"}>
       <section>
@@ -25,14 +32,8 @@ export const NewDivvyRoute: React.FC = () => {
         <Input type={"text"} id={"divvy-title"}/>
       </section>
       <section className={"grid grid-cols-2 my-4 gap-x-4"}>
-        <Button size={"lg"}>
-          <TbUserPlus/>
-          Add members
-        </Button>
-        <Button size={"lg"}>
-          <TbCash/>
-          Add expenses
-        </Button>
+        <AddMember setMember={setMembers}/>
+        <AddExpense setExpense={setExpenses}/>
       </section>
       <section>
         <Tabs className={"h-full grid grid-rows-[auto_1fr]"} defaultValue="members">
@@ -48,18 +49,7 @@ export const NewDivvyRoute: React.FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-               <Table>
-                 <TableHeader>
-                   <TableRow>
-                     <TableHead>Name</TableHead>
-                   </TableRow>
-                 </TableHeader>
-                 <TableBody>
-                   <TableRow>
-                     <TableCell>John</TableCell>
-                   </TableRow>
-                 </TableBody>
-               </Table>
+                <MembersTable members={members} setMembers={setMembers}/>
               </CardContent>
             </Card>
           </TabsContent>
@@ -71,20 +61,7 @@ export const NewDivvyRoute: React.FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Amount</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>John</TableCell>
-                      <TableCell>100</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                <ExpensesTable expenses={expenses} setExpenses={setExpenses}/>
               </CardContent>
             </Card>
           </TabsContent>
