@@ -77,7 +77,6 @@ export const AddMember: React.FC<Props> = ({setMember}) => {
             <Button type="submit">Add</Button>
           </DialogFooter>
         </form>
-
       </DialogContent>
     </Dialog>
   )

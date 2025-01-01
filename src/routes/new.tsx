@@ -19,6 +19,7 @@ import {AddMember} from "@/components/AddMember.tsx";
 import {AddExpense} from "@/components/AddExpense.tsx";
 import {MembersTable} from "@/components/MembersTable.tsx";
 import {ExpensesTable} from "@/components/ExpensesTable.tsx";
+import {SplitDivvy} from "@/components/SplitDivvy.tsx";
 
 export const NewDivvyRoute: React.FC = () => {
 
@@ -29,15 +30,15 @@ export const NewDivvyRoute: React.FC = () => {
   const [isDivvyValid, setIsDivvyValid] = useState<boolean>(false)
 
   useEffect(() => {
-    if(members.length >= 2 && expenses.length > 0) {
+    if (members.length >= 2 && expenses.length > 0) {
       setIsSplitValid(true)
     } else {
       setIsSplitValid(false)
     }
-  },[members, expenses])
+  }, [members, expenses])
 
   useEffect(() => {
-    if(members.length >= 2 && expenses.length >= 2) {
+    if (members.length >= 2 && expenses.length >= 2) {
       setIsDivvyValid(true)
     } else {
       setIsDivvyValid(false)
@@ -48,7 +49,8 @@ export const NewDivvyRoute: React.FC = () => {
     <div className={"w-full max-w-screen-lg mx-auto grid grid-rows-[auto_auto_1fr_auto] gap-y-4"}>
       <section>
         <Label htmlFor={"divvy-title"}>Divvy Title</Label>
-        <Input type={"text"} id={"divvy-title"} autoFocus={true} value={divvyTitle} onChange={(e) => setDivvyTitle(e.target.value)}/>
+        <Input type={"text"} id={"divvy-title"} autoFocus={true} value={divvyTitle}
+               onChange={(e) => setDivvyTitle(e.target.value)}/>
       </section>
       <section className={"grid grid-cols-2 my-4 gap-x-4"}>
         <AddMember setMember={setMembers}/>
@@ -91,7 +93,7 @@ export const NewDivvyRoute: React.FC = () => {
         <ExpensesTable expenses={expenses} setExpenses={setExpenses}/>
       </section>
       <section className={"grid grid-cols-2 gap-x-4 gap-y-2"}>
-        <Button disabled={!isSplitValid}>Split Evenly</Button>
+        <SplitDivvy expenses={expenses} members={members} disabled={!isSplitValid} />
         <Button disabled={!isDivvyValid}>Divvy Up!</Button>
         <AlertDialog>
           <AlertDialogTrigger asChild>

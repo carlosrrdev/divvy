@@ -38,7 +38,7 @@ export const AddExpense: React.FC<Props> = ({setExpense}) => {
       const newMemberObj: Expense = {
         id: crypto.randomUUID(),
         name: formattedName,
-        amount: parseFloat(amount)
+        amount: parseFloat(amount),
       }
 
       setExpense(prev => [...prev, newMemberObj])
