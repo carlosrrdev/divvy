@@ -20,6 +20,7 @@ import {AddExpense} from "@/components/AddExpense.tsx";
 import {MembersTable} from "@/components/MembersTable.tsx";
 import {ExpensesTable} from "@/components/ExpensesTable.tsx";
 import {SplitDivvy} from "@/components/SplitDivvy.tsx";
+import {DivvyUp} from "@/components/DivvyUp.tsx";
 
 export const NewDivvyRoute: React.FC = () => {
 
@@ -93,8 +94,12 @@ export const NewDivvyRoute: React.FC = () => {
         <ExpensesTable expenses={expenses} setExpenses={setExpenses}/>
       </section>
       <section className={"grid grid-cols-2 gap-x-4 gap-y-2"}>
-        <SplitDivvy expenses={expenses} members={members} disabled={!isSplitValid} />
-        <Button disabled={!isDivvyValid}>Divvy Up!</Button>
+        <SplitDivvy expenses={expenses} members={members} disabled={!isSplitValid}/>
+        <DivvyUp expenses={expenses}
+                 members={members}
+                 setMembers={setMembers}
+                 setExpenses={setExpenses}
+                 disabled={!isDivvyValid}/>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button className={"col-span-2"} variant="outline">Which do I pick?</Button>

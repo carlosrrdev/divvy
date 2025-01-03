@@ -39,6 +39,7 @@ export const AddExpense: React.FC<Props> = ({setExpense}) => {
         id: crypto.randomUUID(),
         name: formattedName,
         amount: parseFloat(amount),
+        memberCount: 0
       }
 
       setExpense(prev => [...prev, newMemberObj])
