@@ -11,7 +11,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose
+  DialogClose,
+  DialogOverlay
 } from "@/components/ui/dialog.tsx";
 import {useToast} from "@/hooks/use-toast";
 import {capitalizeFirstLetter} from "@/helpers.ts";
@@ -56,6 +57,7 @@ export const AddMember: React.FC<Props> = ({setMember}) => {
           Add members
         </Button>
       </DialogTrigger>
+      <DialogOverlay className={"bg-black/60"}/>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add new member</DialogTitle>

@@ -6,7 +6,8 @@ import {
   DialogDescription, DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
+  DialogOverlay,
 } from "@/components/ui/dialog.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Expense, Member} from "@/types.ts";
@@ -37,6 +38,7 @@ export const SplitDivvy: React.FC<Props> = ({disabled, members, expenses}) => {
       <DialogTrigger asChild>
         <Button disabled={disabled}>Split Evenly</Button>
       </DialogTrigger>
+      <DialogOverlay className={"bg-black/60"}/>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Splitting Evenly</DialogTitle>

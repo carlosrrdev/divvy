@@ -11,7 +11,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose
+  DialogClose,
+  DialogOverlay
 } from "@/components/ui/dialog.tsx";
 import {useToast} from "@/hooks/use-toast";
 import {capitalizeFirstLetter} from "@/helpers.ts";
@@ -62,6 +63,7 @@ export const AddExpense: React.FC<Props> = ({setExpense}) => {
           Add expenses
         </Button>
       </DialogTrigger>
+      <DialogOverlay className={"bg-black/60"}/>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add new expense</DialogTitle>
