@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply py-1 md:py-2 px-4 rounded-md;
+  }
+  .btn-primary {
+    @apply btn bg-black text-white hover:bg-black/90;
+  }
+  .btn-secondary {
+    @apply btn  border border-gray-200 hover:bg-gray-200;
+  }
+  .modal-body {
+    animation-name: modalEnter;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(.35,.01,0,.99);
+  }
+  .modal-backdrop {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(.44,.05,.13,.97);
+  }
+}
+
+@keyframes modalEnter {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

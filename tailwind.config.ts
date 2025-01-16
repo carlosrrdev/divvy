@@ -7,7 +7,12 @@ const config: Config = {
     "./views/**/*.pug"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary": "hsl(263, 76%, 58%)",
+        "secondary": "hsl(162, 52%, 46%)"
+      }
+    },
   },
   plugins: [],
 }

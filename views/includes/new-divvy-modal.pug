@@ -1,0 +1,57 @@
+div(class="fixed inset-0 flex items-center justify-center bg-black/20 z-50 p-6 modal-backdrop" x-show="newModal")
+  div(class="bg-white rounded-lg shadow-lg p-6 w-full max-w-screen-md modal-body" x-trap="newModal")
+    div(class="flex justify-between items-center border-b pb-3 mb-4")
+      h3(class="text-lg font-medium") Create Divvy
+      button(
+        class="text-gray-500 hover:text-gray-800"
+        @click="newModal = false"
+      ) ✖
+    div(class="mb-4")
+      div(class="flex flex-col gap-y-4")
+        label(class="flex flex-col gap-y-1")
+          span(class="text-sm md:text-base") Divvy name
+          input(
+            type="text"
+            class="border border-gray-200 px-2 py-1 md:py-2 rounded-md"
+            x-model="$store.dvStore.divvyTitle"
+            autofocus
+          )
+        div(class="flex gap-x-4")
+          button(class="btn border w-full bg-black text-white") Add members
+          button(class="btn border w-full bg-black text-white") Add expenses
+        div(x-data="{showMembers: true}")
+          div(class="p-2 rounded-md bg-gray-50 border border-gray-200")
+            div(class="flex")
+              button(
+                class="btn w-full rounded-r-none border border-gray-200 border-r-0"
+                :class="showMembers? 'bg-white': 'bg-gray-200'"
+                @click="showMembers = true"
+                ) Members
+              button(
+                class="btn w-full rounded-l-none border border-gray-200 border-l-0"
+                :class="showMembers? 'bg-gray-200': 'bg-white'"
+                @click="showMembers = false"
+                ) Expenses
+            div(class="mt-4 p-2 h-52 overflow-y-auto")
+              div(x-show="showMembers")
+                template(x-if="!$store.dvStore.divvyMembers.length > 0")
+                  p No members. Try adding some.
+                template(x-if="$store.dvStore.divvyMembers.length > 0")
+                  ul(class="flex flex-col gap-y-2")
+                    template(x-for="member in $store.dvStore.divvyMembers")
+                      li(class="flex justify-between items-center pb-2 border-b border-gray-200 last-of-type:border-none")
+                        span(x-text="member.name")
+                        button
+                          include icons/trash
+              div(x-show="!showMembers")
+                p try adding some expenses
+    div(class="flex gap-3")
+      button(class="btn-secondary mr-auto") Reset
+      button(
+        class="btn-secondary"
+        @click="newModal = false"
+      ) Cancel
+      button(
+        class="btn bg-secondary disabled:bg-gray-200 disabled:text-gray-500 disabled:cursor-not-allowed"
+        :disabled="!$store.dvStore.divvyReadyToSave"
+      ) Save
