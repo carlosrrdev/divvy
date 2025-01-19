@@ -1,6 +1,6 @@
 div(
   class="w-full flex flex-col min-h-dvh bg-white"
-  x-data="{newModal: false, viewModal: false}"
+  x-data=""
   )
   include includes/header
   main(class="flex flex-1")
@@ -8,8 +8,11 @@ div(
       div(class="flex flex-col gap-y-2 w-full max-w-48")
         button(
           class="btn py-2 bg-black border-2 border-black text-white"
-          @click="newModal = true"
+          @click="$store.modalStore.newDivvyModalIsOpen = true"
           ) Create divvy
         button(class="btn py-2 border-2 border-black") View saved
   include includes/footer
   include includes/new-divvy-modal
+  template(x-if="$store.dvStore.toastIsVisible")
+    div(class="toast")
+      p(x-text="$store.dvStore.toastText")

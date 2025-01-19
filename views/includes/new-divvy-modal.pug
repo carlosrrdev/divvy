@@ -1,10 +1,18 @@
-div(class="fixed inset-0 flex items-center justify-center bg-black/20 z-10 p-6 modal-backdrop" x-show="newModal")
-  div(class="bg-white rounded-lg shadow-lg p-6 w-full max-w-screen-md modal-body" x-trap.noscroll="newModal")
+div(
+  class="fixed inset-0 flex items-center justify-center bg-black/10 z-10 p-6 modal-backdrop"
+  x-show="$store.modalStore.newDivvyModalIsOpen"
+)
+  div(
+    class="bg-white rounded-lg shadow-lg p-6 w-full max-w-screen-sm xl:max-w-screen-lg " +
+    "modal-body transition-transform duration-500 ease-out"
+    x-trap.noscroll="$store.modalStore.newDivvyModalIsOpen"
+    x-ref="newDivvyModal"
+  )
     div(class="flex justify-between items-center border-b pb-3 mb-4")
       h3(class="text-lg font-medium") Create Divvy
       button(
         class="text-gray-500 hover:text-gray-800"
-        @click="newModal = false"
+        @click="$store.modalStore.newDivvyModalIsOpen = false"
       )
         include icons/x
     div(class="mb-4")
@@ -17,10 +25,15 @@ div(class="fixed inset-0 flex items-center justify-center bg-black/20 z-10 p-6 m
             x-model="$store.dvStore.divvyTitle"
             autofocus
           )
-        div(class="flex gap-x-4" x-data="{addMembersModal: false, addExpensesModal: false}")
-          button(class="btn border w-full bg-black text-white" @click="addMembersModal = true") Add members
-          button(class="btn border w-full bg-black text-white" @click="addExpensesModal = true") Add expenses
-          include add-member-modal
+        div(class="flex gap-x-4")
+          button(
+            class="btn border w-full bg-black text-white"
+            @click="$store.modalStore.handleAddMembersModal($refs.newDivvyModal)"
+          ) Add members
+          button(
+            class="btn border w-full bg-black text-white"
+            @click="$store.modalStore.addExpensesModalIsOpen = true"
+          ) Add expenses
         div(x-data="{showMembers: true}")
           div(class="p-2 rounded-md bg-gray-50 border border-gray-200")
             div(class="flex")
@@ -28,22 +41,26 @@ div(class="fixed inset-0 flex items-center justify-center bg-black/20 z-10 p-6 m
                 class="btn w-full rounded-r-none border border-gray-200 border-r-0"
                 :class="showMembers? 'bg-white': 'bg-gray-200'"
                 @click="showMembers = true"
-                ) Members
+              ) Members
               button(
                 class="btn w-full rounded-l-none border border-gray-200 border-l-0"
                 :class="showMembers? 'bg-gray-200': 'bg-white'"
                 @click="showMembers = false"
-                ) Expenses
-            div(class="mt-4 p-2 h-52 overflow-y-auto")
+              ) Expenses
+            div(class="mt-4 p-2 h-64 lg:h-96 overflow-y-auto")
               div(x-show="showMembers")
                 template(x-if="!$store.dvStore.divvyMembers.length > 0")
                   p No members. Try adding some.
                 template(x-if="$store.dvStore.divvyMembers.length > 0")
                   ul(class="flex flex-col gap-y-2")
-                    template(x-for="member in $store.dvStore.divvyMembers")
-                      li(class="flex justify-between items-center pb-2 border-b border-gray-200 last-of-type:border-none")
+                    template(x-for="(member,index) in $store.dvStore.divvyMembers")
+                      li(
+                        class="flex justify-between items-center pb-2 border-b border-gray-200 " +
+                      "last-of-type:border-none animated-li"
+                        :style="`animation-delay: ${index * 25}ms`"
+                      )
                         span(x-text="member.name")
-                        button
+                        button(class="btn-secondary px-2" @click="$store.dvStore.removeMember(member.id)")
                           include icons/trash
               div(x-show="!showMembers")
                 p try adding some expenses
@@ -51,9 +68,10 @@ div(class="fixed inset-0 flex items-center justify-center bg-black/20 z-10 p-6 m
       button(class="btn-secondary mr-auto") Reset
       button(
         class="btn-secondary"
-        @click="newModal = false"
+        @click="$store.modalStore.newDivvyModalIsOpen = false"
       ) Cancel
       button(
         class="btn bg-secondary disabled:bg-gray-200 disabled:text-gray-500 disabled:cursor-not-allowed"
         :disabled="!$store.dvStore.divvyReadyToSave"
       ) Save
+include add-member-modal

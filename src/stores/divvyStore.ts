@@ -1,3 +1,5 @@
+import {capitalizeFirstLetter} from "../helpers.ts";
+
 type Member = {
   name: string;
   id: string;
@@ -23,6 +25,12 @@ interface DivvyStore {
   addExpenseToMember: (memberId: string, expenseId: string) => void;
   removeMember: (memberId: string) => void;
   removeExpense: (expenseId: string) => void;
+  handleAddMemberFormSubmit: (input: HTMLInputElement) => void;
+  toastIsVisible: boolean;
+  toastText: string;
+  toastTimeoutId: number | null;
+  handleShowToast: (text: string) => void;
+  showToast: (text: string) => void;
 }
 
 export const divvyStore: DivvyStore = {
@@ -33,16 +41,21 @@ export const divvyStore: DivvyStore = {
   divvyIsValidForDivvyUp: false,
   divvyMembers: [],
   divvyExpenses: [],
+  toastIsVisible: false,
+  toastText: "",
+  toastTimeoutId: null,
   addNewMember(memberName: string) {
     this.divvyMembers.push({
-      name: memberName,
+      name: capitalizeFirstLetter(memberName),
       id: crypto.randomUUID(),
       expenses: [],
     });
+    this.handleShowToast(`${capitalizeFirstLetter(memberName)} was added as a member.`)
+    console.log(this.divvyMembers);
   },
   addNewExpense(expenseName: string, expenseAmount: number) {
     this.divvyExpenses.push({
-      name: expenseName,
+      name: capitalizeFirstLetter(expenseName),
       id: crypto.randomUUID(),
       amount: expenseAmount,
     });
@@ -62,4 +75,36 @@ export const divvyStore: DivvyStore = {
       member.expenses = member.expenses.filter((expenseId) => expenseId !== expenseId);
     });
   },
+
+  handleAddMemberFormSubmit(input: HTMLInputElement) {
+    if (!input.value.trim()) {
+      input.value = '';
+      input.focus();
+      return;
+    } else {
+      this.addNewMember(input.value.trim());
+      input.value = '';
+    }
+  },
+  handleShowToast(text: string) {
+    if (this.toastTimeoutId) {
+      clearTimeout(this.toastTimeoutId);
+      this.toastTimeoutId = null;
+    }
+    if (this.toastIsVisible) {
+      this.toastIsVisible = false;
+      setTimeout(() => {
+        this.showToast(text);
+      }, 50)
+    } else {
+      this.showToast(text);
+    }
+  },
+  showToast(text: string) {
+    this.toastText = text;
+    this.toastIsVisible = true;
+    this.toastTimeoutId = setTimeout(() => {
+      this.toastIsVisible = false;
+    }, 3000)
+  }
 }

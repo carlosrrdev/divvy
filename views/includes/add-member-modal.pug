@@ -1,22 +1,30 @@
 div(
   class="fixed inset-0 flex items-center justify-center bg-black/20 z-20 p-6 modal-backdrop"
-  x-show="addMembersModal"
-  @click.self="addMembersModal = false"
+  x-show="$store.modalStore.addMembersModalIsOpen"
+  @click.self="$store.modalStore.handleAddMembersModal($refs.newDivvyModal)"
 )
-  div(class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md modal-body" x-trap="addMembersModal")
+  div(
+    class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg modal-body"
+    x-trap="$store.modalStore.addMembersModalIsOpen"
+    )
     div(class="flex justify-between items-center border-b pb-3 mb-4")
       h3(class="text-lg font-medium") Add members
       button(
         class="text-gray-500 hover:text-gray-800"
-        @click="addMembersModal = false"
+        @click="$store.modalStore.handleAddMembersModal($refs.newDivvyModal)"
       )
         include icons/x
     p(class="mb-4 text-sm") Please enter the name of the new participating member
-    div(class="flex gap-x-4")
+    form(
+      class="flex-col flex md:flex-row gap-4"
+      @submit.prevent="$store.dvStore.handleAddMemberFormSubmit($refs.memberInput)"
+      )
       input(
         type="text"
         class="border border-gray-200 px-2 py-1 md:py-2 rounded-md flex-1"
         placeholder="Enter name"
+        required
         autofocus
+        x-ref="memberInput"
       )
       button(class="btn-primary") Add to members
