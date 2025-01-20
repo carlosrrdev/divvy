@@ -16,8 +16,8 @@ interface DivvyStore {
   divvyTitle: string;
   divvyId: null | string;
   divvyIsReadyToSave: boolean;
-  divvyIsValidForEvenSplit: boolean;
-  divvyIsValidForDivvyUp: boolean;
+  divvyIsValidForEvenSplit: () => boolean;
+  divvyIsValidForDivvyUp: () => boolean;
   divvyMembers: Member[];
   divvyExpenses: Expense[];
   addNewMember: (memberName: string) => void;
@@ -26,6 +26,7 @@ interface DivvyStore {
   removeMember: (memberId: string) => void;
   removeExpense: (expenseId: string) => void;
   handleAddMemberFormSubmit: (input: HTMLInputElement) => void;
+  handleAddExpenseFormSubmit: (nameInput: HTMLInputElement, valueInput: HTMLInputElement) => void;
   toastIsVisible: boolean;
   toastText: string;
   toastTimeoutId: number | null;
@@ -37,7 +38,10 @@ export const divvyStore: DivvyStore = {
   divvyTitle: 'New Divvy',
   divvyId: null,
   divvyIsReadyToSave: false,
-  divvyIsValidForEvenSplit: false,
+  divvyIsValidForEvenSplit: function() {
+    return this.divvyExpenses.length > 0 && this.divvyMembers.length > 1;
+
+  },
   divvyIsValidForDivvyUp: false,
   divvyMembers: [],
   divvyExpenses: [],
@@ -51,7 +55,6 @@ export const divvyStore: DivvyStore = {
       expenses: [],
     });
     this.handleShowToast(`${capitalizeFirstLetter(memberName)} was added as a member.`)
-    console.log(this.divvyMembers);
   },
   addNewExpense(expenseName: string, expenseAmount: number) {
     this.divvyExpenses.push({
@@ -59,6 +62,7 @@ export const divvyStore: DivvyStore = {
       id: crypto.randomUUID(),
       amount: expenseAmount,
     });
+    this.handleShowToast(`${capitalizeFirstLetter(expenseName)} was added as an expense.`)
   },
   addExpenseToMember(memberId: string, expenseId: string) {
     const member = this.divvyMembers.find((member) => member.id === memberId);
@@ -84,6 +88,19 @@ export const divvyStore: DivvyStore = {
     } else {
       this.addNewMember(input.value.trim());
       input.value = '';
+    }
+  },
+  handleAddExpenseFormSubmit(nameInput: HTMLInputElement, valueInput: HTMLInputElement) {
+    if(!nameInput.value.trim() || !valueInput.value.trim()) {
+      nameInput.value = '';
+      valueInput.value = '';
+      nameInput.focus();
+      return;
+    } else {
+      this.addNewExpense(nameInput.value.trim(), Number(valueInput.value.trim()));
+      nameInput.value = '';
+      valueInput.value = '';
+      nameInput.focus();
     }
   },
   handleShowToast(text: string) {

@@ -4,6 +4,7 @@ interface ModalStore {
   addMembersModalIsOpen: boolean;
   addExpensesModalIsOpen: boolean;
   handleAddMembersModal: (ref: HTMLElement) => void;
+  handleAddExpensesModal: (ref: HTMLElement) => void;
 }
 
 export const modalStore: ModalStore = {
@@ -19,5 +20,13 @@ export const modalStore: ModalStore = {
       ref.style.transform = "scale(0.97)"
     }
     this.addMembersModalIsOpen = !this.addMembersModalIsOpen;
+  },
+  handleAddExpensesModal(ref) {
+    if(this.addExpensesModalIsOpen) {
+      ref.style.transform = "scale(1)"
+    } else {
+      ref.style.transform = "scale(0.97)"
+    }
+    this.addExpensesModalIsOpen = !this.addExpensesModalIsOpen;
   }
 }

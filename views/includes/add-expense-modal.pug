@@ -1,0 +1,37 @@
+div(
+  class="fixed inset-0 flex items-center justify-center bg-black/20 z-20 p-6 modal-backdrop"
+  x-show="$store.modalStore.addExpensesModalIsOpen"
+  @click.self="$store.modalStore.handleAddExpensesModal($refs.newDivvyModal)"
+)
+  div(
+    class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg modal-body"
+    x-trap="$store.modalStore.addExpensesModalIsOpen"
+  )
+    div(class="flex justify-between items-center border-b pb-3 mb-4")
+      h3(class="text-lg font-medium") Add expenses
+      button(
+        class="text-gray-500 hover:text-gray-800"
+        @click="$store.modalStore.handleAddExpensesModal($refs.newDivvyModal)"
+      )
+        include icons/x
+    p(class="mb-4 text-sm") Please enter a new expense by providing a name and value
+    form(
+      class="flex-col flex md:flex-row md:flex-wrap gap-4"
+      @submit.prevent="$store.dvStore.handleAddExpenseFormSubmit($refs.expenseNameInput, $refs.expenseAmountInput)"
+    )
+      input(
+        type="text"
+        class="border border-gray-200 px-2 py-1 md:py-2 rounded-md"
+        placeholder="Enter name"
+        required
+        autofocus
+        x-ref="expenseNameInput"
+      )
+      input(
+        type="number"
+        class="border border-gray-200 px-2 py-1 md:py-2 rounded-md"
+        step="0.01"
+        required
+        x-ref="expenseAmountInput"
+      )
+      button(class="btn-primary") Add to members

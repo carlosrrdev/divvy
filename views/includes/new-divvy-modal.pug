@@ -32,7 +32,7 @@ div(
           ) Add members
           button(
             class="btn border w-full bg-black text-white"
-            @click="$store.modalStore.addExpensesModalIsOpen = true"
+            @click="$store.modalStore.handleAddExpensesModal($refs.newDivvyModal)"
           ) Add expenses
         div(x-data="{showMembers: true}")
           div(class="p-2 rounded-md bg-gray-50 border border-gray-200")
@@ -50,7 +50,7 @@ div(
             div(class="mt-4 p-2 h-64 lg:h-96 overflow-y-auto")
               div(x-show="showMembers")
                 template(x-if="!$store.dvStore.divvyMembers.length > 0")
-                  p No members. Try adding some.
+                  p No members yet. Try adding some.
                 template(x-if="$store.dvStore.divvyMembers.length > 0")
                   ul(class="flex flex-col gap-y-2")
                     template(x-for="(member,index) in $store.dvStore.divvyMembers")
@@ -63,7 +63,20 @@ div(
                         button(class="btn-secondary px-2" @click="$store.dvStore.removeMember(member.id)")
                           include icons/trash
               div(x-show="!showMembers")
-                p try adding some expenses
+                template(x-if="!$store.dvStore.divvyExpenses.length > 0")
+                  p No expenses yet. Try adding some.
+                template(x-if="$store.dvStore.divvyExpenses.length > 0")
+                  ul(class="flex flex-col gap-y-2")
+                    template(x-for="(expense,index) in $store.dvStore.divvyExpenses")
+                      li(
+                        class="flex items-center pb-2 border-b border-gray-200 " +
+                        "last-of-type:border-none animated-li"
+                        :style="`animation-delay: ${index * 25}ms`"
+                      )
+                        span(x-text="expense.name")
+                        span(x-text="`$${expense.amount}`" class="ml-auto mr-6")
+                        button(class="btn-secondary px-2" @click="$store.dvStore.removeExpense(member.id)")
+                          include icons/trash
     div(class="flex gap-3")
       button(class="btn-secondary mr-auto") Reset
       button(
@@ -75,3 +88,4 @@ div(
         :disabled="!$store.dvStore.divvyReadyToSave"
       ) Save
 include add-member-modal
+include add-expense-modal
