@@ -42,7 +42,7 @@ export const divvyStore: DivvyStore = {
     return this.divvyExpenses.length > 0 && this.divvyMembers.length > 1;
 
   },
-  divvyIsValidForDivvyUp: false,
+  divvyIsValidForDivvyUp: () => false,
   divvyMembers: [],
   divvyExpenses: [],
   toastIsVisible: false,
