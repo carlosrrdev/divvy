@@ -1,5 +1,5 @@
 div(
-  class="fixed inset-0 flex items-center justify-center bg-black/20 z-20 p-6 modal-backdrop"
+  class="fixed inset-0 flex items-center justify-center bg-black/10 z-20 p-6 modal-backdrop"
   x-show="$store.modalStore.addExpensesModalIsOpen"
   @click.self="$store.modalStore.handleAddExpensesModal($refs.newDivvyModal)"
 )
@@ -34,4 +34,4 @@ div(
         required
         x-ref="expenseAmountInput"
       )
-      button(class="btn-primary") Add to members
+      button(class="btn-primary") Add to expenses

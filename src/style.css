@@ -18,6 +18,11 @@
   .btn-secondary {
     @apply btn  border border-gray-200 hover:bg-gray-200;
   }
+  .btn-active {
+    animation-name: buttonActive;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(.44,.05,.13,.97);
+  }
   .modal-body {
     animation-name: modalEnter;
     animation-duration: 0.5s;
@@ -29,7 +34,7 @@
     animation-timing-function: cubic-bezier(.44,.05,.13,.97);
   }
   .animated-li {
-    animation-name: modalEnter;
+    animation-name: liEnter;
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(.35,.01,0,.99);
     animation-fill-mode: both;
@@ -52,12 +57,33 @@
   }
 }
 
+@keyframes liEnter {
+  from {
+    transform: translateY(-5px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes buttonActive {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
