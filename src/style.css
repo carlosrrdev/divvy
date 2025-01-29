@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] { display: none !important; }
+
 @layer base {
   body {
     @apply bg-black;
@@ -10,18 +12,28 @@
 
 @layer components {
   .btn {
-    @apply py-1 md:py-2 px-4 rounded-md;
+    @apply py-1 md:py-2 px-4 rounded-md text-sm md:text-base disabled:bg-gray-200 disabled:text-gray-500
+    disabled:cursor-not-allowed;
   }
   .btn-primary {
     @apply btn bg-black text-white hover:bg-black/90;
   }
   .btn-secondary {
-    @apply btn  border border-gray-200 hover:bg-gray-200;
+    @apply btn border border-gray-200 hover:bg-gray-200;
+  }
+  .btn-ghost {
+    @apply btn border border-gray-200 hover:bg-gray-100;
   }
   .btn-active {
     animation-name: buttonActive;
     animation-duration: 0.8s;
     animation-timing-function: cubic-bezier(.44,.05,.13,.97);
+  }
+  .toggle-btn {
+    @apply flex justify-center px-2 py-0.5 border border-black rounded-md text-sm cursor-pointer;
+  }
+  .toggle-btn:has(input:checked){
+    @apply bg-black text-white;
   }
   .modal-body {
     animation-name: modalEnter;
@@ -50,7 +62,7 @@
 
 @keyframes modalEnter {
   from {
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
   to {
     transform: translateY(0);
@@ -59,10 +71,10 @@
 
 @keyframes liEnter {
   from {
-    transform: translateY(-5px);
+    transform: translateX(-5px);
   }
   to {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 

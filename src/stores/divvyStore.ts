@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs';
-import {capitalizeFirstLetter, nearestHundredth} from "../helpers.ts";
+import currency from 'currency.js'
+import {capitalizeFirstLetter} from "../helpers.ts";
 
 type Member = {
   name: string;
@@ -14,17 +15,24 @@ type Expense = {
   memberCount: number;
 };
 
+type CalculatedMember = Member & {
+  calculatedExpenseTotal: currency;
+}
+
 export interface DivvyStore {
   divvyTitle: string;
   divvyId: null | string;
   divvyIsReadyToSave: boolean;
   divvyIsValidForEvenSplit: () => boolean;
   divvyIsValidForDivvyUp: () => boolean;
+  divvyUpIsValidForResults: () => boolean;
   divvyMembers: Member[];
   divvyExpenses: Expense[];
+  calculatedMembers: CalculatedMember[];
   addNewMember: (memberName: string) => void;
   addNewExpense: (expenseName: string, expenseAmount: number) => void;
   addExpenseToMember: (memberId: string, expenseId: string) => void;
+  removeExpenseFromMember: (memberId: string, expenseId: string) => void;
   removeMember: (memberId: string) => void;
   removeExpense: (expenseId: string) => void;
   handleAddMemberFormSubmit: (input: HTMLInputElement) => void;
@@ -33,15 +41,15 @@ export interface DivvyStore {
     valueInput: HTMLInputElement,
   ) => void;
   handleSplitEvenly: () => void;
+  handleDivvyUp: (ref: HTMLElement) => void;
+  handleAddRemoveExpense: (status: boolean, memberId: string, expenseId: string) => void;
   toastIsVisible: boolean;
   toastText: string;
   toastTimeoutId: number | null;
   handleShowToast: (text: string) => void;
   showToast: (text: string) => void;
-  divvySplitResults: {
-    expenseTotal: number;
-    splitTotal: number;
-  } | null;
+  divvySplitTotal: number | null;
+  divvyExpensesTotal: number | null;
 }
 
 export const divvyStore: DivvyStore = {
@@ -51,15 +59,20 @@ export const divvyStore: DivvyStore = {
   divvyIsValidForEvenSplit: function () {
     return this.divvyExpenses.length > 0 && this.divvyMembers.length > 1;
   },
-  divvyIsValidForDivvyUp: function() {
+  divvyIsValidForDivvyUp: function () {
     return this.divvyExpenses.length > 1 && this.divvyMembers.length > 1;
+  },
+  divvyUpIsValidForResults: function () {
+    return this.divvyMembers.every(member => member.expenses.length > 0);
   },
   divvyMembers: [],
   divvyExpenses: [],
+  calculatedMembers: [],
   toastIsVisible: false,
   toastText: "",
   toastTimeoutId: null,
-  divvySplitResults: null,
+  divvySplitTotal: null,
+  divvyExpensesTotal: null,
   addNewMember(memberName: string) {
     this.divvyMembers.push({
       name: capitalizeFirstLetter(memberName),
@@ -85,6 +98,22 @@ export const divvyStore: DivvyStore = {
     const member = this.divvyMembers.find((member) => member.id === memberId);
     if (member) {
       member.expenses.push(expenseId);
+      const expense = this.divvyExpenses.find((expense) => expense.id === expenseId);
+      if (expense) {
+        expense.memberCount++;
+      }
+    }
+  },
+  removeExpenseFromMember(memberId: string, expenseId: string) {
+    const member = this.divvyMembers.find((member) => member.id === memberId);
+    if (member) {
+      member.expenses = member.expenses.filter(
+        (exId) => exId !== expenseId,
+      );
+      const expense = this.divvyExpenses.find((expense) => expense.id === expenseId);
+      if (expense) {
+        expense.memberCount--;
+      }
     }
   },
   removeMember(memberId: string) {
@@ -98,7 +127,7 @@ export const divvyStore: DivvyStore = {
     );
     this.divvyMembers.forEach((member) => {
       member.expenses = member.expenses.filter(
-        (expenseId) => expenseId !== expenseId,
+        (exId) => exId !== expenseId,
       );
     });
   },
@@ -134,13 +163,38 @@ export const divvyStore: DivvyStore = {
   },
   handleSplitEvenly() {
     const expenseTotal = this.divvyExpenses.reduce((total, expense) => {
-      return total + expense.amount;
-    }, 0)
-    const splitTotal = nearestHundredth(expenseTotal / this.divvyMembers.length);
+      return currency(total).add(expense.amount);
+    }, currency(0))
+    const splitTotal = currency(expenseTotal).divide(this.divvyMembers.length);
     Alpine.store("modalStore").handleSplitResultsModal()
-    this.divvySplitResults = {
-      expenseTotal,
-      splitTotal,
+    this.divvySplitTotal = splitTotal.value;
+    this.divvyExpensesTotal = expenseTotal.value;
+  },
+  handleDivvyUp(ref) {
+    this.calculatedMembers = this.divvyMembers.map((member) => {
+      return {
+        ...member,
+        calculatedExpenseTotal: member.expenses.reduce((total, expenseId) => {
+          const expense = this.divvyExpenses.find((expense) => expense.id === expenseId);
+          if (expense) {
+            return currency(expense.amount).divide(expense.memberCount).add(total);
+          } else {
+            return currency(total);
+          }
+        }, currency(0)),
+      }
+    });
+    const expenseTotal =  this.divvyExpenses.reduce((total, expense) => {
+      return currency(total).add(expense.amount);
+    }, currency(0))
+    this.divvyExpensesTotal = expenseTotal.value;
+    Alpine.store("modalStore").handleDivvyUpResultsModal(ref)
+  },
+  handleAddRemoveExpense(status, memberId, expenseId) {
+    if (status) {
+      this.addExpenseToMember(memberId, expenseId);
+    } else {
+      this.removeExpenseFromMember(memberId, expenseId);
     }
   },
   handleShowToast(text: string) {

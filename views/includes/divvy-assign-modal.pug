@@ -1,0 +1,50 @@
+div(
+  class="fixed inset-0 flex items-center bg-black/20 justify-center z-20 p-6"
+  @click.self="$store.modalStore.handleDivvyUpAssignModal($refs.newDivvyModal)"
+  x-show="$store.modalStore.divvyUpAssignModalIsOpen"
+)
+  div(
+    class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm modal-body"
+    x-trap="$store.modalStore.divvyUpAssignModalIsOpen"
+  )
+    div(class="flex justify-between items-center border-b pb-3 mb-4")
+      h3(class="text-lg font-medium") Divvy up expenses
+      button(
+        class="text-gray-500 hover:text-gray-800"
+        @click="$store.modalStore.handleDivvyUpAssignModal($refs.newDivvyModal)"
+      )
+        include icons/x
+    p(class="text-sm") Assign expenses to each member. All members must have at least one expense assigned.
+    ul(class="flex flex-col gap-y-2 my-6")
+      template(x-for="member in $store.dvStore.divvyMembers")
+        li(
+          class="flex justify-between items-center relative rounded-md"
+          x-data="{popover: false}"
+        )
+          span(x-text="member.name")
+          button(
+            class="btn-ghost py-1 md:py-2"
+            @click="popover = !popover"
+            x-ref="btn") Assign
+          div(class="fixed inset-0 z-30" @click.self="popover = false" x-show="popover")
+            ul(
+              class="p-3 border border-gray-200 rounded-md bg-white shadow-md animated-li w-64 flex flex-wrap gap-2"
+              x-anchor.bottom-end="$refs.btn"
+              x-trap="popover"
+            )
+              template(x-for="expense in $store.dvStore.divvyExpenses")
+                li
+                  label(class="toggle-btn")
+                    input(
+                      type="checkbox"
+                      @change="$store.dvStore.handleAddRemoveExpense($event.target.checked, member.id, expense.id)"
+                      @input="$el.parentElement.setAttribute('aria-checked', $el.checked? 'true':'false')"
+                      class="sr-only"
+                    )
+                    span(x-text="expense.name")
+    div(class="flex justify-between")
+      button(class="btn-secondary" @click="$store.modalStore.handleDivvyUpAssignModal($refs.newDivvyModal)") Go back
+      button(
+        class="btn-primary"
+        :disabled="!$store.dvStore.divvyUpIsValidForResults()"
+        @click="$store.dvStore.handleDivvyUp($refs.newDivvyModal)") Get results

@@ -1,0 +1,25 @@
+template(x-if="$store.modalStore.divvyUpResultsModalIsOpen")
+  div(
+    class="fixed inset-0 flex items-center justify-center z-20 p-6"
+  )
+    div(
+      class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg modal-body"
+      x-trap="$store.modalStore.divvyUpResultsModalIsOpen"
+    )
+      div(class="flex justify-between items-center border-b pb-3 mb-4")
+        h3(class="text-lg font-medium") Results
+        button(
+          class="text-gray-500 hover:text-gray-800"
+          @click="$store.modalStore.handleDivvyUpResultsModal($refs.newDivvyModal)"
+        )
+          include icons/x
+      p(class="mb-4 text-sm") Expenses have been divvied up and calculated!
+      p(x-text="`Total expenses: $${$store.dvStore.divvyExpensesTotal}`" class="mb-2 font-bold")
+      ul
+        template(x-for="member in $store.dvStore.calculatedMembers")
+          li(class="flex text-lg justify-between pb-2 border-b border-gray-200 last-of-type:border-none")
+            span(x-text="member.name")
+            span(x-text="`$${member.calculatedExpenseTotal.value}`" class="font-bold")
+      div(class="flex justify-between mt-4")
+        button(class="btn-secondary" @click="$store.modalStore.handleDivvyUpResultsModal($refs.newDivvyModal)") Go back
+        button(class="btn-primary") Save results

@@ -1,0 +1,13 @@
+template(x-if="!$store.dvStore.divvyMembers.length > 0")
+  p(class="text-center opacity-50") No members yet. Try adding some.
+template(x-if="$store.dvStore.divvyMembers.length > 0")
+  ul(class="flex flex-col gap-y-2")
+    template(x-for="(member,index) in $store.dvStore.divvyMembers")
+      li(
+        class="flex justify-between items-center pb-2 border-b border-gray-200 " +
+        "last-of-type:border-none animated-li"
+        :style="`animation-delay: ${index * 50}ms`"
+      )
+        span(x-text="member.name")
+        button(class="btn-secondary px-2" @click="$store.dvStore.removeMember(member.id)")
+          include icons/trash

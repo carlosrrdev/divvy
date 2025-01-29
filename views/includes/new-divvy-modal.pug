@@ -35,7 +35,7 @@ div(
             class="btn border w-full bg-black text-white"
             @click="$store.modalStore.handleAddExpensesModal($refs.newDivvyModal)"
           ) Add expenses
-        div(x-data="{showMembers: true}")
+        div(x-data="{showMembers: true}" class="xl:hidden")
           div(class="p-2 rounded-md bg-gray-50 border border-gray-200")
             div(class="flex")
               button(
@@ -50,46 +50,27 @@ div(
               ) Expenses
             div(class="mt-4 p-2 h-64 lg:h-96 overflow-y-auto")
               div(x-show="showMembers")
-                template(x-if="!$store.dvStore.divvyMembers.length > 0")
-                  p No members yet. Try adding some.
-                template(x-if="$store.dvStore.divvyMembers.length > 0")
-                  ul(class="flex flex-col gap-y-2")
-                    template(x-for="(member,index) in $store.dvStore.divvyMembers")
-                      li(
-                        class="flex justify-between items-center pb-2 border-b border-gray-200 " +
-                        "last-of-type:border-none animated-li"
-                        :style="`animation-delay: ${index * 50}ms`"
-                      )
-                        span(x-text="member.name")
-                        button(class="btn-secondary px-2" @click="$store.dvStore.removeMember(member.id)")
-                          include icons/trash
+                include members-list
               div(x-show="!showMembers")
-                template(x-if="!$store.dvStore.divvyExpenses.length > 0")
-                  p No expenses yet. Try adding some.
-                template(x-if="$store.dvStore.divvyExpenses.length > 0")
-                  ul(class="flex flex-col gap-y-2")
-                    template(x-for="(expense,index) in $store.dvStore.divvyExpenses")
-                      li(
-                        class="flex items-center pb-2 border-b border-gray-200 " +
-                        "last-of-type:border-none animated-li"
-                        :style="`animation-delay: ${index * 50}ms`"
-                      )
-                        span(x-text="expense.name")
-                        span(x-text="`$${expense.amount}`" class="ml-auto mr-6")
-                        button(class="btn-secondary px-2" @click="$store.dvStore.removeExpense(expense.id)")
-                          include icons/trash
+                include expenses-list
+        div(class="hidden xl:block")
+          div(class="grid grid-cols-2 gap-x-4")
+            div(class="h-96 overflow-y-auto")
+              include members-list
+            div(class="h-96 overflow-y-auto")
+              include expenses-list
     div(class="flex gap-3 mb-4")
       button(
-        class="btn-primary w-full disabled:bg-gray-200 disabled:text-gray-500 disabled:cursor-not-allowed"
+        class="btn-primary w-full"
         :disabled="!$store.dvStore.divvyIsValidForEvenSplit()"
         :class="{'btn-active': $store.dvStore.divvyIsValidForEvenSplit()}"
         @click="$store.dvStore.handleSplitEvenly()"
       ) Split Evenly
       button(
-        class="btn-primary w-full disabled:bg-gray-200 disabled:text-gray-500 disabled:cursor-not-allowed"
+        class="btn-primary w-full"
         :disabled="!$store.dvStore.divvyIsValidForDivvyUp()"
         :class="{'btn-active': $store.dvStore.divvyIsValidForDivvyUp()}"
-        @click="$store.dvStore.handleDivvyUp()"
+        @click="$store.modalStore.handleDivvyUpAssignModal($refs.newDivvyModal)"
       ) Divvy Up
     div(class="flex gap-3")
       button(class="btn-secondary mr-auto") Reset
@@ -100,3 +81,5 @@ div(
 include add-member-modal
 include add-expense-modal
 include split-results-modal
+include divvy-assign-modal
+include divvyup-results-modal

@@ -16,7 +16,7 @@ div(
         include icons/x
     p(class="mb-4 text-sm") Please enter a new expense by providing a name and value
     form(
-      class="flex-col flex md:flex-row md:flex-wrap gap-4"
+      class="flex-col flex md:grid md:grid-cols-2 gap-4"
       @submit.prevent="$store.dvStore.handleAddExpenseFormSubmit($refs.expenseNameInput, $refs.expenseAmountInput)"
     )
       input(
@@ -32,6 +32,7 @@ div(
         class="border border-gray-200 px-2 py-1 md:py-2 rounded-md"
         step="0.01"
         required
+        placeholder="0.00"
         x-ref="expenseAmountInput"
       )
-      button(class="btn-primary") Add to expenses
+      button(class="btn-primary md:col-span-2") Add to expenses

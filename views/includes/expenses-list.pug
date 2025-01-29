@@ -1,0 +1,14 @@
+template(x-if="!$store.dvStore.divvyExpenses.length > 0")
+  p(class="text-center opacity-50") No expenses yet. Try adding some.
+template(x-if="$store.dvStore.divvyExpenses.length > 0")
+  ul(class="flex flex-col gap-y-2")
+    template(x-for="(expense,index) in $store.dvStore.divvyExpenses")
+      li(
+        class="flex items-center pb-2 border-b border-gray-200 " +
+        "last-of-type:border-none animated-li"
+        :style="`animation-delay: ${index * 50}ms`"
+      )
+        span(x-text="expense.name")
+        span(x-text="`$${expense.amount}`" class="ml-auto mr-6")
+        button(class="btn-secondary px-2" @click="$store.dvStore.removeExpense(expense.id)")
+          include icons/trash

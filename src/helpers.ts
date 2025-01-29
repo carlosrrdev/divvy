@@ -3,5 +3,5 @@ export function capitalizeFirstLetter(string: string) {
 }
 
 export function nearestHundredth(number: number) {
-  return Math.round(number * 100) / 100;
+  return parseFloat(number.toFixed(2));
 }

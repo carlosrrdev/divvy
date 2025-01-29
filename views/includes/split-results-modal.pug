@@ -15,8 +15,8 @@ template(x-if="$store.modalStore.splitResultsModalIsOpen")
           include icons/x
       p(class="mb-4 text-sm") All expenses split evenly between members
       div(class="flex flex-col gap-y-2")
-        h4(class="font-bold text-4xl" x-text="`$${$store.dvStore.divvySplitResults.splitTotal}`")
-        p(x-text="`Total expenses: $${$store.dvStore.divvySplitResults.expenseTotal}`")
+        h4(class="font-bold text-4xl" x-text="`$${$store.dvStore.divvySplitTotal}`")
+        p(x-text="`Total expenses: $${$store.dvStore.divvyExpensesTotal}`")
       div(class="flex justify-between mt-4")
         button(class="btn-secondary" @click="$store.modalStore.handleSplitResultsModal()") Go back
         button(class="btn-primary") Save results

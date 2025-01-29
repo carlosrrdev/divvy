@@ -11,6 +11,6 @@ declare global {
 
 declare module 'alpinejs' {
   interface Alpine {
-    store<T extends keyof AlpineStores>(store: T): AlpineStores[T];
+    store<T extends keyof AlpineStores>(name: T): AlpineStores[T];
   }
 }

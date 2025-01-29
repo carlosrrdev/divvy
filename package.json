@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@types/alpinejs": "^3.13.11",
+    "@types/alpinejs__anchor": "^3.13.1",
     "@types/alpinejs__focus": "^3.13.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.1",
@@ -19,7 +20,9 @@
     "vite-plugin-pug": "^0.4.1"
   },
   "dependencies": {
+    "@alpinejs/anchor": "^3.14.8",
     "@alpinejs/focus": "^3.14.8",
-    "alpinejs": "^3.14.8"
+    "alpinejs": "^3.14.8",
+    "currency.js": "^2.0.4"
   }
 }
