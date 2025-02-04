@@ -5,7 +5,7 @@ template(x-if="$store.dvStore.divvyExpenses.length > 0")
     template(x-for="(expense,index) in $store.dvStore.divvyExpenses")
       li(
         class="flex items-center pb-2 border-b border-gray-200 " +
-        "last-of-type:border-none animated-li"
+        "last-of-type:border-none animated-li dark:border-neutral-800"
         :style="`animation-delay: ${index * 50}ms`"
       )
         span(x-text="expense.name")

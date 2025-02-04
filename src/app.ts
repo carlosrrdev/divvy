@@ -4,7 +4,9 @@ import focus from '@alpinejs/focus'
 import anchor from '@alpinejs/anchor';
 import {divvyStore} from "./stores/divvyStore.ts";
 import {modalStore} from "./stores/modalStore.ts";
+import {themeStore} from "./stores/themeStore.ts";
 
+Alpine.store('themeStore', themeStore)
 Alpine.store('dvStore', divvyStore);
 Alpine.store('modalStore', modalStore);
 

@@ -22,7 +22,6 @@ type CalculatedMember = Member & {
 export interface DivvyStore {
   divvyTitle: string;
   divvyId: null | string;
-  divvyIsReadyToSave: boolean;
   divvyIsValidForEvenSplit: () => boolean;
   divvyIsValidForDivvyUp: () => boolean;
   divvyUpIsValidForResults: () => boolean;
@@ -50,12 +49,12 @@ export interface DivvyStore {
   showToast: (text: string) => void;
   divvySplitTotal: number | null;
   divvyExpensesTotal: number | null;
+  resetDivvy: () => void;
 }
 
 export const divvyStore: DivvyStore = {
   divvyTitle: "New Divvy",
   divvyId: null,
-  divvyIsReadyToSave: false,
   divvyIsValidForEvenSplit: function () {
     return this.divvyExpenses.length > 0 && this.divvyMembers.length > 1;
   },
@@ -218,4 +217,13 @@ export const divvyStore: DivvyStore = {
       this.toastIsVisible = false;
     }, 3000);
   },
+  resetDivvy() {
+    this.divvyTitle = "New Divvy";
+    this.divvyId = null;
+    this.divvyMembers = [];
+    this.divvyExpenses = [];
+    this.calculatedMembers = [];
+    this.divvySplitTotal = null;
+    this.divvyExpensesTotal = null;
+  }
 };

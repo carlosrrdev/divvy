@@ -5,7 +5,7 @@ template(x-if="$store.dvStore.divvyMembers.length > 0")
     template(x-for="(member,index) in $store.dvStore.divvyMembers")
       li(
         class="flex justify-between items-center pb-2 border-b border-gray-200 " +
-        "last-of-type:border-none animated-li"
+        "last-of-type:border-none animated-li dark:border-neutral-800"
         :style="`animation-delay: ${index * 50}ms`"
       )
         span(x-text="member.name")

@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-[x-cloak] { display: none !important; }
+[x-cloak] {
+  display: none !important;
+}
 
 @layer base {
   body {
@@ -13,50 +15,95 @@
 @layer components {
   .btn {
     @apply py-1 md:py-2 px-4 rounded-md text-sm md:text-base disabled:bg-gray-200 disabled:text-gray-500
-    disabled:cursor-not-allowed;
+    disabled:pointer-events-none dark:disabled:bg-neutral-700 dark:disabled:text-neutral-500;
   }
+
   .btn-primary {
-    @apply btn bg-black text-white hover:bg-black/90;
+    @apply btn bg-black text-white hover:bg-black/90 dark:bg-neutral-500 dark:hover:bg-secondary;
   }
+
   .btn-secondary {
-    @apply btn border border-gray-200 hover:bg-gray-200;
+    @apply btn border border-gray-400 hover:bg-gray-200 dark:border-neutral-700 dark:text-slate-300
+    dark:hover:bg-neutral-600;
   }
+
   .btn-ghost {
-    @apply btn border border-gray-200 hover:bg-gray-100;
+    @apply btn border border-gray-200 hover:bg-gray-100 dark:border-neutral-700 dark:hover:bg-neutral-800;
   }
+
   .btn-active {
     animation-name: buttonActive;
     animation-duration: 0.8s;
-    animation-timing-function: cubic-bezier(.44,.05,.13,.97);
+    animation-timing-function: cubic-bezier(0.44, 0.05, 0.13, 0.97);
   }
+
   .toggle-btn {
-    @apply flex justify-center px-2 py-0.5 border border-black rounded-md text-sm cursor-pointer;
+    @apply flex justify-center px-2 py-0.5 border border-black rounded-md text-sm cursor-pointer dark:border-neutral-700
+    dark:text-neutral-300;
   }
-  .toggle-btn:has(input:checked){
-    @apply bg-black text-white;
+
+  .toggle-btn:has(input:checked) {
+    @apply bg-black text-white dark:bg-secondary dark:text-black;
   }
+
   .modal-body {
     animation-name: modalEnter;
     animation-duration: 0.5s;
-    animation-timing-function: cubic-bezier(.35,.01,0,.99);
+    animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
+    @apply bg-stone-50 dark:bg-neutral-800 dark:text-white;
   }
+
   .modal-backdrop {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-timing-function: cubic-bezier(.44,.05,.13,.97);
+    animation-timing-function: cubic-bezier(0.44, 0.05, 0.13, 0.97);
   }
+
+  .modal-input {
+    @apply bg-stone-50 dark:bg-neutral-900 border border-stone-200 dark:border-neutral-700 rounded-md px-2 py-1
+    focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-secondary;
+  }
+
+  .modal-top-close-btn {
+    @apply text-gray-500 hover:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-300;
+  }
+
   .animated-li {
     animation-name: liEnter;
     animation-duration: 0.5s;
-    animation-timing-function: cubic-bezier(.35,.01,0,.99);
+    animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
     animation-fill-mode: both;
   }
+
   .toast {
     animation-name: toastEnter;
     animation-duration: 3s;
-    animation-timing-function: cubic-bezier(.35,.01,0,.99);
+    animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
     animation-fill-mode: forwards;
     @apply fixed bg-black text-sm text-white shadow-sm px-4 py-2 rounded-md top-10 left-1/2 z-[1000];
+  }
+
+  .member-main {
+    animation-name: memberMainEnter;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
+    animation-fill-mode: both;
+  }
+
+  .member-enter-right {
+    animation-name: memberEnterRight;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
+    animation-fill-mode: both;
+    animation-delay: 0.2s;
+  }
+
+  .member-enter-left {
+    animation-name: memberEnterLeft;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
+    animation-fill-mode: both;
+    animation-delay: 0.2s;
   }
 }
 
@@ -71,9 +118,11 @@
 
 @keyframes liEnter {
   from {
-    transform: translateX(-5px);
+    opacity: 0;
+    transform: translateX(-10px);
   }
   to {
+    opacity: 1;
     transform: translateX(0);
   }
 }
@@ -115,5 +164,38 @@
   100% {
     opacity: 0;
     transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+@keyframes memberMainEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes memberEnterRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(0.8);
+  }
+}
+
+@keyframes memberEnterLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(0.8);
   }
 }
