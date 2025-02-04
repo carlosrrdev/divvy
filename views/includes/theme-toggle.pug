@@ -1,0 +1,28 @@
+div
+  button(
+    aria-label="Toggle theme"
+    class="block p-1"
+    x-ref="button"
+    @click="$store.themeStore.toggleDropdown(!$store.themeStore.showDropdown)"
+    )
+    include icons/sun
+  div(class="fixed inset-0 z-30" @click.self="$store.themeStore.toggleDropdown()" x-show="$store.themeStore.showDropdown")
+    ul(
+      x-anchor.bottom-end="$refs.button"
+      class="bg-stone-50 border border-stone-300 p-2 rounded-md dark:bg-neutral-900 dark:border-neutral-800"
+      )
+      li
+        button(
+          class="btn-ghost text-sm px-6 py-1 w-full border-none"
+          @click="$store.themeStore.setTheme('light')"
+          ) Light
+      li
+        button(
+          class="btn-ghost text-sm px-6 py-1 w-full border-none"
+          @click="$store.themeStore.setTheme('dark')"
+          ) Dark
+      li
+        button(
+          class="btn-ghost text-sm px-6 py-1 w-full border-none"
+          @click="$store.themeStore.setTheme('system')"
+          ) System
