@@ -1,5 +1,5 @@
 div(
-  class="fixed inset-0 flex items-center justify-center bg-stone-600/10 dark:bg-black/50 z-10 p-6 modal-backdrop"
+  class="fixed inset-0 flex items-center justify-center bg-stone-600/10 dark:bg-black/20 z-10 p-6 modal-backdrop"
   x-show="$store.modalStore.newDivvyModalIsOpen"
 )
   div(
@@ -36,7 +36,7 @@ div(
             @click="$store.modalStore.handleAddExpensesModal($refs.newDivvyModal)"
           ) Add expenses
         div(x-data="{showMembers: true}" class="xl:hidden")
-          div(class="p-2 rounded-md bg-gray-50 border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700")
+          div(class="p-2 rounded-md bg-stone-100 border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700")
             div(class="flex")
               button(
                 class="btn w-full rounded-r-none border border-gray-200 dark:border-neutral-700 border-r-0"

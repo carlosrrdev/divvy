@@ -3,7 +3,7 @@ div(
   x-data=""
 )
   include includes/header
-  main(class="flex flex-1")
+  main(class="flex flex-1 relative z-[1]")
     div(class="flex-1 flex flex-col justify-center items-center container mx-auto p-6")
       div(class="flex flex-col gap-y-2 w-full max-w-48")
         button(
@@ -16,3 +16,119 @@ div(
   template(x-if="$store.dvStore.toastIsVisible")
     div(class="toast")
       p(x-text="$store.dvStore.toastText")
+  div(class="absolute z-0 w-full h-full flex justify-center items-center overflow-hidden")
+    <svg width="400" height="400" viewBox="0 0 400 400" xmlns='http://www.w3.org/2000/svg' class="transform scale-[5]">
+    | <circle
+    | cx="200"
+    | cy="200"
+    | r="50"
+    | fill="none"
+    | class="stroke-stone-200 dark:stroke-stone-800"
+    | stroke-width="0.2"
+    | />
+    | <g transform-origin="200 200">
+    | <animateTransform
+    | attributeName="transform"
+    | type="rotate"
+    | from="0"
+    | to="360"
+    | dur="300s"
+    | repeatCount="indefinite"
+    | additive="sum"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1"
+    | />
+    | <circle cx="300" cy="200" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <animate
+    | attributeName="cx"
+    | values="300;330;300"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | </circle>
+    | <circle cx="250" cy="286.6" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <animate
+    | attributeName="cx"
+    | values="250;273.3;250"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | <animate
+    | attributeName="cy"
+    | values="286.6;315.26;286.6"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | </circle>
+    | <circle cx="150" cy="286.6" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <animate
+    | attributeName="cx"
+    | values="150;126.7;150"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | <animate
+    | attributeName="cy"
+    | values="286.6;315.26;286.6"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | </circle>
+    | <circle cx="100" cy="200" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <animate
+    | attributeName="cx"
+    | values="100;70;100"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | </circle>
+    | <circle cx="150" cy="113.4" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <animate
+    | attributeName="cx"
+    | values="150;126.7;150"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | <animate
+    | attributeName="cy"
+    | values="113.4;84.74;113.4"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | </circle>
+    | <circle cx="250" cy="113.4" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <animate
+    | attributeName="cx"
+    | values="250;273.3;250"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | <animate
+    | attributeName="cy"
+    | values="113.4;84.74;113.4"
+    | dur="200s"
+    | repeatCount="indefinite"
+    | calcMode="spline"
+    | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+    | />
+    | </circle>
+    | </g>
+    | </svg>
