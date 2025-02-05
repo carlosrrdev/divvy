@@ -17,10 +17,10 @@ template(x-if="$store.modalStore.divvyUpResultsModalIsOpen")
       p(x-text="`Total expenses: $${$store.dvStore.divvyExpensesTotal}`" class="mb-2 font-bold")
       ul(class="flex flex-col gap-y-2")
         template(x-for="member in $store.dvStore.calculatedMembers")
-          li(class="flex text-xl justify-between pb-2 border-b border-gray-200 last-of-type:border-none " +
+          li(class="flex justify-between pb-2 border-b border-gray-200 last-of-type:border-none " +
           "dark:border-neutral-700")
             span(x-text="member.name")
-            span(x-text="`$${member.calculatedExpenseTotal.value}`" class="font-bold")
+            span(x-text="`$${member.calculatedExpenseTotal.value}`")
       div(class="flex justify-between mt-4")
         button(class="btn-secondary" @click="$store.modalStore.handleDivvyUpResultsModal($refs.newDivvyModal)") Go back
         button(class="btn-primary") Save results

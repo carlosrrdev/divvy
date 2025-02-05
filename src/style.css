@@ -15,11 +15,12 @@
 @layer components {
   .btn {
     @apply py-1 md:py-2 px-4 rounded-md text-sm md:text-base disabled:bg-gray-200 disabled:text-gray-500
-    disabled:pointer-events-none dark:disabled:bg-neutral-700 dark:disabled:text-neutral-500;
+    disabled:pointer-events-none dark:disabled:bg-neutral-700 dark:disabled:text-neutral-500 disabled:border-transparent;
   }
 
   .btn-primary {
-    @apply btn bg-black text-white hover:bg-black/90 dark:bg-neutral-500 dark:hover:bg-secondary;
+    @apply btn bg-black border border-black dark:border-neutral-500 text-white hover:bg-black/90
+    dark:bg-neutral-500 dark:hover:bg-secondary;
   }
 
   .btn-secondary {

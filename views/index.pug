@@ -1,5 +1,5 @@
 div(
-  class="w-full flex flex-col min-h-dvh bg-stone-100 dark:bg-neutral-900/80"
+  class="w-full flex flex-col min-h-dvh bg-gradient-to-br from-white to-indigo-100 dark:from-slate-800/45 dark:to-slate-800/50"
   x-data=""
 )
   include includes/header
@@ -23,7 +23,7 @@ div(
     | cy="200"
     | r="50"
     | fill="none"
-    | class="stroke-stone-200 dark:stroke-stone-800"
+    | class="stroke-indigo-100 dark:stroke-slate-800/40"
     | stroke-width="0.2"
     | />
     | <g transform-origin="200 200">
@@ -32,13 +32,13 @@ div(
     | type="rotate"
     | from="0"
     | to="360"
-    | dur="300s"
+    | dur="500s"
     | repeatCount="indefinite"
     | additive="sum"
     | calcMode="spline"
     | keySplines="0.4 0 0.2 1"
     | />
-    | <circle cx="300" cy="200" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <circle cx="300" cy="200" r="50" fill="none" class="stroke-indigo-100 dark:stroke-slate-800/40" stroke-width="0.2">
     | <animate
     | attributeName="cx"
     | values="300;330;300"
@@ -48,7 +48,7 @@ div(
     | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
     | />
     | </circle>
-    | <circle cx="250" cy="286.6" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <circle cx="250" cy="286.6" r="50" fill="none" class="stroke-indigo-100 dark:stroke-slate-800/40" stroke-width="0.2">
     | <animate
     | attributeName="cx"
     | values="250;273.3;250"
@@ -66,7 +66,7 @@ div(
     | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
     | />
     | </circle>
-    | <circle cx="150" cy="286.6" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <circle cx="150" cy="286.6" r="50" fill="none" class="stroke-indigo-100 dark:stroke-slate-800/40" stroke-width="0.2">
     | <animate
     | attributeName="cx"
     | values="150;126.7;150"
@@ -84,7 +84,7 @@ div(
     | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
     | />
     | </circle>
-    | <circle cx="100" cy="200" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <circle cx="100" cy="200" r="50" fill="none" class="stroke-indigo-100 dark:stroke-slate-800/40" stroke-width="0.2">
     | <animate
     | attributeName="cx"
     | values="100;70;100"
@@ -94,7 +94,7 @@ div(
     | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
     | />
     | </circle>
-    | <circle cx="150" cy="113.4" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <circle cx="150" cy="113.4" r="50" fill="none" class="stroke-indigo-100 dark:stroke-slate-800/40" stroke-width="0.2">
     | <animate
     | attributeName="cx"
     | values="150;126.7;150"
@@ -112,7 +112,7 @@ div(
     | keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
     | />
     | </circle>
-    | <circle cx="250" cy="113.4" r="50" fill="none" class="stroke-stone-200 dark:stroke-stone-800" stroke-width="0.2">
+    | <circle cx="250" cy="113.4" r="50" fill="none" class="stroke-indigo-100 dark:stroke-slate-800/40" stroke-width="0.2">
     | <animate
     | attributeName="cx"
     | values="250;273.3;250"
@@ -131,4 +131,23 @@ div(
     | />
     | </circle>
     | </g>
+    | </svg>
+    | <svg class="absolute scale-[2]" width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    | <defs>
+    | <filter id="noise">
+    | <feTurbulence
+    | type="turbulence"
+    | baseFrequency="10"
+    | numOctaves="1"
+    | stitchTiles="stitch" / >
+    | <feColorMatrix type="saturate" values="0"/>
+    | <feBlend mode="multiply"/>
+    | </filter>
+    | <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    | <stop offset="0%" style="stop-color:#4338ca;stop-opacity:1" />
+    | <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0" />
+    | </linearGradient>
+    | </defs>
+    | <rect width="100%" height="100%" fill="transparent"/>
+    | <rect width="100%" height="100%" filter="url(#noise)" class="opacity-20 dark:opacity-20"/>
     | </svg>
