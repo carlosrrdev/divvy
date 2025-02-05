@@ -80,7 +80,7 @@
     animation-duration: 3s;
     animation-timing-function: cubic-bezier(0.35, 0.01, 0, 0.99);
     animation-fill-mode: forwards;
-    @apply fixed bg-black text-sm text-white shadow-sm px-4 py-2 rounded-md bottom-10 md:top-10 left-1/2 z-[1000]
+    @apply fixed bg-black text-sm text-white shadow-sm px-4 py-2 rounded-md top-[60%] md:top-10 left-1/2 z-[1000]
     dark:bg-secondary dark:text-black;
   }
 
