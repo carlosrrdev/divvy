@@ -16,11 +16,13 @@ export const themeStore = {
         ? "dark"
         : "light";
       root.classList.add(systemTheme);
+      this.theme = systemTheme;
       localStorage.removeItem("theme");
       this.showDropdown = false;
       return;
     }
     localStorage.setItem("theme", theme);
+    this.theme = theme;
     root.classList.add(theme);
     this.showDropdown = false;
   },

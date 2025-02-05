@@ -5,7 +5,10 @@ div
     x-ref="button"
     @click="$store.themeStore.toggleDropdown(!$store.themeStore.showDropdown)"
     )
-    include icons/sun
+    template(x-if="$store.themeStore.theme === 'light'")
+      include icons/sun
+    template(x-if="$store.themeStore.theme === 'dark'")
+      include icons/moon
   div(class="fixed inset-0 z-30" @click.self="$store.themeStore.toggleDropdown()" x-show="$store.themeStore.showDropdown")
     ul(
       x-anchor.bottom-end="$refs.button"
